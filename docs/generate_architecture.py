@@ -14,13 +14,13 @@ output_path = os.path.join(os.path.dirname(__file__), "assets", "architecture_di
 
 graph_attr = {
     "fontsize": "24",
-    "bgcolor": "transparent",
+    "bgcolor": "#0D1117",
     "fontcolor": "#FFFFFF",
     "pad": "0.5"
 }
 
 cluster_attr = {
-    "bgcolor": "transparent",
+    "bgcolor": "#161B22",
     "fontcolor": "#FFFFFF",
     "color": "#30363D"
 }
