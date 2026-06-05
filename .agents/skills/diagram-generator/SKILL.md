@@ -27,10 +27,5 @@ The Base Agentic Environment supports two industry-standard tools. Choose the ri
 2. Select the appropriate tool.
 3. Generate the code (Python or D2).
 4. Run the code to output the base `docs/assets/architecture_diagram.png`.
-
-### The Hybrid Aesthetic Pass (Image-to-Image)
-Because programmatic diagrams often lack visual flair, you MUST apply a stylistic pass if the diagram is meant for recruiter-facing or showcase assets:
-1. After generating the base PNG via code, pass that PNG path directly into the `generate_image` tool via the `ImagePaths` parameter.
-2. Prompt the AI: *"Use the provided architecture diagram as a strict structural base. Redraw it exactly node-for-node. The aesthetic MUST be a highly professional business dashboard and product showcase: add sleek borders, soft drop shadows, and a clean, high-end enterprise layout with glassmorphism and subtle glowing neon blue/purple accents. The layout must remain identical to the base image. Make sure the text is as clear as possible. Finally, it is a STRICT RULE to include a distinct watermark reading 'github.com/hitanshuac' in the bottom corner."*
-3. Overwrite the original `architecture_diagram.png` with this new, stylized masterpiece.
-4. Check `git status` and commit the new diagram.
+5. **STRICT RULE:** NEVER run the output image through an AI Image Generator (like DALL-E) to apply a "stylistic pass". AI image generators inevitably corrupt the text, creating gibberish. You must rely 100% on the native output of the Python or D2 script to guarantee precision.
+6. Check `git status` and commit the new diagram.
