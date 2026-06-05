@@ -13,6 +13,9 @@ This repository serves as a powerful, extensible **Base Agentic Environment** bu
 ## 🚀 Dynamic Skill Integration
 This workspace is designed to be highly composable. **As new skills and agents are developed in separate, isolated projects, they are continuously imported into this base environment.** This aggregation allows the environment to grow exponentially more powerful over time, consolidating isolated intelligence into a single, unified operating system.
 
+### The Agentic Handover Workflow
+![Handover Flow](docs/assets/handover_flow.png)
+
 ## 🏗️ Dual-Prong Testing Architecture
 ```mermaid
 graph TD
