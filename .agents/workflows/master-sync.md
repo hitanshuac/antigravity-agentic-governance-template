@@ -23,9 +23,9 @@ This is the **top-level orchestrator** for synchronizing the entire codebase. It
 2. This will scan `.agents/` and `src/` to synchronize `README.md`, `HANDOVER.md`, and `BOOTSTRAP.MD` with the current codebase state.
 
 ## Phase 4: Regenerate Architecture Diagrams
-1. Execute `.agents/workflows/generate-architecture.md`.
-2. This will update the Python diagram scripts to reflect the current architecture, regenerate the base PNG, apply the composite watermark, and optionally run the AI styling pass.
-3. The output overwrites `docs/assets/architecture_diagram.png`.
+1. Execute `.agents/workflows/generate-diagrams.md`.
+2. This will scan all `.d2` and `.py` diagrams, generate their technical base PNGs, and automatically run the AI styling pass to create the `_showcase` assets.
+3. The outputs will be saved to `docs/assets/`.
 
 ## Phase 5: Publish Showcase
 1. Execute `.agents/workflows/publish-showcase.md`.

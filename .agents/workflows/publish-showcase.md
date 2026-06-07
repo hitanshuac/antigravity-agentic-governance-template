@@ -16,8 +16,8 @@ Verify that all recruiter-facing and technical documentation assets are present,
 2. Synthesize these files to update the `README.md` with the newest version baseline, SRE guardrails, and metrics.
 
 ### Step 2: Verify Documentation Assets (Dual-Presentation Mandate)
-1. **Recruiter-Facing PNG:** Confirm that `docs/assets/architecture_diagram.png` exists and is referenced at the top of `README.md` via `![Architecture Diagram](docs/assets/architecture_diagram.png)`.
-   - If the PNG is **missing or stale**, execute `.agents/workflows/generate-architecture.md` to regenerate it programmatically. Do NOT use an AI image generator directly.
+1. **Recruiter-Facing PNG:** Confirm that `docs/assets/architecture_diagram_showcase.png` exists and is referenced at the top of `README.md` via `![Architecture Diagram](docs/assets/architecture_diagram_showcase.png)`.
+   - If the PNG is **missing or stale**, execute `.agents/workflows/generate-diagrams.md` to regenerate all diagrams programmatically. Do NOT use an AI image generator directly outside of the strict rules.
 2. **Technical Mermaid Diagram:** Confirm that an inline Mermaid diagram is present in the Visual Reference Appendix section of `README.md`.
    - If it is missing, generate one from the current `src/` architecture.
 

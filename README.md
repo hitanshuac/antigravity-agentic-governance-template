@@ -66,7 +66,7 @@ pip install -r requirements.txt
 * **CI/CD & Sync:** `master-sync`, `update-docs`, `publish-showcase`, `deploy-hf-production`, `secure-checkpoint`, `semantic-release`
 * **Security & Quality:** `security-sast` (Semgrep), `lint` (Ruff), `test-automation`
 * **Product & Planning:** `generate-product-docs`
-* **Architecture & Assets:** `generate-architecture`
+* **Architecture & Assets:** `generate-diagrams`
 * **Data Engineering:** `daily-ingestion`, `build-etl`, `error-recovery`
 * **Bootstrapping:** `bootstrap`, `git-discovery-preflight`, `merge-conflict-resolution`
 

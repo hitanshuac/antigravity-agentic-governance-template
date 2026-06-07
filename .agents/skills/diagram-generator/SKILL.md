@@ -31,8 +31,8 @@ The Base Agentic Environment supports two industry-standard tools. Choose the ri
 Because raw programmatic diagrams often lack visual flair, you MUST apply a stylistic pass using the `generate_image` tool if the diagram is meant for recruiter-facing or showcase assets. 
 
 **CRITICAL RULE: STRICT SPELLING PRESERVATION.** AI image generators inherently struggle with spelling. You must force the AI to preserve text by using this exact prompt structure:
-1. Ensure the base programmatic diagram (`architecture_diagram_technical.png`) is generated.
+1. Ensure the base programmatic diagram (`<diagram_name>_technical.png`) is generated.
 2. Pass the base PNG path directly into the `generate_image` tool via the `ImagePaths` parameter.
 3. Prompt the AI: *"Use the provided diagram as a strict structural base. Redraw it exactly node-for-node. The aesthetic MUST be a highly professional, clean, and understandable design in the style of handover_flow.png: sleek borders, clear layout, highly aesthetic. CRITICAL INSTRUCTION: You MUST preserve the exact spelling of all text inside the nodes. Do not alter or hallucinate a single character of text. Keep the structure 100% identical."*
-4. Overwrite or save the new image as `docs/assets/architecture_diagram_showcase.png`.
-5. Present `architecture_diagram_showcase.png` to recruiters and keep `architecture_diagram_technical.png` for engineers.
+4. Overwrite or save the new image as `docs/assets/<diagram_name>_showcase.png`.
+5. Present `<diagram_name>_showcase.png` to recruiters and keep `<diagram_name>_technical.png` for engineers.
