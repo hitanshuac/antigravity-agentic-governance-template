@@ -2,6 +2,19 @@
 
 <!-- version list -->
 
+## v1.2.2 (2026-06-07)
+
+### Bug Fixes
+
+- **ci**: Resolve ruff lint errors and mermaid action failures
+  ([`e50e7a3`](https://github.com/hitanshuac/Antigravity_Environment_Max/commit/e50e7a31050b8511bfb9f2d1e36f4404d89990a1))
+
+### Documentation
+
+- Clarify HF deployment executes strictly via GitHub Actions CI/CD
+  ([`5de545e`](https://github.com/hitanshuac/Antigravity_Environment_Max/commit/5de545e1f826d95c373bbdaa9972baf0000dd719))
+
+
 ## v1.2.1 (2026-06-07)
 
 ### Bug Fixes
