@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.2.0 (2026-06-07)
+
+### Features
+
+- Enforce dual-image style reference and label enumeration in diagram generation rules
+  ([`64ee680`](https://github.com/hitanshuac/Antigravity_Environment_Max/commit/64ee680072b722733271e37e334374003596f8a4))
+
+
 ## v1.1.0 (2026-06-07)
 
 ### Code Style
