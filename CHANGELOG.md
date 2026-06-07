@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.4.0 (2026-06-07)
+
+### Features
+
+- **workflow**: Integrate setup-secrets into core bootstrapping sequences
+  ([`35c826c`](https://github.com/hitanshuac/Antigravity_Environment_Max/commit/35c826cd8340a7902a8c023a48bfa4a27e103234))
+
+
 ## v1.3.0 (2026-06-07)
 
 ### Features
