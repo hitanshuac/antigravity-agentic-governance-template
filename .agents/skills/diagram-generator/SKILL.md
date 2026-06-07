@@ -28,10 +28,11 @@ The Base Agentic Environment supports two industry-standard tools. Choose the ri
 3. Generate the code (Python or D2).
 
 ### The Strict AI Styling Pass (Aesthetics)
-Because raw programmatic diagrams often lack visual flair, you MUST apply a stylistic pass using the `generate_image` tool if the diagram is meant for recruiter-facing or showcase assets. However, AI image generators inherently struggle with spelling. You must force the AI to preserve text.
-1. Ensure the base code script is set to a solid dark mode background (`bgcolor="#0D1117"`). Do not use transparent backgrounds.
-2. Run the code to output the base PNG.
-3. Pass the base PNG path directly into the `generate_image` tool via the `ImagePaths` parameter.
-4. Prompt the AI: *"Use the provided diagram as a strict structural base. Redraw it exactly node-for-node. The aesthetic MUST be a highly professional business dashboard and product showcase: add sleek borders, soft drop shadows, and a clean, high-end enterprise layout with glassmorphism and subtle glowing neon blue/purple accents. The layout must remain identical to the base image. CRITICAL INSTRUCTION: You MUST preserve the exact spelling of all text inside the nodes. Do not alter or hallucinate a single character of text. Include a distinct watermark reading exactly 'github.com/hitanshuac' in the bottom corner."*
-5. Overwrite the original diagram with this new, stylized masterpiece.
-6. Check `git status` and commit the new diagram.
+Because raw programmatic diagrams often lack visual flair, you MUST apply a stylistic pass using the `generate_image` tool if the diagram is meant for recruiter-facing or showcase assets. 
+
+**CRITICAL RULE: STRICT SPELLING PRESERVATION.** AI image generators inherently struggle with spelling. You must force the AI to preserve text by using this exact prompt structure:
+1. Ensure the base programmatic diagram (`architecture_diagram_technical.png`) is generated.
+2. Pass the base PNG path directly into the `generate_image` tool via the `ImagePaths` parameter.
+3. Prompt the AI: *"Use the provided diagram as a strict structural base. Redraw it exactly node-for-node. The aesthetic MUST be a highly professional, clean, and understandable design in the style of handover_flow.png: sleek borders, clear layout, highly aesthetic. CRITICAL INSTRUCTION: You MUST preserve the exact spelling of all text inside the nodes. Do not alter or hallucinate a single character of text. Keep the structure 100% identical."*
+4. Overwrite or save the new image as `docs/assets/architecture_diagram_showcase.png`.
+5. Present `architecture_diagram_showcase.png` to recruiters and keep `architecture_diagram_technical.png` for engineers.
