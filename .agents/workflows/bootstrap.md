@@ -7,6 +7,14 @@ description: Workflow to scaffold and verify the local environment before execut
 
 When initiating the workspace or onboarding a new developer/agent, execute these steps sequentially to ensure the 12-Factor App methodology is satisfied locally.
 
+## Phase 0: Environment Upgrade Protocol (For Existing Repositories)
+If you are running `bootstrap.md` in a repository that already has an older version of Antigravity installed:
+1. **Clone Latest Upstream:** Run `git clone https://github.com/hitanshuac/Antigravity_Environment_Max.git .agents/tmp/antigravity_latest` (or equivalent URL).
+2. **Verify Semantic Release Context:** Ensure the latest `.agents/workflows/semantic-release.md` is pulled down locally to serve as the versioning anchor.
+3. **Additive Document Merge:** Copy all entirely *new* `.md` workflows, rules, and product templates from `.agents/tmp/antigravity_latest/` into your local root and `.agents/` directory. Do not destructively overwrite existing modified workflows unless explicitly requested.
+4. **Union Merge Boilerplate:** Execute `.agents/workflows/merge-conflict-resolution.md` to safely union-merge lists like `.gitignore` and `requirements.txt`.
+5. **Cleanup:** Delete the `.agents/tmp/antigravity_latest` folder and proceed to Phase 1.
+
 ## 1. Verify Factor I (Codebase)
 Ensure the repository is fully cloned and the `.agents` folder is intact.
 
