@@ -32,7 +32,22 @@ If a human asks you to port these Agentic capabilities into a legacy or existing
 3. **Refactor Incrementally:** Do not rewrite the whole app. Inject `.agents/rules/context_compaction.md` into their existing LLM router cascade. Add Pydantic DLQ routing to their existing ingestion pipelines.
 4. **Enforce Observability:** Implement `.agents/workflows/error-observability.md`. Ensure that all their legacy exceptions are routed through the `jCodeMunch` AST compressor and logged to a structured JSON file so you can debug the legacy code efficiently.
 
-## 5. Workflow Orchestration
+## 5. Product Design Gate
+Before writing **any** application code for a new feature or project, you must ensure the 5 Product & Systems Design templates in `.agents/product/templates/` are populated:
+1. `01_PRD.md` — Product Requirements (the "What" and "Why")
+2. `02_TAD.md` — Technical Architecture (the "How")
+3. `03_SECURITY.md` — Security & Access (authentication, RBAC, secrets)
+4. `04_FRONTEND.md` — Frontend Specification (design system, API contracts)
+5. `05_TICKETS.md` — Feature Ticket List (the atomic execution backlog)
+
+If any template is empty or missing, execute `.agents/workflows/generate-product-docs.md` to interview the user and populate them. **Do NOT write code until all 5 documents are approved.**
+
+## 6. Test Automation Gate
+After writing code for any ticket in `05_TICKETS.md`, you must execute `.agents/workflows/test-automation.md` to:
+1. Auto-generate test cases from the ticket's acceptance criteria.
+2. Run all tests. If any fail, log the failure via `.agents/workflows/error-observability.md` and fix the code before proceeding to the next ticket.
+
+## 7. Workflow Orchestration
 When asked to perform complex routines (like deploying or syncing documentation), do not invent the steps. Instead:
 1. Look inside `.agents/workflows/`.
 2. Find the relevant workflow (e.g., `deploy-hf-production.md` or `master-sync.md`).

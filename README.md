@@ -13,18 +13,38 @@ This repository serves as a powerful, extensible **Base Agentic Environment** bu
 ## 🚀 Dynamic Skill Integration
 This workspace is designed to be highly composable. **As new skills and agents are developed in separate, isolated projects, they are continuously imported into this base environment.** This aggregation allows the environment to grow exponentially more powerful over time, consolidating isolated intelligence into a single, unified operating system.
 
+## 📦 Installation & Setup (Standalone Execution)
 
+```bash
+# 1. Clone the repository
+git clone https://github.com/hitanshuac/Antigravity_Environment_Max.git
+cd Antigravity_Environment_Max
+
+# 2. (Optional) Create and activate a virtual environment
+python -m venv .venv
+# On Windows: .venv\Scripts\activate
+# On Linux/Mac: source .venv/bin/activate
+
+# 3. Install dependencies
+pip install -r requirements.txt
+```
 
 ## 🛠️ Current Capabilities
 
 ### Governance Rules (`.agents/rules/`)
-* **LLM-as-a-Judge Eval:** Probabilistic evaluation of AI output quality.
+* **12-Factor Governance:** Enforces all 12 factors of stateless processes and BYOK configuration.
+* **Testing Standards:** Mandates the Test Pyramid (Unit → Integration → E2E) and prohibits untested code.
+* **Linting Standards:** Enforces exponential-speed static analysis and formatting using Ruff.
+* **No Unauthorized Deletions:** Strictly forbids destructive actions without manual approval, with semantic merge exemptions.
 * **Error Observability:** Mandatory error interception and AST compression via jCodeMunch.
-* **12-Factor Governance:** Enforces stateless processes and BYOK configuration.
 * **Context Compaction & Router Alignment:** Strict token conservation and payload mutation for Agentic AI.
 * **Data Validation:** Idempotent DLQ routing via Pydantic.
 * **SQL Standards:** Write-Ahead Logging and `INSERT OR REPLACE` idempotency via DuckDB.
 * **Hugging Face Standards:** Zero-cost offsite WebUI routing deployment constraints.
+
+### Product & Systems Design (`.agents/product/`)
+* **Product Templates:** Pre-defined frameworks for PRDs, Technical Architecture (TAD), Security Specs, Frontend Specs, and Feature Ticket Lists to guarantee deterministic AI output.
+* **Architecture Decision Records (ADRs):** Immutable log of architectural choices (`.agents/architecture/adrs/`).
 
 ### Specialized Skills (`.agents/skills/`)
 * **Diagram Generator:** Programmatic generation of highly polished architecture diagrams via Python `diagrams` and `D2`.
@@ -32,7 +52,9 @@ This workspace is designed to be highly composable. **As new skills and agents a
 * **Pipeline Architect:** Designs minimalist, fault-tolerant ETL pipelines using standard Python.
 
 ### Automated Workflows (`.agents/workflows/`)
-* **CI/CD & Sync:** `master-sync`, `update-docs`, `publish-showcase`, `deploy-hf-production`, `secure-checkpoint`
+* **CI/CD & Sync:** `master-sync`, `update-docs`, `publish-showcase`, `deploy-hf-production`, `secure-checkpoint`, `semantic-release`
+* **Security & Quality:** `security-sast` (Semgrep), `lint` (Ruff), `test-automation`
+* **Product & Planning:** `generate-product-docs`
 * **Data Engineering:** `daily-ingestion`, `build-etl`, `error-recovery`
 * **Bootstrapping:** `bootstrap`, `git-discovery-preflight`, `generate-readme`
 
@@ -49,7 +71,7 @@ This workspace is designed to be highly composable. **As new skills and agents a
 
 
 
-## 🧬 How to Adopt This Environment
+## 🧬 How to Adopt This Environment (Injection Method)
 To test if this environment works as intended in your own projects, you do not need to rewrite your entire codebase. Instead, you inject the "Agentic Brain":
 
 1. **Pull the Brain:** Copy the `.agents/` directory and the `HANDOVER.md` file from this repository into the root of your existing project.
@@ -78,3 +100,6 @@ graph TD
     I -->|Yes| J[Pass]
     I -->|No| K[Fail]
 ```
+
+## 🌟 Acknowledgments
+This Agentic Environment architecture is built upon the foundational concepts and skills cloned and adapted from the **study antigravity** repository. Massive credit to the original author for the design patterns and capabilities that power this framework.
