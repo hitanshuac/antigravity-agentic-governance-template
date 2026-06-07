@@ -30,7 +30,7 @@ jobs:
             exit 0
           fi
 
-          pip install huggingface_hub
-          echo "Deploying to HF Space: $HF_SPACE_REPO using SDK..."
-          python upload_to_hf.py
+          git remote add space https://user:$HF_TOKEN@huggingface.co/spaces/$HF_SPACE_REPO
+          echo "Deploying to HF Space: $HF_SPACE_REPO via Git push..."
+          git push --force space main
           echo "✅ Deployed successfully."
