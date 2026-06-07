@@ -29,3 +29,7 @@ This workflow ensures the local workspace is securely connected to a remote GitH
 4. **Verify Linkage**
    - Execute `git remote -v` to ensure the `origin` is now correctly bound.
    - The environment is now fully connected and ready for `git push`.
+
+5. **Inject Remote Secrets**
+   - Once the remote repository is established, you must immediately seed it with deployment credentials.
+   - Execute `.agents/workflows/setup-secrets.md` to prompt the user and inject the required API keys via `gh secret set`.

@@ -19,6 +19,7 @@ Ensure the repository is fully cloned and the `.agents` folder is intact.
 - Check if `.secrets` exists. If not, generate it.
 - Run a search for leaked API keys inside `src/`. If any are found, immediately purge them and move them to `.secrets`.
 - Ensure `.gitignore` is active and blocking `.secrets/`, `.env`, and `data/`.
+- **Remote CI/CD Alignment:** Execute `.agents/workflows/setup-secrets.md` to ensure the upstream GitHub repository is provisioned with the required Action secrets (`HF_TOKEN`, `HF_SPACE_REPO`).
 
 ## 4. Verify Product Design Gate
 - Confirm that `.agents/product/templates/` exists and contains all 5 templates (`01_PRD.md`, `02_TAD.md`, `03_SECURITY.md`, `04_FRONTEND.md`, `05_TICKETS.md`).

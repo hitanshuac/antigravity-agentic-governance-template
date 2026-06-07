@@ -24,12 +24,16 @@ This workspace is designed to be highly composable. **As new skills and agents a
 git clone https://github.com/hitanshuac/Antigravity_Environment_Max.git
 cd Antigravity_Environment_Max
 
-# 2. (Optional) Create and activate a virtual environment
+# 2. Provision Remote Secrets (Autonomous)
+# Before writing code, instruct your AI Agent to secure the CI/CD pipeline:
+# -> "Please run .agents/workflows/setup-secrets.md to provision my GitHub Actions."
+
+# 3. (Optional) Create and activate a virtual environment
 python -m venv .venv
 # On Windows: .venv\Scripts\activate
 # On Linux/Mac: source .venv/bin/activate
 
-# 3. Install dependencies
+# 4. Install dependencies
 pip install -r requirements.txt
 ```
 
