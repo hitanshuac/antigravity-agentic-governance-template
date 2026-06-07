@@ -27,12 +27,35 @@ The Base Agentic Environment supports two industry-standard tools. Choose the ri
 2. Select the appropriate tool.
 3. Generate the code (Python or D2).
 
-### The Strict AI Styling Pass (Aesthetics)
-Because raw programmatic diagrams often lack visual flair, you MUST apply a stylistic pass using the `generate_image` tool if the diagram is meant for recruiter-facing or showcase assets. 
+### The Strict AI Styling Pass (Dual-Audience Rule)
+Because raw programmatic diagrams lack visual flair, you MUST apply a stylistic pass using the `generate_image` tool for recruiter-facing or showcase assets.
 
-**CRITICAL RULE: STRICT SPELLING PRESERVATION.** AI image generators inherently struggle with spelling. You must force the AI to preserve text by using this exact prompt structure:
-1. Ensure the base programmatic diagram (`<diagram_name>_technical.png`) is generated.
-2. Pass the base PNG path directly into the `generate_image` tool via the `ImagePaths` parameter.
-3. Prompt the AI: *"Use the provided diagram as a strict structural base. Redraw it exactly node-for-node. The aesthetic MUST be a highly professional, clean, and understandable design in the style of handover_flow.png: sleek borders, clear layout, highly aesthetic. CRITICAL INSTRUCTION: You MUST preserve the exact spelling of all text inside the nodes. Do not alter or hallucinate a single character of text. Keep the structure 100% identical."*
-4. Overwrite or save the new image as `docs/assets/<diagram_name>_showcase.png`.
-5. Present `<diagram_name>_showcase.png` to recruiters and keep `<diagram_name>_technical.png` for engineers.
+**CRITICAL RULES:**
+1. **NEVER ask the AI to "redraw" a diagram loosely.** AI generators hallucinate spellings.
+2. **ALWAYS pass `docs/assets/handover_flow.png` as a direct style reference image** via `ImagePaths` alongside the technical base. This is the canonical aesthetic standard.
+3. **ALWAYS enumerate every node label explicitly in the prompt text.** Do not say "preserve the text." Instead, literally list every node name and connection label so the AI has zero ambiguity.
+
+**Execution Steps:**
+1. Generate the base programmatic diagram: `docs/assets/<diagram_name>_technical.png`.
+2. Read the `.d2` or `.py` source file to extract the exact list of node labels, cluster names, and edge labels.
+3. Call `generate_image` with **two images in `ImagePaths`**:
+   - `docs/assets/<diagram_name>_technical.png` (structural base)
+   - `docs/assets/handover_flow.png` (aesthetic style reference)
+4. Use this **exact prompt template**, filling in the specific node/edge labels from step 2:
+   ```
+   Create a highly professional architecture diagram. Use the SECOND provided image
+   (dark dashboard with glassmorphism nodes, neon cyan/purple accents) as the EXACT
+   aesthetic style reference. Use the FIRST provided image as the structural content
+   reference.
+
+   The diagram must contain these exact nodes and connections:
+   [LIST EVERY CLUSTER, NODE LABEL, AND EDGE LABEL HERE — SPELLED EXACTLY]
+
+   Style: Dark navy background (#0D1117), glassmorphism node boxes with subtle glow,
+   neon cyan and purple accent colors, clean enterprise dashboard aesthetic matching
+   the second reference image exactly. Include watermark "github.com/hitanshuac".
+
+   CRITICAL: Every word of text must be spelled EXACTLY as listed above.
+   ```
+5. Save the output as `docs/assets/<diagram_name>_showcase.png`.
+6. Present `<diagram_name>_showcase.png` to recruiters. Keep `<diagram_name>_technical.png` for engineers.
