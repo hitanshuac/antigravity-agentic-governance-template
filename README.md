@@ -88,12 +88,13 @@ python -m pytest src/tests/ -v --tb=short
 * **Pipeline Architect:** Designs minimalist, fault-tolerant ETL pipelines using standard Python.
 
 ### Automated Workflows (`.agents/workflows/`)
-* **CI/CD & Sync:** `master-sync`, `update-docs`, `publish-showcase`, `deploy-hf-production`, `secure-checkpoint`, `semantic-release`
-* **Security & Quality:** `security-sast` (Semgrep), `lint` (Ruff), `test-automation`
+* **CI/CD & Sync:** `master-sync` (Conversational Harvesting), `update-docs`, `publish-showcase`, `secure-checkpoint`, `semantic-release`
+* **Universal DevOps Deployer:** `deploy-hf-production` (Dockerizes and deploys any Node, Go, Rust, or Python codebase natively to Hugging Face via Git).
+* **Security & Quality:** `security-sast` (Semgrep), `lint` (Ruff), `test-automation` (Framework Agnostic Stack Detection)
 * **Product & Planning:** `generate-product-docs`
 * **Architecture & Assets:** `generate-diagrams`
 * **Data Engineering:** `daily-ingestion`, `build-etl`, `error-recovery`
-* **Bootstrapping:** `bootstrap`, `git-discovery-preflight`, `merge-conflict-resolution`
+* **Bootstrapping:** `bootstrap` (Phase 0 Self-Upgrader), `git-discovery-preflight`, `merge-conflict-resolution`
 
 ## 📂 Directory Structure
 ```text
