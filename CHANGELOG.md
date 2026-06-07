@@ -2,6 +2,22 @@
 
 <!-- version list -->
 
+## v1.2.1 (2026-06-07)
+
+### Bug Fixes
+
+- **workflow**: Enforce autonomous HF deployment
+  ([`60028fc`](https://github.com/hitanshuac/Antigravity_Environment_Max/commit/60028fca5ecbe89f0ca50c67cc4778ba1ba173ba))
+
+### Documentation
+
+- Resolve injection method instructions and anti-solipsism testing guide
+  ([`f092ed3`](https://github.com/hitanshuac/Antigravity_Environment_Max/commit/f092ed365038bdf146152d49f45e8aa669c5a9f7))
+
+- Update README layout and diagram labels
+  ([`04ab344`](https://github.com/hitanshuac/Antigravity_Environment_Max/commit/04ab344b16bf679c1eee1d12703dd57488acc760))
+
+
 ## v1.2.0 (2026-06-07)
 
 ### Features
