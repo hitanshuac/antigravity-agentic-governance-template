@@ -35,7 +35,7 @@ user: "Agentic Interface" {
   judge: "LLM-as-a-Judge\n(Eval Suite)"
 }
 
-"Data Plane (.antigravity/ & data/)": {
+"Data Plane (data/)": {
   class: cluster
   duckdb: "DuckDB Telemetry\n(Idempotent INSERT)" {
     shape: cylinder
@@ -53,5 +53,5 @@ user -> "Application (src/)".router: "Sends Telemetry"
 "Application (src/)".router -> "Application (src/)".compactor: "Validates & Compacts"
 "Application (src/)".compactor -> "Application (src/)".judge: "Evaluates Quality"
 
-"Application (src/)".judge -> "Data Plane (.antigravity/ & data/)".duckdb: "Logs Metrics"
-"Application (src/)".router -> "Data Plane (.antigravity/ & data/)".dlq: "Routes Invalid"
+"Application (src/)".judge -> "Data Plane (data/)".duckdb: "Logs Metrics"
+"Application (src/)".router -> "Data Plane (data/)".dlq: "Routes Invalid"

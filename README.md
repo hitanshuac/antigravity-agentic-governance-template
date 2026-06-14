@@ -12,7 +12,7 @@
 ![Handover Flow](docs/assets/handover_flow_showcase.png)
 
 ## 📖 Overview
-This repository serves as a powerful, extensible **Base Agentic Environment** built on the Antigravity framework. It utilizes a strict **Split-Plane Architecture** that separates the human-defined control plane (`.agents/`) from the system-managed data and state plane (`.antigravity/`). This ensures deterministic AI execution, zero-hallucination context management, and enterprise-grade reliability.
+This repository serves as a powerful, extensible **Base Agentic Environment** built on the Antigravity framework. It utilizes a strict **Split-Plane Architecture** that separates the human-defined control plane (`.agents/`) from the system-managed data and state plane (`data/`). This ensures deterministic AI execution, zero-hallucination context management, and enterprise-grade reliability.
 
 ## 🚀 Dynamic Skill Integration
 This workspace is designed to be highly composable. **As new skills and agents are developed in separate, isolated projects, they are continuously imported into this base environment.** This aggregation allows the environment to grow exponentially more powerful over time, consolidating isolated intelligence into a single, unified operating system.
@@ -103,10 +103,9 @@ python -m pytest src/tests/ -v --tb=short
 ```text
 .
 ├── .agents/            # The Control Plane: Rules, Skills, and Workflows (Human Edited)
-├── .antigravity/       # The Data Plane: System metrics, graphs, and cache (System Managed)
 ├── .config/            # Environment configurations and MCP integrations
 ├── src/                # Application source code (FastAPI, Routers)
-├── data/               # DuckDB metrics, Quarantine DLQs, and Parquet files
+├── data/               # The Data Plane: DuckDB metrics, Quarantine DLQs, and Parquet files (System Managed)
 └── hf-webui/           # Hugging Face Spaces frontend deployment configurations
 ```
 
