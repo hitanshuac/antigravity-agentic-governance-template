@@ -27,6 +27,10 @@ The agent MUST explicitly verify its proposed implementation against the followi
   - Are we absolutely sure no API keys or secrets are hardcoded?
 - [ ] **Tier 2 Correctness (`data-validation.md`, `testing-standards.md`)**
   - How will this code be tested? Have we identified the necessary mocked dependencies and fixtures?
+- [ ] **Tier 3 Compliance (Platform & SRE Constraints)**
+  - Does this architecture adhere strictly to deployment limits and platform constraints (e.g., repo size, database restrictions)?
+  - Does the implementation plan align with the strict SRE Inner/Outer loop rhythms (`sre-sop.md`)?
+  - Have all SAST compliance standards (`sast-evaluator-standards.md`) been accounted for?
 - [ ] **Tier 4 Style (`code-quality-standards.md`)**
   - Will this function exceed Cyclomatic Complexity 5? If yes, break it into smaller helpers now.
   - Are exact type hints (`-> str`, `: int`) and Google-style docstrings included in the design?
