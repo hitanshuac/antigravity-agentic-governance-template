@@ -2,6 +2,24 @@
 
 <!-- version list -->
 
+## v1.5.0 (2026-06-14)
+
+### Chores
+
+- Add MIT License
+  ([`fe8ff45`](https://github.com/hitanshuac/Antigravity_Environment_Max/commit/fe8ff454f6f8045e0533c868be5a6849a843ba96))
+
+### Documentation
+
+- Update base environment template with hardened agent rules and OPSEC sanitization
+  ([`37db3c8`](https://github.com/hitanshuac/Antigravity_Environment_Max/commit/37db3c88959e95b2391f4ec3fbf61afea5d01e33))
+
+### Features
+
+- Integrate hardened agent rules and OPSEC sanitization as core template features
+  ([`c31c14b`](https://github.com/hitanshuac/Antigravity_Environment_Max/commit/c31c14ba51ce61879f99161f6b1753309ac1709d))
+
+
 ## v1.4.0 (2026-06-07)
 
 ### Features
