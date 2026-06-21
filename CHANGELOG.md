@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.7.0 (2026-06-21)
+
+### Features
+
+- Backport hardened rules and workflows from hack2skill project
+  ([`608a230`](https://github.com/hitanshuac/Antigravity_Environment_Max/commit/608a230df5eb72558f07c6e0dd64397bce8d05d4))
+
+
 ## v1.6.0 (2026-06-14)
 
 ### Features
