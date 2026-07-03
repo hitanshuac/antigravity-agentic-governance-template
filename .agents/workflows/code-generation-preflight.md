@@ -18,20 +18,20 @@ Before designing the code, the agent MUST:
 ## Phase 2: The Core Constraints Checklist
 The agent MUST explicitly verify its proposed implementation against the following active rules. If the proposed code violates ANY of these, the agent MUST redesign the approach.
 
-- [ ] **Tier 0 Safety (`defensive-programming.md`)**
+- [ ] **Tier 0 Safety (`00-MASTER-safety-and-guardrails.md`)**
   - Are we doing file I/O? If yes, is a Pydantic/TypedDict schema explicitly defined?
   - Are we using guard clauses at the top of the function?
   - Are we handling exceptions explicitly (no bare `except:`) and logging them before returning fallbacks?
-- [ ] **Tier 1 Security (`sast-evaluator-standards.md`, `12-factor-rules.md`)**
+- [ ] **Tier 1 Security (`10-MASTER-security-and-mlsecops.md`, `10-MASTER-security-and-mlsecops.md`)**
   - Are all user inputs rigorously sanitized (CWE-74)?
   - Are we absolutely sure no API keys or secrets are hardcoded?
-- [ ] **Tier 2 Correctness (`data-validation.md`, `testing-standards.md`)**
+- [ ] **Tier 2 Correctness (`20-MASTER-correctness-and-data.md`, `20-MASTER-correctness-and-data.md`)**
   - How will this code be tested? Have we identified the necessary mocked dependencies and fixtures?
 - [ ] **Tier 3 Compliance (Platform & SRE Constraints)**
   - Does this architecture adhere strictly to deployment limits and platform constraints (e.g., repo size, database restrictions)?
-  - Does the implementation plan align with the strict SRE Inner/Outer loop rhythms (`sre-sop.md`)?
-  - Have all SAST compliance standards (`sast-evaluator-standards.md`) been accounted for?
-- [ ] **Tier 4 Style (`code-quality-standards.md`)**
+  - Does the implementation plan align with the strict SRE Inner/Outer loop rhythms (`20-MASTER-correctness-and-data.md`)?
+  - Have all SAST compliance standards (`10-MASTER-security-and-mlsecops.md`) been accounted for?
+- [ ] **Tier 4 Style (`40-MASTER-style-and-quality.md`)**
   - Will this function exceed Cyclomatic Complexity 5? If yes, break it into smaller helpers now.
   - Are exact type hints (`-> str`, `: int`) and Google-style docstrings included in the design?
 

@@ -28,8 +28,8 @@ If a human asks you to scaffold a completely new project using this framework:
 ## 4. Integrating into an EXISTING Project
 If a human asks you to port these Agentic capabilities into a legacy or existing codebase:
 1. **Safe Merge:** Your absolute first action must be to execute `.agents/workflows/merge-conflict-resolution.md` to resolve file collisions. Wait for explicit manual approval before modifying any existing code.
-2. **Audit:** Invoke `.agents/workflows/git-discovery-preflight.md` to map the legacy architecture against the strict `12-factor-rules.md` and `sql-standards.md`.
-3. **Refactor Incrementally:** Do not rewrite the whole app. Inject `.agents/rules/context_compaction.md` into their existing LLM router cascade. Add Pydantic DLQ routing to their existing ingestion pipelines.
+2. **Audit:** Invoke `.agents/workflows/git-discovery-preflight.md` to map the legacy architecture against the strict `10-MASTER-security-and-mlsecops.md` and `20-MASTER-correctness-and-data.md`.
+3. **Refactor Incrementally:** Do not rewrite the whole app. Inject `.agents/rules/40-MASTER-style-and-quality.md` into their existing LLM router cascade. Add Pydantic DLQ routing to their existing ingestion pipelines.
 4. **Enforce Observability:** Implement `.agents/workflows/error-observability.md`. Ensure that all their legacy exceptions are routed through the `jCodeMunch` AST compressor and logged to a structured JSON file so you can debug the legacy code efficiently.
 
 ## 5. Product Design Gate

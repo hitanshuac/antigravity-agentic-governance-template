@@ -24,7 +24,7 @@ Before generating or modifying any code, the agent MUST:
    ]
    ```
    The file is a **JSON array** of objects. Each object MUST contain: `timestamp` (str), `error_type` (str), `component` (str), `message` (str), `status` (str: `"UNRESOLVED"` or `"RESOLVED"`). Optional: `stack_trace_summary` (str), `resolution_strategy` (str or null).
-3. **Schema Migration:** If the existing file contains a DIFFERENT structure (e.g., a dictionary `{"session_errors": [...]}` from a prior session), the agent MUST migrate the data into the canonical array format BEFORE appending. The agent MUST NEVER overwrite or discard existing entries. See `defensive-programming.md` Rule 1.
+3. **Schema Migration:** If the existing file contains a DIFFERENT structure (e.g., a dictionary `{"session_errors": [...]}` from a prior session), the agent MUST migrate the data into the canonical array format BEFORE appending. The agent MUST NEVER overwrite or discard existing entries. See `00-MASTER-safety-and-guardrails.md` Rule 1.
 4. **Database Scaling:** If `data/error_logs.json` becomes too large or inefficient to query, the agent MUST autonomously initialize a local database (e.g., `data/error_metrics.db` via SQLite or DuckDB) to migrate and store all future error context.
 5. Read the recent error history (from JSON or DB) to understand past failures and attempted fixes.
 6. **DO NOT** repeat strategies that have already been documented as "failed" in the logs.
@@ -36,7 +36,7 @@ Before writing to ANY persistent file (not just error logs), the agent MUST:
 3. Perform the append/update operation.
 4. After writing, re-read the file and verify the entry count is exactly `previous_count + N` (where N is the number of new entries).
 5. If the count is wrong (data was lost or corrupted), immediately halt, restore from backup (see `error-recovery.md` Step 3b), and flag for user review.
-6. Reference: `defensive-programming.md` Rule 3 (Idempotent File Operations).
+6. Reference: `00-MASTER-safety-and-guardrails.md` Rule 3 (Idempotent File Operations).
 
 ## Step 2: Context Window Compression (jCodeMunch)
 To avoid overloading the LLM context window with raw stack traces and massive log files:

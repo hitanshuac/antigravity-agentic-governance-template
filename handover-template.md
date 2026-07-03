@@ -15,4 +15,4 @@ The following `.agents` framework rules and workflows have been hardened in the 
 - `[ ]` 
 
 ---
-*Generated autonomously via `sync-upstream.md`. Copy the contents of the local files and push them to the template repository.*
+*Generated autonomously via `30-MASTER-compliance-and-deploy.md`. Copy the contents of the local files and push them to the template repository.*

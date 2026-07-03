@@ -5,7 +5,7 @@ description: Safely backports locally hardened rules and workflows to a remote G
 
 # Sync Upstream Workflow (Git SSOT)
 
-**Trigger:** Explicit invocation via `/ask run @[.agents/workflows/sync-upstream.md] <URL_OF_SSOT_REPO>`
+**Trigger:** Explicit invocation via `/ask run @[.agents/workflows/30-MASTER-compliance-and-deploy.md] <URL_OF_SSOT_REPO>`
 
 This workflow automates the backporting of newly hardened rules and workflows from the local project to a central Git repository acting as the **Single Source of Truth (SSOT)**. This solves the issue of keeping the upstream template expanded without relying on manual copy-pasting or risking local hard drive paths.
 

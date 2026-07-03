@@ -6,10 +6,10 @@
 ![Architecture](https://img.shields.io/badge/Architecture-Split--Plane-indigo)
 
 ## 🏗️ System Architecture
-![System Architecture](docs/assets/architecture_diagram_showcase.png)
+![System Architecture](docs/assets/architecture_diagram_showcase.webp)
 
 ## 🔄 Agentic Handover Flow
-![Handover Flow](docs/assets/handover_flow_showcase.png)
+![Handover Flow](docs/assets/handover_flow_showcase.webp)
 
 ## 📖 Overview
 This repository serves as a powerful, extensible **Base Agentic Environment** built on the Antigravity framework. It utilizes a strict **Split-Plane Architecture** that separates the human-defined control plane (`.agents/`) from the system-managed data and state plane (`data/`). This ensures deterministic AI execution, zero-hallucination context management, and enterprise-grade reliability.
@@ -37,21 +37,7 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-## 💻 Local Development & Testing Guide
-To resolve the anti-solipsism rule, developers and agents must explicitly test the pipeline using these human-readable commands:
 
-### Start the Backend (FastAPI Gateway)
-```bash
-# Run the API on localhost:8000
-uvicorn src.main:app --reload
-```
-- **API Documentation:** Navigate to [http://localhost:8000/docs](http://localhost:8000/docs)
-
-### Run the Evaluation Suite (Pytest)
-```bash
-# Execute the deterministic tests
-python -m pytest src/tests/ -v --tb=short
-```
 
 ## 🛠️ Current Capabilities
 
@@ -69,17 +55,6 @@ python -m pytest src/tests/ -v --tb=short
 * **SRE Standard Operating Procedure:** Rhythmic Inner and Outer loops enforcing deterministic verification after every iteration.
 * **Hugging Face & SAST Standards:** Zero-cost offsite WebUI routing deployment and OPSEC-sanitized remote evaluation compliance.
 
-### Core Python APIs (`src/capabilities/`)
-* **Context Compaction (`compaction.py`):** Inline system prompt injection and boilerplate prefix stripping.
-* **Database Operations (`database.py`):** Configures WAL limits and executes idempotent `INSERT OR REPLACE` transactions.
-* **AI Evaluation (`llm_judge.py`):** Fallback logic for probabilistic LLM-as-a-Judge evaluations.
-* **Observability (`observability.py`):** AST-compressed error logging to `data/error_logs.json`.
-* **Data Validation (`validation.py`):** Safely isolates malformed Pydantic records to a Dead-Letter Queue without crashing.
-
-### Zero-Touch Automation
-* **`git_manager.py`**: Intercepts Git execution, logs terminal errors to the observability pipeline, and handles autonomous auto-recovery on divergence.
-* **`ci_log_fetcher.py`**: The Cloud-to-Local Bridge. Syncs remote GitHub Actions failures directly into local logs for autonomous resolution.
-* **`watch_ci.ps1`**: A zero-touch background daemon that polls GitHub. Automatically syncs pipeline errors and triggers a native Windows Desktop Notification when a remote failure occurs.
 
 ### Product & Systems Design (`.agents/product/`)
 * **Product Templates:** Pre-defined frameworks for PRDs, Technical Architecture (TAD), Security Specs, Frontend Specs, and Feature Ticket Lists to guarantee deterministic AI output.
@@ -126,7 +101,7 @@ To test if this environment works as intended in your own projects, you do not n
 ## 📊 Visual Reference Appendix
 
 ### The Agentic Handover Workflow
-![Handover Flow](docs/assets/handover_flow.png)
+![Handover Flow](docs/assets/handover_flow.webp)
 
 ### Dual-Prong Testing Architecture
 ```mermaid
@@ -144,3 +119,5 @@ graph TD
 
 ## 🌟 Acknowledgments
 This Agentic Environment architecture is built upon the foundational concepts and skills cloned and adapted from the **study antigravity** repository. Massive credit to the original author for the design patterns and capabilities that power this framework.
+
+[View Agentic Environment Documentation](AGENT_DOCS.md)

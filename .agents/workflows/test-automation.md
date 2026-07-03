@@ -43,7 +43,7 @@ Eliminate the token-burn cycle of "write code → manually write tests → debug
 
 ### Phase 2.5: Fixture Verification Gate (Mandatory for I/O Modules)
 
-> **Post-Mortem Origin:** This phase was added after unit tests using clean `tmpdir` directories passed 100% but missed a schema mismatch with the real `data/error_logs.json` file. See `testing-standards.md` Rule 2.5.
+> **Post-Mortem Origin:** This phase was added after unit tests using clean `tmpdir` directories passed 100% but missed a schema mismatch with the real `data/error_logs.json` file. See `20-MASTER-correctness-and-data.md` Rule 2.5.
 
 1. For any module that performs file I/O (reads/writes JSON, YAML, CSV, Parquet, DB), the agent MUST create a `tests/fixtures/` directory containing sample data files that mirror the real production state.
 2. Before running tests, verify that fixtures exist for every I/O module. If missing:
@@ -51,7 +51,7 @@ Eliminate the token-burn cycle of "write code → manually write tests → debug
    - If no real data exists yet, create representative samples matching the canonical schema defined in the relevant workflow (e.g., `error-observability.md` Step 1).
 3. Fixtures MUST include edge cases: empty files, canonical-schema files, and legacy-schema files (to verify migration logic).
 4. Integration tests MUST load these fixtures as pre-populated state rather than starting from a clean slate.
-5. Reference: `defensive-programming.md` Rule 1, `testing-standards.md` Rule 2.5.
+5. Reference: `00-MASTER-safety-and-guardrails.md` Rule 1, `20-MASTER-correctness-and-data.md` Rule 2.5.
 
 ### Phase 3: Execution & Observability
 1. Run the appropriate test command (e.g., `pytest -v`, `npm test`, `go test -v`) after every code change.

@@ -22,7 +22,7 @@ Before writing any code, the agent MUST read the target files and map the curren
 
 ## Phase 2: Issue Identification & Severity Mapping (Rule Traceability)
 The agent must list the identified architectural flaws explicitly and assign them severities based on Rule Traceability. Every identified flaw MUST cite the specific `.agents/rules/` file and Tier level it violates:
-- 🔴 **High (Tier 0-1)**: Data integrity and security risks (e.g., `defensive-programming.md` Rule 1 violations, side-effects in render loops, CWE-74).
+- 🔴 **High (Tier 0-1)**: Data integrity and security risks (e.g., `00-MASTER-safety-and-guardrails.md` Rule 1 violations, side-effects in render loops, CWE-74).
 - 🟡 **Medium (Tier 2)**: Correctness, performance bottlenecks, missing test coverage, or validation bypasses.
 - 🟢 **Low (Tier 3-4)**: Compliance, pure maintainability, styling, or documentation issues.
 

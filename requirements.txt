@@ -1,2 +1,6 @@
 diagrams==0.25.1
 Pillow
+fastapi
+duckdb
+pydantic
+pytest
