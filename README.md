@@ -75,13 +75,13 @@ pip install -r requirements.txt
 * **Pipeline Architect:** Designs minimalist, fault-tolerant ETL pipelines using standard Python.
 
 ### Automated Workflows (`.agents/workflows/`)
-* **CI/CD & Sync:** `master-sync` (Conversational Harvesting), `update-docs`, `publish-showcase`, `secure-checkpoint`, `semantic-release`, `sync-upstream`
-* **Universal DevOps Deployer:** `deploy-hf-production` (Dockerizes and deploys any Node, Go, Rust, or Python codebase natively to Hugging Face via Git).
-* **Security & Quality:** `security-sast` (Semgrep), `lint` (Ruff), `test-automation` (Framework Agnostic Stack Detection)
+* **CI/CD & Sync:** `master-sync` (Conversational Harvesting), `update-docs`, `publish-showcase`, `secure-checkpoint`, `semantic-release`, `sync-upstream`, `sync-ci-errors`
+* **Universal DevOps Deployer:** `deploy-hf-production` (Dockerizes and deploys any Node, Go, Rust, or Python codebase natively to Hugging Face via Git), `deploy-streamlit-production`
+* **Security & Quality:** `security-sast` (Semgrep), `lint` (Ruff), `test-automation` (Framework Agnostic Stack Detection), `setup-secrets`
 * **Product & Planning:** `generate-product-docs`, `code-generation-preflight`
-* **Architecture & Assets:** `generate-diagrams`
-* **Data Engineering:** `daily-ingestion`, `build-etl`, `error-recovery`
-* **Bootstrapping:** `bootstrap` (Phase 0 Self-Upgrader), `git-discovery-preflight`, `merge-conflict-resolution`
+* **Architecture & Assets:** `generate-diagrams`, `agentic-refactor`, `compliant-refactor`
+* **Data Engineering:** `daily-ingestion`, `build-etl`, `error-recovery`, `build-api-router`
+* **Bootstrapping:** `bootstrap` (Phase 0 Self-Upgrader), `git-discovery-preflight`, `merge-conflict-resolution`, `setup-git`
 
 ## 📂 Directory Structure
 ```text
@@ -115,18 +115,18 @@ The workflow will automatically clone the latest upstream template, merge in the
 ### The Agentic Handover Workflow
 ![Handover Flow](docs/assets/handover_flow.webp)
 
-### Dual-Prong Testing Architecture
+### Dual-Prong Testing Architecture (2026 Evals Standard)
 ```mermaid
 graph TD
     A[Test Suite Trigger] --> B{Evaluation Type}
-    B -->|Deterministic| C[Code Integrity]
-    C --> D[Pydantic Validation DLQ]
-    C --> E[DuckDB Idempotency]
+    B -->|Deterministic| C[Trajectory & Integrity]
+    C --> D[Tool-Call Accuracy]
+    C --> E[Step Efficiency]
     B -->|Probabilistic| G[AI Behavior & Alignment]
-    G --> H[LLM-as-a-Judge API]
-    H --> I{Score >= 4?}
+    G --> H[LLM-as-a-Judge Rubrics]
+    H --> I{Trajectory Score Pass?}
     I -->|Yes| J[Pass]
-    I -->|No| K[Fail]
+    I -->|No| K[Fail & Log Trace]
 ```
 
 ## 🌟 Acknowledgments
