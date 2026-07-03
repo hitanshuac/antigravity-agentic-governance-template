@@ -65,6 +65,11 @@ pip install -r requirements.txt
 * **Multi-Agent Crew:** Builds agent teams with strict role contracts, typed output schemas, and hard-fail delegation.
 * **RAG Pipeline:** Builds production-grade RAG with structure-aware chunking, hybrid retrieval, and cross-encoder reranking.
 * **Agent Evals:** Builds evaluation harnesses using trajectory scoring, tool-call accuracy metrics, and LLM-as-judge rubrics.
+* **MCP Server Architect:** Scaffolds custom tools strictly as Model Context Protocol (MCP) servers using the official SDK.
+* **Telemetry & Tracing:** Implements LangSmith/OpenTelemetry tracing across all agentic nodes to prevent orphaned spans.
+* **Episodic Memory Manager:** Integrates Mem0/Zep for cross-session state, explicitly segregating conversational memory from RAG knowledge.
+* **Prompt Registry Sync:** Externalizes all LLM prompts to markdown files, treating them as versionable assets.
+* **HITL Interrupts:** Compiles LangGraph workflows with strict Human-in-the-Loop (HITL) checkpoints for infrastructure-mutating actions.
 * **Diagram Generator:** Programmatic generation of highly polished architecture diagrams via Python `diagrams` and `D2`.
 * **DuckDB Optimizer:** Configures DuckDB for maximum reliability, data integrity, and memory safety.
 * **Pipeline Architect:** Designs minimalist, fault-tolerant ETL pipelines using standard Python.
