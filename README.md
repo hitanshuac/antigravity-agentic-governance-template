@@ -61,6 +61,10 @@ pip install -r requirements.txt
 * **Architecture Decision Records (ADRs):** Immutable log of architectural choices (`.agents/architecture/adrs/`).
 
 ### Specialized Skills (`.agents/skills/`)
+* **LangGraph Orchestrator:** Scaffolds state machines with typed state, checkpointing, and conditional routing.
+* **Multi-Agent Crew:** Builds agent teams with strict role contracts, typed output schemas, and hard-fail delegation.
+* **RAG Pipeline:** Builds production-grade RAG with structure-aware chunking, hybrid retrieval, and cross-encoder reranking.
+* **Agent Evals:** Builds evaluation harnesses using trajectory scoring, tool-call accuracy metrics, and LLM-as-judge rubrics.
 * **Diagram Generator:** Programmatic generation of highly polished architecture diagrams via Python `diagrams` and `D2`.
 * **DuckDB Optimizer:** Configures DuckDB for maximum reliability, data integrity, and memory safety.
 * **Pipeline Architect:** Designs minimalist, fault-tolerant ETL pipelines using standard Python.
