@@ -6,10 +6,10 @@
 ![Architecture](https://img.shields.io/badge/Architecture-Split--Plane-indigo)
 
 ## 🏗️ System Architecture
-![System Architecture](docs/assets/architecture_diagram_showcase.webp)
+![System Architecture](docs/assets/architecture_diagram.webp)
 
 ## 🔄 Agentic Handover Flow
-![Handover Flow](docs/assets/handover_flow_showcase.webp)
+![Handover Flow](docs/assets/handover_flow.webp)
 
 ## 📖 Overview
 This repository serves as a powerful, extensible **Base Agentic Environment** built on the Antigravity framework. It utilizes a strict **Split-Plane Architecture** that separates the human-defined control plane (`.agents/`) from the system-managed data and state plane (`data/`). This ensures deterministic AI execution, zero-hallucination context management, and enterprise-grade reliability.
