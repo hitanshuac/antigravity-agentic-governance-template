@@ -21,11 +21,11 @@ Execute the phases sequentially. Phase 0 is only relevant for repositories that 
 2. **Clone Latest Upstream:** // turbo
    - Run `git clone https://github.com/hitanshuac/Antigravity_Environment_Max.git .agents/tmp/antigravity_latest`
 3. **Verify Semantic Release Context:** Confirm that `.agents/tmp/antigravity_latest/.agents/workflows/semantic-release.md` exists. This anchors the version context for the upgrade.
-4. **Additive Document Merge:**
+4. **Interactive Upgrade & Cleanup:**
    - Compare `.agents/tmp/antigravity_latest/.agents/` against the local `.agents/` directory.
-   - Copy all entirely *new* `.md` files (workflows, rules, product templates) into the local `.agents/` folder.
-   - Copy all entirely *new* root-level files (e.g., `ruff.toml`, `.pre-commit-config.yaml`) into the project root.
-   - **Do NOT overwrite** any existing files that the host project has already modified.
+   - Copy all entirely *new* files (workflows, rules, skills, product templates) into the local `.agents/` folder.
+   - **Deprecated Files:** Identify files that exist locally but NOT in the upstream template (i.e., old rules or workflows). **DO NOT delete them automatically.** Present a list of these old files to the user and request **manual confirmation**. Only delete them once explicit approval is given.
+   - **Do NOT overwrite** any existing files that the host project has already modified without asking first.
 5. **Union Merge Boilerplate:** Execute `.agents/workflows/merge-conflict-resolution.md` to safely union-merge `.gitignore` and `requirements.txt`.
 6. **Cleanup:** Delete `.agents/tmp/` entirely, then proceed to Phase 1.
 

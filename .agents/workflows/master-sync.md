@@ -12,12 +12,13 @@ This is the **top-level orchestrator** for synchronizing the entire codebase. It
 1. **Repository Sanitation**: Scan the project root directory for rogue scratchpad scripts or temporary files (e.g., orphaned `*.py` or `*.txt` files used for testing logic). Delete any files that do not belong in the core production bundle to strictly enforce Code Quality and SRE hygiene rules.
 2. Verify that `.agents/product/templates/` contains all 5 product templates (`01_PRD.md` through `05_TICKETS.md`).
 3. If any template is missing, halt and execute `.agents/workflows/generate-product-docs.md` to populate them.
-4. Run `ruff check .` to verify the codebase passes linting.
+4. If applicable to the project language, run the appropriate linter (e.g., `ruff check .`, `eslint`) to verify the codebase passes linting. If this is a pure markdown repository, skip this step.
 
 ## Phase 2: Test Automation Gate
-1. Execute `.agents/workflows/test-automation.md`.
-2. If any tests fail, execute `.agents/workflows/error-observability.md` to log the failure.
-3. Fix the failing code and re-run tests. Do NOT proceed until all tests pass.
+1. Check if a testing suite exists for the target language (e.g., `pytest`, `jest`). If none exist (e.g., pure markdown template), skip this phase.
+2. Execute `.agents/workflows/test-automation.md`.
+3. If any tests fail, execute `.agents/workflows/error-observability.md` to log the failure.
+4. Fix the failing code and re-run tests. Do NOT proceed until all tests pass.
 
 ## Phase 3: Update Documentation
 1. Execute `.agents/workflows/update-docs.md`.
@@ -44,6 +45,6 @@ This is the **top-level orchestrator** for synchronizing the entire codebase. It
 3. Execute `.agents/workflows/error-observability.md` to persist these lessons to the central observability suite so they are never repeated.
 
 ## Phase 8: Secure Checkpoint
-1. Execute `.agents/workflows/secure-checkpoint.md`.
-2. This invokes the Python Git Manager (`src/capabilities/git_manager.py`) to safely stage, commit, and push changes while enforcing error observability.
+1. Execute `.agents/workflows/secure-checkpoint.md` or perform a standard secure Git commit process.
+2. Stage, commit, and push changes while enforcing error observability and conventional commits.
 3. Confirm to the user that all changes are permanently secured on GitHub.
