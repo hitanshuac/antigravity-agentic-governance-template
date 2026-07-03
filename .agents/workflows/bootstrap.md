@@ -19,7 +19,7 @@ Execute the phases sequentially. Phase 0 is only relevant for repositories that 
 
 1. **Detect Existing Installation:** Check if `.agents/workflows/` already exists. If it does, this is an upgrade run.
 2. **Clone Latest Upstream:** // turbo
-   - Run `git clone https://github.com/hitanshuac/Antigravity_Environment_Max.git .agents/tmp/antigravity_latest`
+   - Run `git clone https://github.com/hitanshuac/antigravity-agentic-governance-template.git .agents/tmp/antigravity_latest`
 3. **Verify Semantic Release Context:** Confirm that `.agents/tmp/antigravity_latest/.agents/workflows/semantic-release.md` exists. This anchors the version context for the upgrade.
 4. **Interactive Upgrade & Cleanup:**
    - Compare `.agents/tmp/antigravity_latest/.agents/` against the local `.agents/` directory.

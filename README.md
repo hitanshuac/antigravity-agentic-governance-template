@@ -21,8 +21,8 @@ This workspace is designed to be highly composable. **As new skills and agents a
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/hitanshuac/Antigravity_Environment_Max.git
-cd Antigravity_Environment_Max
+git clone https://github.com/hitanshuac/antigravity-agentic-governance-template.git
+cd antigravity-agentic-governance-template
 
 # 2. Provision Remote Secrets (Autonomous)
 # Before writing code, instruct your AI Agent to secure the CI/CD pipeline:
@@ -95,7 +95,7 @@ To test if this environment works as intended in your own projects, you do not n
 
 ### For Brand New Projects (Fresh Start)
 If you are starting a new project (e.g., `mental-wellness-tracker`) and want to inherit these skills and rules from day one, give your IDE Copilot this exact prompt:
-> *"Please initialize this project with my standard agentic governance template. Run `git clone https://github.com/hitanshuac/Antigravity_Environment_Max.git .agents_temp`, move the `.agents_temp/.agents/` directory into the root of this project, and delete the temp folder. Once that is done, execute `/.agents/workflows/bootstrap.md` to scaffold the rest of the environment."*
+> *"Please initialize this project with my standard agentic governance template. Run `git clone https://github.com/hitanshuac/antigravity-agentic-governance-template.git .agents_temp`, move the `.agents_temp/.agents/` directory into the root of this project, and delete the temp folder. Once that is done, execute `/.agents/workflows/bootstrap.md` to scaffold the rest of the environment."*
 
 ### For Existing Projects (Upgrading)
 If your project already has an older `.agents/` folder, you can safely pull down the latest rules (like new LangGraph or Multi-Agent skills) without overwriting your custom modifications. Simply tell the IDE:
