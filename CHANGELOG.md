@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.8.0 (2026-07-03)
+
+### Features
+
+- Complete architectural split and add 4 new enterprise skills
+  ([`ac3a087`](https://github.com/hitanshuac/Antigravity_Environment_Max/commit/ac3a087ee4ebd4158b7941b71dd926fe1c63c2ba))
+
+
 ## v1.7.0 (2026-06-21)
 
 ### Features
