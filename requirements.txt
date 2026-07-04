@@ -5,3 +5,4 @@ ruff
 diagrams
 Pillow
 markitdown
+duckdb
