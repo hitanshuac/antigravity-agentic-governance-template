@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v2.1.0 (2026-07-04)
+
+### Features
+
+- **bootstrap**: Integrate python scaffold injection
+  ([`35d0d73`](https://github.com/hitanshuac/antigravity-agentic-governance-template/commit/35d0d731056970ecf34edacd96a85cae0ad16510))
+
+
 ## v2.0.0 (2026-07-04)
 
 ### Bug Fixes
