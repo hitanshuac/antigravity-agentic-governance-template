@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v2.2.0 (2026-07-04)
+
+### Features
+
+- **deps**: Restore Python dependencies for built-in capabilities
+  ([`d57b197`](https://github.com/hitanshuac/antigravity-agentic-governance-template/commit/d57b197805e2515d25628c5885ae60b559b98caa))
+
+
 ## v2.1.0 (2026-07-04)
 
 ### Features
