@@ -33,6 +33,15 @@ Execute the phases sequentially. Phase 0 is only relevant for repositories that 
 
 ---
 
+## Phase 0.5: Language-Specific Scaffolding
+
+1. **Detect Host Language:** Check the repository for language indicators (e.g., `requirements.txt` or `.py` files for Python, `package.json` for Node, `go.mod` for Go).
+2. **Python Starter Kit Injection:** If the host project is identified as Python AND it does not yet have a `src/capabilities/` directory, copy the contents of `.agents/assets/python-scaffold/src/` to `./src/`.
+   - Command: `Copy-Item -Path '.agents\assets\python-scaffold\src\*' -Destination 'src\' -Recurse -Force` (or equivalent `cp -r` on Unix). // turbo
+3. If it is a non-Python project, or if `src/capabilities/` already exists, mark this phase as `[SKIPPED]`.
+
+---
+
 ## Phase 1: Verify Governance Integrity
 
 1. Confirm the `.agents/` folder is intact and contains `workflows/`, `rules/`, and `product/templates/`.
@@ -89,6 +98,7 @@ Present a summary table of all phases with their status:
 
 | Phase | Check | Status |
 |---|---|---|
+| 0.5 | Language-Specific Scaffolding | `[PASSED]` / `[FATAL]` / `[SKIPPED]` |
 | 1 | Governance Integrity | `[PASSED]` / `[FATAL]` / `[SKIPPED]` |
 | 2 | Dependencies | `[PASSED]` / `[FATAL]` / `[SKIPPED]` |
 | 3 | Config & Secrets | `[PASSED]` / `[FATAL]` / `[SKIPPED]` |
