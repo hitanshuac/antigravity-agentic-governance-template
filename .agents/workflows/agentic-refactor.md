@@ -51,6 +51,6 @@ Before executing the plan, the agent MUST:
 3. Explicitly ask for human approval before proceeding.
 4. Ensure the test suite is mapped to be updated alongside the refactor.
 
-**Post-Execution Import Gate**: After refactoring, the agent MUST run programmatic import assertions via terminal (e.g., `python -c "from src.module import function; print('OK')"`) to prove the application graph and dependencies are not broken.
+**Post-Execution Import Gate**: After refactoring, the agent MUST run programmatic import/build assertions via terminal (e.g., `python -c "from src.module import function; print('OK')"`, `node -e "require('./src/module')"`, `go build ./...`) to prove the application dependency graph is intact.
 
 **Execution begins ONLY after user approval.**

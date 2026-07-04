@@ -20,9 +20,9 @@ Scan the following directories to build a complete inventory of the environment'
 5. `.agents/architecture/adrs/` — Check for Architecture Decision Records.
 
 ### Phase 2: Source Code Analysis
-1. Read the current contents of `src/capabilities/` and any active application source files.
+1. If the host project contains source code, read its contents to identify public functions, classes, and API endpoints.
 2. Identify all public functions, classes, and API endpoints.
-3. Note any new dependencies added to `requirements.txt`.
+3. Note any new dependencies added to the host project's dependency manifest (e.g., `requirements.txt`, `package.json`).
 
 ### Phase 3: README Synthesis
 Update `README.md` to reflect the latest state. The README must contain:

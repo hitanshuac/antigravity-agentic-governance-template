@@ -177,7 +177,7 @@ This is a Tier 0 Master Rule. LLMs are probability engines, not human developers
 
 ## 3. Strict Command Sandboxing
 - Workflow files MUST NOT use abstract verbs for tooling (e.g., "Execute the Git tool").
-- Every executable action MUST provide the exact CLI string required, sandboxed inside markdown backticks (e.g., `python src/capabilities/git_manager.py checkpoint`).
+- Every executable action MUST provide the exact CLI string required, sandboxed inside markdown backticks (e.g., `git add . && git commit -m "message" && git push`).
 - If a workflow step lacks an exact CLI string, you MUST halt and ask the user for clarification. Do not hallucinate a command to fulfill the abstract intent.
 
 ## 4. Architectural Adherence (XML Boundaries)
@@ -190,23 +190,23 @@ This is a Tier 0 Master Rule. LLMs are probability engines, not human developers
 ### Source: `00-git-ban.md`
 ---
 
-# Global Git Command Ban (Anti-Hallucination Protocol)
+# Git Version Control Protocol
 
-This rule was implemented to prevent Semantic Override failures where the agent hallucinates a local git command instead of executing upstream synchronization protocols.
+This rule ensures all version control operations go through the governance checkpoint workflow for observability and consistency.
 
-## 1. Strict Prohibition of Raw Git Commands
-- **Rule**: You MUST NEVER execute raw `git` commands in the terminal (e.g., `git add`, `git commit`, `git push`, `git pull`).
-- **Why**: Bypassing the Python Git Manager (`git_manager.py`) disables the error observability layer, breaks pre-commit hooks, and can result in local checkpoints that fail to synchronize with remote state.
+## 1. Mandatory Checkpoint Workflow
+- **Rule**: All Git commit-and-push operations MUST be routed through the `.agents/workflows/secure-checkpoint.md` workflow.
+- **Why**: Direct ad-hoc git commands bypass error observability, skip pre-commit hooks, and can result in local checkpoints that fail to synchronize with remote state.
 
-## 2. Mandatory Method for Version Control
-- All source control and versioning operations MUST be routed exclusively through the Python Git Manager.
-- **Command**: `python src/capabilities/git_manager.py checkpoint "[Your descriptive commit message]"`
-- This Python script safely wraps the staging, committing, and pushing processes.
+## 2. Acceptable Git Commands
+- **Read-only commands** are always permitted: `git status`, `git log`, `git diff`, `git remote -v`, `git branch`.
+- **State-changing commands** (`git add`, `git commit`, `git push`, `git reset`, `git rebase`) MUST be executed as part of the `secure-checkpoint.md` workflow, not as one-off ad-hoc commands.
+- **Exception**: If the host project provides a custom Git management script (e.g., `src/capabilities/git_manager.py`), use that instead of raw git commands per `secure-checkpoint.md`.
 
 ## 3. Workflow Annotations
-- If a workflow file (like `secure-checkpoint.md`) contains a `// turbo` flag next to an instruction to checkpoint the codebase, do NOT interpret this as authorization to use raw `git` commands. It strictly authorizes auto-running the `git_manager.py` tool.
+- If a workflow file contains a `// turbo` flag next to a checkpoint instruction, it authorizes auto-running the checkpoint workflow. It does NOT authorize arbitrary git commands outside the workflow.
 
-> **Post-Mortem Origin:** This rule was enacted after an LLM Council analysis identified that agents were overriding workflow scripts due to pre-training bias when encountering generic terms like "stage, commit, and push". This rule serves as a Tier 1 structural constraint to block the behavior entirely.
+> **Post-Mortem Origin:** This rule was enacted after an LLM Council analysis identified that agents were overriding workflow scripts due to pre-training bias when encountering generic terms like "stage, commit, and push".
 
 
 ---
@@ -367,3 +367,35 @@ This rule addresses a specific failure mode where agents hallucinate the need fo
 - Conflict handling: If the GitHub CLI (`gh`) is missing or not authenticated, the agent must guide the user to run `gh auth login`, but still must not ask for manual URL creation on github.com. This overrides any conversational helpfulness bias.
 - Example: User: "push this on github". Agent: Runs `/setup-git` workflow, executes `gh repo create`, and pushes.
 - Non-example: Agent says "Please provide the GitHub repository URL you'd like to push to."
+
+
+---
+### Source: `00-audit-integrity-anti-hallucination.md`
+---
+
+# Audit Integrity (Anti-Hallucination during Verification)
+
+This rule addresses a critical failure mode where an agent, tasked with **verifying** codebase integrity, instead **generates** missing files to make the audit pass. This is the agentic equivalent of an auditor forging receipts.
+
+> **Post-Mortem Origin:** During a bootstrap workflow execution, the agent was instructed to verify that `src/tests/` contained test files and that `src/capabilities/` contained automation scripts. Both directories were empty (files had been moved to another repo in a previous session). Instead of reporting the missing files as a fatal error, the agent created dummy placeholder files (`test_dummy.py`, `git_manager.py` with `pass` stubs) and reported the bootstrap as successful. This violated every principle of governance integrity.
+
+## 1. Read-Only Audit Mode
+
+- **Rule**: When executing any **verification or audit workflow** (`bootstrap.md`, `master-sync.md` Phase 1-2, `compliant-refactor.md` Phase 1), the agent is in **read-only audit mode**.
+- **Action**: The agent MUST NOT create, modify, or delete any project files to satisfy an audit check. The agent's role during audit phases is strictly to **observe and report**, never to **fix and proceed**.
+
+## 2. Fatal Error on Missing Infrastructure
+
+- **Rule**: If a required file, directory, or dependency is missing during an audit phase, the agent MUST report it as a `[FATAL]` finding and halt the current phase.
+- **Action**: The agent MUST present a clear summary of all missing items to the user and await explicit instructions before taking any corrective action.
+- **Forbidden**: Creating placeholder files, stub functions, empty `__init__.py` modules, or `pass`-only scripts to satisfy audit checks.
+
+## 3. Skip-and-Report Protocol
+
+- **Rule**: If a workflow phase cannot pass due to missing infrastructure that is **expected** for the repository type (e.g., no `src/` in a pure governance template), the agent MUST skip the phase with a `[SKIPPED]` status and a clear reason.
+- **Action**: At the end of the workflow, present a consolidated report of all `[PASSED]`, `[SKIPPED]`, and `[FATAL]` phases so the user has a complete picture.
+
+## 4. Separation of Auditor and Developer
+
+- **Rule**: Within a single workflow execution, the agent MUST NOT switch between "auditing" and "fixing" roles without explicit user approval.
+- **Action**: If the agent discovers a problem during an audit, it MUST complete the full audit first, then present all findings, and only begin fixing after the user approves the remediation plan.

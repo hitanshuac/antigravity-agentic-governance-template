@@ -14,7 +14,7 @@ Before writing or modifying any code, the agent MUST read and internalize the fo
 1. **Competition Rules**: `.agents/rules/30-MASTER-compliance-and-deploy.md` (Max 3 attempts, <10MB repo, clean code).
 2. **SRE SOP**: `.agents/rules/20-MASTER-correctness-and-data.md` (Strict Inner/Outer Loop execution, no silent failures).
 3. **Defensive Programming**: `.agents/rules/00-MASTER-safety-and-guardrails.md` (Schema-first I/O, idempotent writes, zero silent data loss).
-4. **Code Quality**: `.agents/rules/40-MASTER-style-and-quality.md` (Clean, maintainable, PEP-8 compliant).
+4. **Code Quality**: `.agents/rules/40-MASTER-style-and-quality.md` (Clean, maintainable, language-idiomatic style).
 5. **Security / SAST**: `.agents/rules/10-MASTER-security-and-mlsecops.md` (CWE prevention, safe inputs).
 6. **Data Validation**: `.agents/rules/20-MASTER-correctness-and-data.md` (Strict boundaries, Pydantic type enforcement).
 
@@ -38,7 +38,7 @@ Invoke the **`.agents/workflows/agentic-refactor.md`** workflow to begin structu
 
 Immediately upon completing code modifications, the agent MUST invoke the **`.agents/workflows/test-automation.md`** workflow.
 
-1. **Execute Tests**: Run the full `pytest` suite autonomously.
+1. **Execute Tests**: Run the host project's test suite using the detected framework (e.g., `pytest`, `jest`, `go test`).
 2. **Handle Failures**: If any tests fail (Non-Zero Exit Code), the agent MUST halt, diagnose the failure, fix the code according to defensive standards, and retry.
 3. **Success Condition**: The refactor is NOT complete until all tests pass (`Exit Code 0`) and the test output explicitly confirms collection/execution.
 

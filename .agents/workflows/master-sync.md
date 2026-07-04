@@ -26,7 +26,7 @@ This is the **top-level orchestrator** for synchronizing the entire codebase. It
 
 ## Phase 4: Regenerate Architecture Diagrams
 1. Execute `.agents/workflows/generate-diagrams.md`.
-2. This will scan all `.d2` and `.py` diagrams, generate their technical base PNGs, and automatically run the AI styling pass to create the `_showcase` assets.
+2. This will scan all programmatic diagram definitions (`.d2`, `.py`) and compile them into deterministic images.
 3. The outputs will be saved to `docs/assets/`.
 
 ## Phase 5: Publish Showcase

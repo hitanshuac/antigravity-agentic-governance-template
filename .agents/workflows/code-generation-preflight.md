@@ -5,7 +5,7 @@ description: Mandatory pre-coding checklist enforcing industry-standard Design R
 
 # Code Generation Pre-Flight (Design Review)
 
-**Trigger:** Mandatory BEFORE the AI agent writes, generates, or modifies any Python/source code for a new feature or ticket.
+**Trigger:** Mandatory BEFORE the AI agent writes, generates, or modifies any source code for a new feature or ticket.
 
 This workflow simulates the "Design Review" and "Technical Spec" phases of a high-performing product development team's SDLC. It forces the agent to cross-examine its intended implementation against the rigorous `.agents/rules/` constraints, preventing context fragmentation and architectural drift.
 

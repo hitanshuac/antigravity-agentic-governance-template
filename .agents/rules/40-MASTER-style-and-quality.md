@@ -10,6 +10,8 @@
 
 This document codifies the strict requirements for achieving a perfect maintainability and reliability score against automated SAST and AI Code Analyzers (e.g., SonarQube, DeepSource). These rules must be strictly adhered to during all code generation and refactoring.
 
+> **Language Scope**: The examples below use Python tooling as a reference implementation. When the host project uses a different language, apply the equivalent idiomatic standards (e.g., ESLint for JS/TS, golangci-lint for Go, Clippy for Rust).
+
 ## 1. Project Structure & Imports (Pylint/Flake8 Compliance)
 - **Rule**: Never use `sys.path.append()` hacks.
 - **Why**: Analyzers heavily penalize runtime `sys.path` manipulation, flagging them as `E0401` (Unable to import) and `C0413` (Wrong import position).
@@ -65,7 +67,7 @@ This document codifies the strict requirements for achieving a perfect maintaina
   - Void functions must explicitly declare `-> None`.
 
 ## 6. Pre-Push Verification Commands
-Before concluding any major codebase update, run the following verification suite:
+Before concluding any major codebase update, run the verification suite appropriate for the host language. Python example:
 ```bash
 pylint src/ --fail-under=9.5
 flake8 src/ tests/ --max-line-length=120 --count
@@ -73,6 +75,7 @@ radon cc src/ -a -s -n B   # Output must be empty
 radon mi src/ -s           # All must be 'A'
 pytest tests/ -v           # All must pass
 ```
+For other languages, use the equivalent toolchain (e.g., `eslint . && jest`, `golangci-lint run && go test ./...`).
 
 
 ---

@@ -33,20 +33,19 @@ This rule governs all testing practices across the Agentic Environment. It enfor
   - Fixtures must include edge cases: empty files, files with the canonical schema, and files with legacy schemas (e.g., the old dictionary format) to verify migration logic.
   - Reference: `00-MASTER-safety-and-guardrails.md` Rule 1 (Schema-First Data Contracts).
 
-## 3. Naming Conventions
-- Test files: `test_<module_name>.py` (e.g., `test_compaction.py`)
-- Test functions: `test_<feature>_<behavior>_<expected>` (e.g., `test_compaction_strips_filler_prefix_correctly`)
-- Test classes (when grouping): `TestCompaction`, `TestDLQRouting`
+- Test files: Language-idiomatic naming (e.g., `test_<module>.py`, `<module>.test.ts`, `<module>_test.go`)
+- Test functions: Descriptive names following the pattern `test_<feature>_<behavior>_<expected>` or framework equivalent
+- Test classes (when grouping): `TestCompaction`, `TestDLQRouting`, or framework equivalent
 
 ## 4. Fixture & Setup Standards
-- Shared fixtures must be defined in `src/tests/conftest.py`.
-- Database tests must use in-memory DuckDB instances (`:memory:`) unless testing persistence specifically.
-- API tests must use FastAPI's `TestClient` — never make real HTTP calls in unit tests.
-- External API dependencies must be mocked using `unittest.mock` or `pytest-mock`.
+- Shared fixtures must be defined using the framework's standard mechanism (e.g., `conftest.py` for pytest, `beforeEach` for Jest, `TestMain` for Go).
+- Database tests must use in-memory instances (e.g., DuckDB `:memory:`) unless testing persistence specifically.
+- API tests must use the framework's test client — never make real HTTP calls in unit tests.
+- External API dependencies must be mocked using the language's standard mocking library.
 
 ## 5. Test Execution Protocol
 - Tests must be run after **every** code change, not just at the end of a feature.
-- Use `python -m pytest src/tests/ -v --tb=short` as the standard command.
+- Use the framework-appropriate test command (e.g., `python -m pytest src/tests/ -v --tb=short`, `npm test`, `go test ./...`).
 - The CI/CD pipeline (`.github/workflows/main.yml`) must run the full test suite on every push.
 
 ## 5.5 Contract Tests for Data Schemas
@@ -251,10 +250,10 @@ The Inner Loop runs continuously during active development, ensuring that no cod
 - **Trigger:** After EVERY code modification (even a single line change).
 - **Action:** The agent MUST autonomously execute the `.agents/workflows/test-automation.md` workflow.
 - **Enforcement:**
-  1. The agent MUST execute `pytest`.
+  1. The agent MUST execute the host project's test suite using the detected framework.
   2. **Failure Condition (Non-Zero Exit Code):** If tests fail, the agent MUST execute `.agents/workflows/error-observability.md` to log the failure, then fix the code, and retry.
   3. **Halt Condition:** If the agent fails to fix the test after three (3) consecutive attempts, it MUST halt execution immediately and ask the user for manual intervention.
-  4. **Success Condition (Exit Code 0):** The Inner Loop is only considered successful when `pytest` returns exit code `0` AND the test output explicitly shows that at least 1 test was collected and passed (preventing false positives from empty test suites).
+  4. **Success Condition (Exit Code 0):** The Inner Loop is only considered successful when the test runner returns exit code `0` AND the test output explicitly shows that at least 1 test was collected and passed (preventing false positives from empty test suites).
   5. Upon meeting the Success Condition, the agent MUST provide the user with explicit UI/CLI commands to test the feature manually (Anti-Solipsism Protocol per `20-MASTER-correctness-and-data.md` Rule 7) and wait for the human user to reply "approved" or "works" before moving to the next task.
 
 ## 2. The "Outer Loop" (Ticket Conclusion)

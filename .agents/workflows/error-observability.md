@@ -49,7 +49,7 @@ When an error, test failure, or pipeline crash occurs:
 1. Append a new entry to the error log following the canonical schema from Step 1.
 2. Format:
    - `timestamp`: Current UTC time (ISO 8601 with timezone).
-   - `error_type`: The exact Python exception class name (e.g., `ValueError`, NOT `"Error"`).
+   - `error_type`: The exact exception/error class name from the host language (e.g., `ValueError`, `TypeError`, `ReferenceError`). NEVER a generic placeholder.
    - `component`: The function or module that broke (retrieved via jCodeMunch).
    - `message`: The actual `str(e)` from the exception. NEVER a generic placeholder.
    - `stack_trace_summary`: A highly compressed summary of the stack trace.

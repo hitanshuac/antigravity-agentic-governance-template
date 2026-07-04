@@ -9,9 +9,11 @@ description: Automatically fetch, diagnose, and resolve remote CI/CD pipeline fa
 This workflow bridges the gap between remote cloud CI/CD pipelines and local agentic observability. It allows the AI to fetch remote failure logs without opening a browser and immediately begin diagnosing the code.
 
 ## Phase 1: Fetch Remote Logs
-1. Execute the Cloud-to-Local Bridge script: // turbo
-2. Run `python src/capabilities/ci_log_fetcher.py`
-3. This script will query the `gh` CLI, find the most recent pipeline failure, extract the failed logs, and inject them into `data/error_logs.json`.
+1. Use the GitHub CLI to find the most recent failed workflow run: // turbo
+   - `gh run list --status failure --limit 1 --json databaseId,name,conclusion,createdAt`
+2. Fetch the full failure logs for that run: // turbo
+   - `gh run view <databaseId> --log-failed`
+3. Parse the failure output and inject a structured error entry into `data/error_logs.json` following the canonical schema from `error-observability.md`.
 
 ## Phase 2: Local Diagnosis
 1. Execute the Error Observability workflow to read the newly imported error:
