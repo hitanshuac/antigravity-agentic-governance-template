@@ -2,6 +2,53 @@
 
 <!-- version list -->
 
+## v2.0.0 (2026-07-04)
+
+### Bug Fixes
+
+- Remove non-deterministic showcase image generation and restore clean assets
+  ([`ccbdb05`](https://github.com/hitanshuac/antigravity-agentic-governance-template/commit/ccbdb05b459bb8ec995a5c5eb15b01025f4d61f3))
+
+### Chores
+
+- Fix line endings
+  ([`fbadbe1`](https://github.com/hitanshuac/antigravity-agentic-governance-template/commit/fbadbe1e3a85609058d3eee436433ba035f4e0d2))
+
+- **sync**: Master-sync execution including conversational error harvesting and README updates
+  ([`24dd98d`](https://github.com/hitanshuac/antigravity-agentic-governance-template/commit/24dd98d059b5287adf3d63940fe7acd2e3943ad5))
+
+### Documentation
+
+- Add 5 new enterprise skills to README capabilities list
+  ([`1c73f7c`](https://github.com/hitanshuac/antigravity-agentic-governance-template/commit/1c73f7caf90124fcb5b34fbe64e875261ef26b4f))
+
+- Regenerate diagrams and update README with new skills
+  ([`dd0c0c3`](https://github.com/hitanshuac/antigravity-agentic-governance-template/commit/dd0c0c379e15269bd7345fd9711168a30da0779f))
+
+- Rename repository URLs to antigravity-agentic-governance-template
+  ([`30ebd0b`](https://github.com/hitanshuac/antigravity-agentic-governance-template/commit/30ebd0bf0dcb68cf2aeecb071f7aab5576c91a6f))
+
+- Update bootstrap upgrade flow and make master-sync language-agnostic
+  ([`7bdff9c`](https://github.com/hitanshuac/antigravity-agentic-governance-template/commit/7bdff9c100ee615700284b77955ebfde3176da2f))
+
+### Features
+
+- Add 5 enterprise-grade skills (MCP, Tracing, Episodic Memory, Prompt Registry, HITL)
+  ([`aa84ee4`](https://github.com/hitanshuac/antigravity-agentic-governance-template/commit/aa84ee487dd09ade7b54a39aa2f97b74d7128399))
+
+- Complete architectural split and add 4 new enterprise skills
+  ([`ac3a087`](https://github.com/hitanshuac/antigravity-agentic-governance-template/commit/ac3a087ee4ebd4158b7941b71dd926fe1c63c2ba))
+
+### Refactoring
+
+- Make all governance workflows and rules language-agnostic
+  ([`93b4f27`](https://github.com/hitanshuac/antigravity-agentic-governance-template/commit/93b4f27c762e0677601b43e9df3489fa7620f386))
+
+### Breaking Changes
+
+- Removes all hardcoded Python dependencies from workflows.
+
+
 ## v1.7.0 (2026-06-21)
 
 ### Features
