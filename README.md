@@ -6,7 +6,7 @@
 ![Architecture](https://img.shields.io/badge/Architecture-Split--Plane-indigo)
 
 ## 🏗️ System Architecture
-![System Architecture](docs/assets/architecture_diagram.webp)
+![System Architecture](docs/assets/architecture_diagram_showcase.webp)
 
 ## 🔄 Agentic Handover Flow
 ![Handover Flow](docs/assets/handover_flow.webp)
@@ -88,7 +88,7 @@ pip install -r requirements.txt
 .
 ├── .agents/            # The Control Plane: Rules, Skills, and Workflows (Human Edited)
 ├── .config/            # Environment configurations and MCP integrations
-├── src/                # Application source code (FastAPI, Routers)
+├── src/                # Application source code and Python starter kit (FastAPI, Routers, Capabilities)
 ├── data/               # The Data Plane: DuckDB metrics, Quarantine DLQs, and Parquet files (System Managed)
 └── hf-webui/           # Hugging Face Spaces frontend deployment configurations
 ```
@@ -100,7 +100,7 @@ To test if this environment works as intended in your own projects, you do not n
 
 ### For Brand New Projects (Fresh Start)
 If you are starting a new project (e.g., `mental-wellness-tracker`) and want to inherit these skills and rules from day one, give your IDE Copilot this exact prompt:
-> *"Please initialize this project with my standard agentic governance template. Run `git clone https://github.com/hitanshuac/antigravity-agentic-governance-template.git .agents_temp`, move the `.agents_temp/.agents/` directory into the root of this project, and delete the temp folder. Once that is done, execute `/.agents/workflows/bootstrap.md` to scaffold the rest of the environment."*
+> *"Please initialize this project with my standard agentic governance template. Run `git clone https://github.com/hitanshuac/antigravity-agentic-governance-template.git .agents_temp`, move the `.agents_temp/.agents/` directory into the root of this project. If this is a Python project, also copy the `.agents_temp/src/` folder to get the batteries-included starter kit. Delete the temp folder. Once that is done, execute `/.agents/workflows/bootstrap.md` to scaffold the rest of the environment."*
 
 ### For Existing Projects (Upgrading)
 If your project already has an older `.agents/` folder, you can safely pull down the latest rules (like new LangGraph or Multi-Agent skills) without overwriting your custom modifications. Simply tell the IDE:

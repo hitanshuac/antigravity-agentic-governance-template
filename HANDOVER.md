@@ -22,7 +22,7 @@ This environment operates on a strict separation of concerns:
 If a human asks you to scaffold a completely new project using this framework:
 1. **Pre-flight Check:** Execute `.agents/workflows/merge-conflict-resolution.md` to safely resolve any initial file collisions before proceeding.
 2. **Bootstrap:** Copy the entire `.agents/` directory into the new project's root.
-3. **Scaffold:** Execute the instructions outlined in `BOOTSTRAP.MD`. Create the `src/` directory and build the capabilities (compaction, validation, database ingestion) *exactly* as defined in the governance rules.
+3. **Scaffold:** Execute the instructions outlined in `BOOTSTRAP.MD`. If building a Python project, copy the `src/` directory from the template to get the pre-built capabilities (compaction, validation, database ingestion) *exactly* as defined in the governance rules.
 4. **Verify:** Build the Eval Suite (`src/tests/evals/`) to programmatically verify your capabilities before handing the project back to the human.
 
 ## 4. Integrating into an EXISTING Project
