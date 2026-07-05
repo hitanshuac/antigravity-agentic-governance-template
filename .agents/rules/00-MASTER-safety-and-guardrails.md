@@ -320,36 +320,6 @@ When two rules from the SAME tier conflict:
 
 
 ---
-### Source: `00-strict-constraints.md`
----
-
-# Hack2Skill PromptWars: Strict Agent Constraints
-
-The following rules are NON-NEGOTIABLE and dictate the boundaries of this repository. If you violate these, the project will be disqualified.
-
-## 1. Git & Version Control (The Single-Branch Rule)
-* **CRITICAL:** You are strictly forbidden from creating, suggesting, or checking out new Git branches. 
-* All commits must be made directly to the `main` branch. 
-* Do not generate complex merge/rebase workflows. Keep it strictly linear.
-
-## 2. Storage & Asset Management (< 10MB Limit)
-* The entire repository MUST stay under 10 MB.
-* **No Bloat:** Do not suggest installing heavy dependencies.
-* **Data Handling:** Do not generate or save large mock CSV/JSON files in the tracked repository. All database files (`.duckdb`), raw telemetry, and large datasets MUST be explicitly added to `.gitignore`.
-
-## 3. The README.md Contract (Submission Requirements)
-When asked to generate or update the `README.md`, you MUST include these exact sections prominently at the top:
-1. **Vertical/Persona:** State clearly that this is the "Sustainability / Enterprise ESG" vertical built for an "Enterprise Sustainability Officer".
-2. **Approach & Logic:** Explain the Bronze -> Silver -> Gold DuckDB pipeline.
-3. **Assumptions Made:** List any technical or business assumptions we made during the hackathon sprint.
-
-## 4. Evaluation Criteria (Code Standards)
-All generated code must pass these quality gates:
-* **Efficiency:** Use vectorized operations (PyArrow/DuckDB) over standard Python loops.
-* **Testing:** Ensure components are modular and testable.
-* **Accessibility:** Any frontend UI (HTML/React) must include semantic tags, ARIA labels, and proper contrast for enterprise accessibility standards.
-
----
 ### Source: `00-git-remote-hallucination-prevention.md`
 ---
 
@@ -399,3 +369,24 @@ This rule addresses a critical failure mode where an agent, tasked with **verify
 
 - **Rule**: Within a single workflow execution, the agent MUST NOT switch between "auditing" and "fixing" roles without explicit user approval.
 - **Action**: If the agent discovers a problem during an audit, it MUST complete the full audit first, then present all findings, and only begin fixing after the user approves the remediation plan.
+
+---
+### Source: `00-environment-awareness.md`
+---
+
+# Environment Awareness (Language Agnosticism)
+
+This rule prevents the AI agent from blindly defaulting to Python tools and syntax when operating in diverse codebases. It is a critical component of the template's multi-language governance strategy.
+
+## 1. Mandatory Context Gathering
+- **Rule**: Before executing ANY code modification or tool call in a new project context, the agent MUST inspect the root directory for package manager files.
+- **Action**: Look for `package.json` (Node/TypeScript), `go.mod` (Go), `Cargo.toml` (Rust), or `requirements.txt`/`pyproject.toml` (Python).
+- **Why**: LLMs have a strong prior bias towards Python. If operating in a Next.js directory, suggesting `pip install` or using `python -c` causes execution failures.
+
+## 2. Conformity to Host Ecosystem
+- **Rule**: All generated code, scripts, and commands MUST conform exactly to the detected language, tooling, and styling of the host repository.
+- **Action**: If the project uses TypeScript, use `npm` or `yarn` and write `.ts` scripts. Do not attempt to force Python-based governance decorators onto non-Python code.
+
+## 3. Governance via MCP
+- **Rule**: For cross-language governance, rely on the Model Context Protocol (MCP) server endpoints instead of language-specific constructs.
+- **Why**: This ensures that regardless of the host language, the agent can still query and validate actions against the central Antigravity governance rules without syntax collisions.

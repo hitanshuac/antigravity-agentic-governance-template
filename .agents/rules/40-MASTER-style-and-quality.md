@@ -154,3 +154,26 @@ The 5-step sequence within `src/capabilities/compaction.py` is:
 - Required fields: `raw_tokens`, `compact_tokens`, `tokens_saved`, `savings_pct`, `messages_dropped`, `prefixes_stripped`, `latency_sec`, `tier`.
 - The DuckDB connection must follow the DuckDB Optimizer skill directives: WAL mode enabled, memory capped at 256MB.
 - Telemetry writes must be non-blocking to the request path — a failed write must not crash the cascade.
+
+---
+### Source: `43-40-MASTER-style-and-quality.md`
+---
+
+# Anti-Over-Engineering Protocol (Ponytail Ladder)
+
+This rule strictly enforces a minimalist, anti-bloat philosophy to counteract the tendency of LLMs to generate excessive boilerplate, unnecessary wrappers, or complex architectures for simple problems.
+
+## The 7-Step Decision Ladder
+Before writing any code to solve a task, the agent MUST evaluate the solution through this exact ladder in order. If a step satisfies the requirement, stop there and DO NOT proceed to the next step.
+
+1. **YAGNI (You Aren't Gonna Need It)**: Does this feature or abstraction need to exist at all? If the user's core problem can be solved without it, skip it entirely.
+2. **Context (Codebase Reuse)**: Is there already a helper function, utility class, or architectural pattern in the existing codebase that solves this? If yes, reuse it.
+3. **Stdlib (Standard Library)**: Does the language's standard library natively support this? If yes, use the standard library instead of downloading a package.
+4. **Native (Platform Features)**: Is there a native platform feature (e.g., standard HTML `<input type="date">` instead of a custom React datepicker component)? If yes, use the native feature.
+5. **Dependencies**: Does an already-installed dependency solve this? Check the `package.json` or `requirements.txt`. Do not install a new dependency if an existing one can do the job.
+6. **One-Liner**: Can the solution be expressed in a single line of clear, idiomatic code? If yes, write the one-liner instead of a full class or helper function.
+7. **Minimum Viable Code**: Only if steps 1-6 fail, write the absolute minimum amount of code required to solve the task. No preemptive abstractions, no future-proofing wrappers, no speculative error handling for impossible states.
+
+## Zero Boilerplate Enforcement
+- **Rule**: If you generate a wrapper class around a standard library function that adds zero value, you have failed.
+- **Action**: Strive for a codebase with negative lines of code. The best code is the code you never wrote.
