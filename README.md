@@ -6,10 +6,14 @@
 ![Architecture](https://img.shields.io/badge/Architecture-Split--Plane-indigo)
 
 ## 🏗️ System Architecture
-![System Architecture](docs/assets/architecture_diagram_showcase.webp)
+![System Architecture (Showcase)](docs/assets/architecture_diagram_showcase.jpg)
+*Technical View:*
+![System Architecture (Technical)](docs/assets/architecture_diagram_technical.jpg)
 
 ## 🔄 Agentic Handover Flow
-![Handover Flow](docs/assets/handover_flow.webp)
+![Handover Flow (Showcase)](docs/assets/handover_flow_showcase.jpg)
+*Technical View:*
+![Handover Flow (Technical)](docs/assets/handover_flow_technical.jpg)
 
 ## 📖 Overview
 This repository serves as a powerful, extensible **Base Agentic Environment** built on the Antigravity framework. It utilizes a strict **Split-Plane Architecture** that separates the human-defined control plane (`.agents/`) from the system-managed data and state plane (`data/`). This ensures deterministic AI execution, zero-hallucination context management, and enterprise-grade reliability.
@@ -52,6 +56,7 @@ pip install -r requirements.txt
 * **Context Compaction & Router Alignment:** Strict token conservation and payload mutation for Agentic AI.
 * **Data Validation:** Idempotent DLQ routing and robust schema enforcement for local JSON files.
 * **SQL Standards:** Write-Ahead Logging and `INSERT OR REPLACE` idempotency via DuckDB.
+* **Anti-AI-Slop Design:** Constrains the agent to output professional-grade, high-fidelity design standards, avoiding generic UI tropes.
 * **SRE Standard Operating Procedure:** Rhythmic Inner and Outer loops enforcing deterministic verification after every iteration.
 * **Hugging Face & SAST Standards:** Zero-cost offsite WebUI routing deployment and OPSEC-sanitized remote evaluation compliance.
 * **Environment Awareness:** Mandatory pre-flight dependency scans to prevent language hallucination in non-Python workspaces.
@@ -117,7 +122,9 @@ The workflow will automatically clone the latest upstream template, merge in the
 ## 📊 Visual Reference Appendix
 
 ### The Agentic Handover Workflow
-![Handover Flow](docs/assets/handover_flow.webp)
+![Handover Flow (Showcase)](docs/assets/handover_flow_showcase.jpg)
+*Technical View:*
+![Handover Flow (Technical)](docs/assets/handover_flow_technical.jpg)
 
 ### Dual-Prong Testing Architecture (2026 Evals Standard)
 ```mermaid
