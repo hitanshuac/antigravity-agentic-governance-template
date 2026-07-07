@@ -9,3 +9,4 @@ __pycache__/
 .antigravity/
 .venv/
 node_modules/
+.agents/product/templates/*.md
