@@ -82,6 +82,8 @@ pip install -r requirements.txt
 * **Diagram Generator:** Programmatic generation of highly polished architecture diagrams via Python `diagrams` and `D2`.
 * **DuckDB Optimizer:** Configures DuckDB for maximum reliability, data integrity, and memory safety.
 * **Pipeline Architect:** Designs minimalist, fault-tolerant ETL pipelines using standard Python.
+* **LLM Council:** Framework for multi-perspective, peer-reviewed decision-making using 5 distinct AI advisors.
+* **Universal Ingestion:** Implements markitdown to flatten unstructured proprietary file formats into clean markdown streams.
 
 ### Automated Workflows (`.agents/workflows/`)
 * **CI/CD & Sync:** `master-sync` (Conversational Harvesting), `update-docs`, `publish-showcase`, `secure-checkpoint`, `semantic-release`, `sync-upstream`, `sync-ci-errors`
