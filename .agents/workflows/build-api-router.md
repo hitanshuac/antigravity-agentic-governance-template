@@ -10,7 +10,7 @@ Scaffold and build a production-grade FastAPI router cascade. The agent must fol
    - `02_TAD.md` (component architecture and data flow)
    - `03_SECURITY.md` (authentication strategy, RBAC, secret management)
    - `04_FRONTEND.md` (API contracts)
-2. The agent must reference `.agents/rules/20-MASTER-correctness-and-data.md` for system prompt injection and `.agents/rules/40-MASTER-style-and-quality.md` for payload management.
+2. The agent must reference `.agents/rules/20-00-phase-execute.md` for system prompt injection and `.agents/rules/40-phase-deploy.md` for payload management.
 
 ## Execution Steps
 
@@ -21,13 +21,13 @@ Scaffold and build a production-grade FastAPI router cascade. The agent must fol
 
 ### Phase 2: Router Construction
 1. Build FastAPI route handlers in `src/`.
-2. Implement the system prompt injection per `20-MASTER-correctness-and-data.md`.
-3. Implement the Context Compaction pipeline per `40-MASTER-style-and-quality.md`.
-4. Wire up Pydantic request/response models per `20-MASTER-correctness-and-data.md`.
+2. Implement the system prompt injection per `20-00-phase-execute.md`.
+3. Implement the Context Compaction pipeline per `40-phase-deploy.md`.
+4. Wire up Pydantic request/response models per `20-00-phase-execute.md`.
 
 ### Phase 3: Security Hardening
 1. Implement authentication middleware as specified in `03_SECURITY.md`.
-2. Ensure all secrets are loaded via environment variables per `10-MASTER-security-and-mlsecops.md` Factor III.
+2. Ensure all secrets are loaded via environment variables per `10-phase-audit.md` Factor III.
 3. Apply CORS, rate limiting, and input sanitization.
 
 ### Phase 4: Testing

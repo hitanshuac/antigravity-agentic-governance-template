@@ -13,8 +13,8 @@ Scaffold and build a fault-tolerant ETL (Extract, Transform, Load) pipeline for 
 
 ### Phase 1: Schema Design
 1. Read `02_TAD.md` § Database Schema to understand the target schema.
-2. Design the DuckDB tables following `20-MASTER-correctness-and-data.md` (idempotent `INSERT OR REPLACE`).
-3. Define Pydantic models for incoming data following `20-MASTER-correctness-and-data.md`.
+2. Design the DuckDB tables following `20-00-phase-execute.md` (idempotent `INSERT OR REPLACE`).
+3. Define Pydantic models for incoming data following `20-00-phase-execute.md`.
 
 ### Phase 2: Pipeline Construction
 1. Build the Extract layer (HTTP clients, file readers, API integrations).

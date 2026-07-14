@@ -70,20 +70,33 @@ pip install -r requirements.txt
 * **Architecture Decision Records (ADRs):** Immutable log of architectural choices (`.agents/architecture/adrs/`).
 
 ### Specialized Skills (`.agents/skills/`)
-* **LangGraph Orchestrator:** Scaffolds state machines with typed state, checkpointing, and conditional routing.
-* **Multi-Agent Crew:** Builds agent teams with strict role contracts, typed output schemas, and hard-fail delegation.
-* **RAG Pipeline:** Builds production-grade RAG with structure-aware chunking, hybrid retrieval, and cross-encoder reranking.
-* **Agent Evals:** Builds evaluation harnesses using trajectory scoring, tool-call accuracy metrics, and LLM-as-judge rubrics.
-* **MCP Server Architect:** Scaffolds custom tools strictly as Model Context Protocol (MCP) servers using the official SDK.
-* **Telemetry & Tracing:** Implements LangSmith/OpenTelemetry tracing across all agentic nodes to prevent orphaned spans.
-* **Episodic Memory Manager:** Integrates Mem0/Zep for cross-session state, explicitly segregating conversational memory from RAG knowledge.
-* **Prompt Registry Sync:** Externalizes all LLM prompts to markdown files, treating them as versionable assets.
-* **HITL Interrupts:** Compiles LangGraph workflows with strict Human-in-the-Loop (HITL) checkpoints for infrastructure-mutating actions.
-* **Diagram Generator:** Programmatic generation of highly polished architecture diagrams via Python `diagrams` and `D2`.
+
+#### 🌐 Universal Framework Skills (`universal/`)
+* **Context Compactor:** Manages LLM context window size via boilerplate stripping and sliding windows.
+* **Design Standards & Anti-Over-Engineering:** Technical implementation of minimalist architectures and high-fidelity UI design.
+* **Meta-Agent Formats:** Output templates for Rules, Proposals, Reviews, and Checkpoints.
+* **Pipeline Architect:** Designs minimalist, fault-tolerant ETL pipelines emphasizing Python and DuckDB over complex distributed systems.
+* **Quota Optimizer:** Strategies and heuristics to prevent excessive API quota drain during autonomous agent execution.
+* **agent-evals:** Instructs the agent to build evaluation harnesses for LLM agents using trajectory scoring, tool-call accuracy metrics, and LLM-as-judge rubrics. Encodes the two-layer approach (offline CI/CD + online per-turn monitoring) from 2026 industry standards. TRIGGERS: 'evaluate agent performance', 'build agent evals', 'agent evaluation harness', 'trajectory scoring', 'tool-call accuracy', 'LLM as judge', 'agent benchmarking', 'test agent quality'.
+* **hitl-interrupts:** Instructs the agent to compile LangGraph workflows with strict Human-in-the-Loop (HITL) checkpoints for any infrastructure-mutating actions.
+* **langgraph-orchestrator:** Instructs the agent to scaffold production-grade LangGraph state machines with typed state, checkpointing, human-in-the-loop interrupt nodes, and conditional routing. Encodes industry anti-patterns to prevent over-engineering and runaway loops. TRIGGERS: 'build a langgraph agent', 'create a state machine', 'loop engineering', 'agentic workflow', 'orchestrate agents with langgraph', 'build a react agent with langgraph'.
+* **llm-council:** Run any question, idea, or decision through a council of 5 AI advisors who independently analyze it, peer-review each other anonymously, and synthesize a final verdict. Based on Karpathy's LLM Council methodology. MANDATORY TRIGGERS: 'council this', 'run the council', 'war room this', 'pressure-test this', 'stress-test this', 'debate this'. STRONG TRIGGERS (use when combined with a real decision or tradeoff): 'should I X or Y', 'which option', 'what would you do', 'is this the right move', 'validate this', 'get multiple perspectives', 'I can't decide', 'I'm torn between'. Do NOT trigger on simple yes/no questions, factual lookups, or casual 'should I' without a meaningful tradeoff (e.g. 'should I use markdown' is not a council question). DO trigger when the user presents a genuine decision with stakes, multiple options, and context that suggests they want it pressure-tested from multiple angles.
+* **mcp-server-architect:** Instructs the agent to scaffold custom tools as Model Context Protocol (MCP) servers using the official Python SDK, strictly avoiding raw API wrappers.
+* **multi-agent-crew:** Instructs the agent to build multi-agent teams with strict role contracts, typed output schemas, and hard-fail delegation. Encodes the God Orchestrator, silent compensation, and context contamination anti-patterns from 2025-2026 production failures. TRIGGERS: 'build a multi-agent system', 'create an agent crew', 'multi-agent orchestration', 'agent delegation', 'build a team of agents', 'researcher analyzer writer pattern'.
+* **prompt-registry-sync:** Instructs the agent to externalize all LLM prompts to markdown files, treating them as versionable assets rather than hardcoded Python strings.
+* **rag-pipeline:** Instructs the agent to build production-grade RAG pipelines with structure-aware chunking, hybrid retrieval, cross-encoder reranking, and content-hash deduplication. Encodes the stale-cache anti-pattern and the 73% retrieval-failure root cause from 2026 industry analysis. TRIGGERS: 'build a RAG pipeline', 'retrieval augmented generation', 'vector search', 'document Q&A', 'build a knowledge base', 'semantic search over documents', 'chatbot with documents'.
+* **telemetry-tracing:** Instructs the agent to implement LangSmith or OpenTelemetry tracing across all agentic nodes to prevent orphaned spans and ensure full reasoning observability.
+
+#### 🐍 Python Ecosystem Skills (`python/`)
+* **Defensive Programming Standards:** Technical implementation of schema validation, fast failing, and idempotency for file I/O operations.
+* **Deployment Operations:** Technical implementation of Hugging Face Spaces deployments and Upstream syncing.
 * **DuckDB Optimizer:** Configures DuckDB for maximum reliability, data integrity, and memory safety.
-* **Pipeline Architect:** Designs minimalist, fault-tolerant ETL pipelines using standard Python.
-* **LLM Council:** Framework for multi-perspective, peer-reviewed decision-making using 5 distinct AI advisors.
-* **Universal Ingestion:** Implements markitdown to flatten unstructured proprietary file formats into clean markdown streams.
+* **Enterprise Code Quality Standards:** Technical implementation of SAST compliance, PyLint, Flake8, Ruff, and structural AI evaluator passing.
+* **SAST and Evaluator Compliance:** Strict engineering rules to achieve zero-defect compliance against Automated Evaluators, AI Code Analyzers, and CI/CD pipelines.
+* **Test Engineering & QA:** Technical implementation of Pytest, Fixtures, State-Aware Integration Tests, and Contract Tests.
+* **Universal Ingestion (MarkItDown):** Implements Microsoft's markitdown library to flatten unstructured proprietary file formats into clean, LLM-digestible markdown streams.
+* **developing-with-streamlit:** **[REQUIRED]** Use for ALL Streamlit tasks: creating, editing, debugging, beautifying, styling, theming, or optimizing Streamlit applications. Also required for building custom components (inline or packaged), using st.components.v2, or any HTML/JS/CSS component work. Triggers: streamlit, st., dashboard, app.py, beautify, style, CSS, color, background, theme, button, widget styling, custom component, st.components, packaged component, pyproject.toml, asset_dir, CCv2, HTML/JS component.
+* **episodic-memory-manager:** Instructs the agent to integrate Episodic Memory (Mem0/Zep) for cross-session state, explicitly segregating it from RAG document retrieval.
 
 ### Automated Workflows (`.agents/workflows/`)
 * **CI/CD & Sync:** `master-sync` (Conversational Harvesting), `update-docs`, `publish-showcase`, `secure-checkpoint`, `semantic-release`, `sync-upstream`, `sync-ci-errors`

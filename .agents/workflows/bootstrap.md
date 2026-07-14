@@ -11,7 +11,7 @@ This workflow has two modes of operation:
 
 Execute the phases sequentially. Phase 0 is only relevant for repositories that have already been bootstrapped once.
 
-> **CRITICAL AUDIT RULE**: During verification phases (1-8), the agent is in **read-only audit mode** per `00-MASTER-safety-and-guardrails.md` (Audit Integrity rule). The agent MUST NOT create, modify, or delete project files to make an audit pass. If a required item is missing, report it as `[FATAL]` or `[SKIPPED]` and continue to the next phase. Present a consolidated report at the end.
+> **CRITICAL AUDIT RULE**: During verification phases (1-8), the agent is in **read-only audit mode** per `00-01-core-safety.md` (Audit Integrity rule). The agent MUST NOT create, modify, or delete project files to make an audit pass. If a required item is missing, report it as `[FATAL]` or `[SKIPPED]` and continue to the next phase. Present a consolidated report at the end.
 
 ---
 

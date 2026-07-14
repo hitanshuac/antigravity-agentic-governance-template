@@ -17,7 +17,7 @@
    - This ensures that any data ingested prior to the failure is permanently saved and will not be lost.
 
 3b. **Secure the File State (Non-Database Fallback)**
-   > When project constraints prohibit heavy local databases (e.g., strict client guidelines), the Circuit Breaker must still protect data state using filesystem operations. See `00-MASTER-safety-and-guardrails.md` for why Tier 0 Safety overrides Tier 3 Compliance.
+   > When project constraints prohibit heavy local databases (e.g., strict client guidelines), the Circuit Breaker must still protect data state using filesystem operations. See `00-01-core-safety.md` for why Tier 0 Safety overrides Tier 3 Compliance.
    - Before any file write operation, create a backup copy: `data/file.json` -> `data/file.json.bak`.
    - If the write operation fails, corrupts data, or the Pre-Write Verification (see `error-observability.md` Step 1.5) detects data loss, restore from the `.bak` backup immediately.
    - After a successful and verified write, the `.bak` file may be deleted to conserve disk space.

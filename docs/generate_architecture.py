@@ -10,18 +10,10 @@ from diagrams.programming.language import Python
 # Set the output path to docs/assets/
 output_path = os.path.join(os.path.dirname(__file__), "assets", "architecture_diagram")
 
-graph_attr = {
-    "fontsize": "24",
-    "bgcolor": "transparent",
-    "pad": "0.5"
-}
+graph_attr = {"fontsize": "24", "bgcolor": "transparent", "pad": "0.5"}
 
 with Diagram(
-    "Antigravity Base Agentic Environment",
-    show=False,
-    filename=output_path,
-    graph_attr=graph_attr,
-    outformat="png"
+    "Antigravity Base Agentic Environment", show=False, filename=output_path, graph_attr=graph_attr, outformat="png"
 ):
     user = Client("Agentic Interface")
 

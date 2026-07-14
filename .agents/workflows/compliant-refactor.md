@@ -11,12 +11,12 @@ This master orchestration workflow chains architectural decomposition (`agentic-
 
 Before writing or modifying any code, the agent MUST read and internalize the following core mandates:
 
-1. **Competition Rules**: `.agents/rules/30-MASTER-compliance-and-deploy.md` (Max 3 attempts, <10MB repo, clean code).
-2. **SRE SOP**: `.agents/rules/20-MASTER-correctness-and-data.md` (Strict Inner/Outer Loop execution, no silent failures).
-3. **Defensive Programming**: `.agents/rules/00-MASTER-safety-and-guardrails.md` (Schema-first I/O, idempotent writes, zero silent data loss).
-4. **Code Quality**: `.agents/rules/40-MASTER-style-and-quality.md` (Clean, maintainable, language-idiomatic style).
-5. **Security / SAST**: `.agents/rules/10-MASTER-security-and-mlsecops.md` (CWE prevention, safe inputs).
-6. **Data Validation**: `.agents/rules/20-MASTER-correctness-and-data.md` (Strict boundaries, Pydantic type enforcement).
+1. **Competition Rules**: `.agents/rules/30-00-phase-test.md` (Max 3 attempts, <10MB repo, clean code).
+2. **SRE SOP**: `.agents/rules/20-00-phase-execute.md` (Strict Inner/Outer Loop execution, no silent failures).
+3. **Defensive Programming**: `.agents/rules/00-01-core-safety.md` (Schema-first I/O, idempotent writes, zero silent data loss).
+4. **Code Quality**: `.agents/rules/40-phase-deploy.md` (Clean, maintainable, language-idiomatic style).
+5. **Security / SAST**: `.agents/rules/10-phase-audit.md` (CWE prevention, safe inputs).
+6. **Data Validation**: `.agents/rules/20-00-phase-execute.md` (Strict boundaries, Pydantic type enforcement).
 
 *Failure to adhere to these rules during the refactor will result in pipeline failure.*
 

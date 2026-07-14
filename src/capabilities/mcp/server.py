@@ -12,6 +12,7 @@ logger = logging.getLogger("antigravity-mcp-server")
 # Initialize the MCP Server
 server = Server("antigravity-governance")
 
+
 @server.list_tools()
 async def handle_list_tools() -> list[types.Tool]:
     """
@@ -26,7 +27,7 @@ async def handle_list_tools() -> list[types.Tool]:
                 "properties": {
                     "task_description": {
                         "type": "string",
-                        "description": "The task or proposed change the agent wants to implement."
+                        "description": "The task or proposed change the agent wants to implement.",
                     }
                 },
                 "required": ["task_description"],
@@ -40,13 +41,14 @@ async def handle_list_tools() -> list[types.Tool]:
                 "properties": {
                     "detected_ecosystem": {
                         "type": "string",
-                        "description": "The ecosystem detected (e.g., node, python, go, rust)."
+                        "description": "The ecosystem detected (e.g., node, python, go, rust).",
                     }
                 },
                 "required": ["detected_ecosystem"],
-            }
-        )
+            },
+        ),
     ]
+
 
 @server.call_tool()
 async def handle_call_tool(
@@ -60,10 +62,7 @@ async def handle_call_tool(
         logger.info(f"Checking Ponytail compliance for: {task}")
         # In a real implementation, this would run the actual compliance heuristics
         return [
-            types.TextContent(
-                type="text",
-                text="Ponytail Ladder Check PASSED: Proceed with minimalist implementation."
-            )
+            types.TextContent(type="text", text="Ponytail Ladder Check PASSED: Proceed with minimalist implementation.")
         ]
 
     elif name == "verify_environment_awareness":
@@ -72,12 +71,13 @@ async def handle_call_tool(
         return [
             types.TextContent(
                 type="text",
-                text=f"Environment verified: {ecosystem}. You may proceed using native tools for this ecosystem."
+                text=f"Environment verified: {ecosystem}. You may proceed using native tools for this ecosystem.",
             )
         ]
 
     else:
         raise ValueError(f"Unknown tool: {name}")
+
 
 async def main():
     """
@@ -100,6 +100,7 @@ async def main():
                 ),
             ),
         )
+
 
 if __name__ == "__main__":
     asyncio.run(main())
