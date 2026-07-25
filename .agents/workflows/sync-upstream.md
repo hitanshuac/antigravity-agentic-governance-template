@@ -12,7 +12,7 @@ This workflow automates the backporting of newly hardened rules and workflows fr
 ## Execution Steps
 
 ### 1. Pre-Flight Check & Repo Validation
-- The user MUST provide the remote Git URL of the upstream repository (e.g., `https://github.com/hitanshuac/Antigravity_Environment_Max`).
+- The user MUST provide the remote Git URL of the upstream repository (e.g., `https://github.com/hitanshuac/antigravity-agentic-governance-template.git`).
 - The agent must verify it has access to the standard Git CLI tools.
 
 ### 2. Autonomous Cloning
@@ -23,14 +23,21 @@ This workflow automates the backporting of newly hardened rules and workflows fr
 ### 3. File Delta Extraction & Patching
 - The agent uses Git to programmatically identify modified framework files in the current repository:
   ```bash
-  git log --name-status --oneline .agents/
+  git log --name-status --oneline .agents/ tools/ src/security/ tests/
   ```
-- Identify all newly created or modified rules, workflows, and skills inside the local `.agents/` directory that represent "hardened" improvements.
-- Copy the identified files from the local `.agents/` folder directly into the `./tmp_ssot_sync/.agents/` folder, overwriting existing files or creating new ones.
+- Identify all newly created or modified assets that represent "hardened" improvements across the following Golden Master paths:
+  1. `.agents/` (Rules, Skills, Workflows)
+  2. `tools/governance_eval/` (The transcript evaluation framework)
+  3. `src/security/` (Hardbaked components like `secure_llm_client.py`)
+  4. `tests/` (Base testing infrastructure and fixtures)
+  5. Base configs: `.pre-commit-config.yaml`, `ruff.toml`, `requirements.txt`
+- Copy the identified files from the local project directly into the `./tmp_ssot_sync/` corresponding folders, creating directories if they don't exist.
 
 ### 4. Commit and Push to SSOT
 - Navigate the terminal into `./tmp_ssot_sync/`.
-- Stage the newly copied files using `git add .agents/`.
+- Run `git diff` and `git status` to see exactly what is being modified or deleted in the upstream repository.
+- **Safety Gate:** If ANY files are marked for deletion or destructive overwrite, STOP and present the diff to the user. You MUST explicitly ask the user for permission to proceed before staging.
+- Stage the newly copied files using `git add .` (ensuring all Golden Master paths are staged).
 - Commit the changes with a semantic message (e.g., `feat: backport hardened rules and workflows from project`).
 - Push the changes to the upstream remote repository (`git push origin main`).
 
