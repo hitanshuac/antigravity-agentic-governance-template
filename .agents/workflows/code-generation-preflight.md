@@ -14,22 +14,23 @@ Before designing the code, the agent MUST:
 1. **Ticket Alignment:** Verify the intended code perfectly satisfies the current Acceptance Criteria in `docs/05_TICKETS.md`.
 2. **DRY (Don't Repeat Yourself) Check:** Search the existing `src/` directory. Is there an existing utility, Pydantic model, or helper function that can be reused instead of writing new code?
 3. **Git Discovery:** If bringing in external patterns, execute `.agents/workflows/git-discovery-preflight.md` to check for open-source precedent.
+4. **Judgment Calls:** For any design decision that isn't a pure requirement lookup, resolve it via @.agents/skills/universal/design-standards/SKILL.md before proceeding — do not default to open-ended reasoning here.
 
 ## Phase 2: The Core Constraints Checklist
 The agent MUST explicitly verify its proposed implementation against the following active rules. If the proposed code violates ANY of these, the agent MUST redesign the approach.
 
-- [ ] **Tier 0 Safety (`00-01-core-safety.md`)**
+- [ ] **Tier 0 Safety (`00-00-core-safety.md`, `00-01-core-safety.md`)**
   - Are we doing file I/O? If yes, is a Pydantic/TypedDict schema explicitly defined?
   - Are we using guard clauses at the top of the function?
   - Are we handling exceptions explicitly (no bare `except:`) and logging them before returning fallbacks?
-- [ ] **Tier 1 Security (`10-phase-audit.md`, `10-phase-audit.md`)**
+- [ ] **Tier 1 Security (`10-phase-audit.md`)**
   - Are all user inputs rigorously sanitized (CWE-74)?
   - Are we absolutely sure no API keys or secrets are hardcoded?
-- [ ] **Tier 2 Correctness (`20-00-phase-execute.md`, `20-00-phase-execute.md`)**
+- [ ] **Tier 2 Correctness (`20-phase-execute.md`)**
   - How will this code be tested? Have we identified the necessary mocked dependencies and fixtures?
 - [ ] **Tier 3 Compliance (Platform & SRE Constraints)**
-  - Does this architecture adhere strictly to deployment limits and platform constraints (e.g., repo size, database restrictions)?
-  - Does the implementation plan align with the strict SRE Inner/Outer loop rhythms (`20-00-phase-execute.md`)?
+  - Does this architecture adhere strictly to deployment limits and platform constraints (e.g., repo size, database restrictions) as defined for the *active* competition — do not assume a prior competition's limits carry over?
+  - Does the implementation plan align with the strict SRE Inner/Outer loop rhythms (`30-phase-test.md`)?
   - Have all SAST compliance standards (`10-phase-audit.md`) been accounted for?
 - [ ] **Tier 4 Style (`40-phase-deploy.md`)**
   - Will this function exceed Cyclomatic Complexity 5? If yes, break it into smaller helpers now.

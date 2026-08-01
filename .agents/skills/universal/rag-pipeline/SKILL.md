@@ -186,5 +186,5 @@ sentence-transformers>=3.0.0  # for reranking
 ```
 
 ## Reference Implementations
-- `Marker-Inc-Korea/AutoRAG` — RAG evaluation and optimization framework (4,853★)
-- `NicholasGoh/fastapi-mcp-langgraph-template` — Full-stack with pgvector RAG (548★)
+- `Marker-Inc-Korea/AutoRAG` — RAG evaluation and optimization framework (4,853)
+- `NicholasGoh/fastapi-mcp-langgraph-template` — Full-stack with pgvector RAG (548)

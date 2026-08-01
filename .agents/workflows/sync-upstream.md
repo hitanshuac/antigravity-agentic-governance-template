@@ -5,7 +5,7 @@ description: Safely backports locally hardened rules and workflows to a remote G
 
 # Sync Upstream Workflow (Git SSOT)
 
-**Trigger:** Explicit invocation via `/ask run @[.agents/workflows/30-00-phase-test.md] <URL_OF_SSOT_REPO>`
+**Trigger:** Explicit invocation via `/ask run @[.agents/workflows/sync-upstream.md] <URL_OF_SSOT_REPO>`
 
 This workflow automates the backporting of newly hardened rules and workflows from the local project to a central Git repository acting as the **Single Source of Truth (SSOT)**. This solves the issue of keeping the upstream template expanded without relying on manual copy-pasting or risking local hard drive paths.
 
@@ -26,7 +26,7 @@ This workflow automates the backporting of newly hardened rules and workflows fr
   git log --name-status --oneline .agents/ tools/ src/security/ tests/
   ```
 - Identify all newly created or modified assets that represent "hardened" improvements across the following Golden Master paths:
-  1. `.agents/` (Rules, Skills, Workflows)
+  1. `.agents/` (Rules, Skills, Workflows) — **EXCLUDING `.agents/architecture/adrs/`**. ADRs are project-specific context and MUST NEVER be backported to the universal SSOT template.
   2. `tools/governance_eval/` (The transcript evaluation framework)
   3. `src/security/` (Hardbaked components like `secure_llm_client.py`)
   4. `tests/` (Base testing infrastructure and fixtures)

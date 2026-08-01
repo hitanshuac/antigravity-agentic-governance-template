@@ -1,6 +1,5 @@
-import pytest
 from src.domain.agent import VolunteerAgent, validate_spatial_analysis
-from src.domain.models import ValidationResult
+
 
 def test_validate_spatial_analysis_success():
     raw_data = {
@@ -27,7 +26,7 @@ def test_volunteer_agent_fallback():
     agent = VolunteerAgent()
     anomalies = [{"zone_id": "Gate A", "type": "CASCADE_RISK"}]
     zones = [{"zone_id": "Gate A", "node_type": "turnstile", "current_occupancy": 950, "max_capacity": 1000, "connected_nodes": ["Plaza A"]}]
-    
+
     result = agent._generate_deterministic_fallback(anomalies, zones, "TEST")
     assert "EDGE COMPUTE FALLBACK" in result["decision"]
     assert "TEST" in result["alerts"][0]
@@ -84,7 +83,7 @@ def test_analyze_spatial_anomaly_llm_validation_failure(mocker):
     }
     mocker.patch.object(agent.llm_client, "generate_content", return_value=mock_response)
     mocker.patch.object(agent.llm_client, "invalidate_cache_for_state")
-    
+
     result = agent.analyze_spatial_anomaly([{"zone_id": "Gate A"}], [{"zone_id": "Gate A", "current_occupancy": 0, "max_capacity": 1}])
     assert "[L1 SCHEMA GATE - REJECTED]" in result["decision"]
     assert agent.validation_failure_count == 1

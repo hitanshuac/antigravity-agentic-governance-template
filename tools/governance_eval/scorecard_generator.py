@@ -4,9 +4,7 @@ Takes computed GovernanceMetrics and generates human-readable reports
 with tables, comparisons, and per-conversation breakdowns.
 """
 
-from dataclasses import fields
 from datetime import datetime
-from typing import Dict, List, Optional
 
 from tools.governance_eval.metric_extractors import GovernanceMetrics
 from tools.governance_eval.rule_set_tagger import RuleSetFingerprint
@@ -60,8 +58,8 @@ def generate_single_scorecard(metrics: GovernanceMetrics) -> str:
     lines = [
         f"### Conversation `{metrics.conversation_id[:12]}...`",
         "",
-        f"| Metric | Value | Score | Grade |",
-        f"|--------|-------|-------|-------|",
+        "| Metric | Value | Score | Grade |",
+        "|--------|-------|-------|-------|",
         f"| 🔄 Loop Count | {metrics.loop_count} retry cycles | "
         f"{metrics.loop_efficiency_score:.2f} | "
         f"{_score_emoji(metrics.loop_efficiency_score)} {_score_grade(metrics.loop_efficiency_score)} |",
@@ -91,8 +89,8 @@ def generate_single_scorecard(metrics: GovernanceMetrics) -> str:
 
 
 def generate_aggregate_scorecard(
-    all_metrics: List[GovernanceMetrics],
-    rule_set: Optional[RuleSetFingerprint] = None,
+    all_metrics: list[GovernanceMetrics],
+    rule_set: RuleSetFingerprint | None = None,
 ) -> str:
     """Generate a full governance scorecard across all conversations.
 
@@ -143,8 +141,8 @@ def generate_aggregate_scorecard(
     lines.extend([
         "## Summary",
         "",
-        f"| Metric | Aggregate | Average per Conversation |",
-        f"|--------|-----------|--------------------------|",
+        "| Metric | Aggregate | Average per Conversation |",
+        "|--------|-----------|--------------------------|",
         f"| Conversations Analyzed | {n} | — |",
         f"| Total Tool Calls | {total_tool_calls} | {total_tool_calls / n:.1f} |",
         f"| Total Commands | {total_commands} | {total_commands / n:.1f} |",
@@ -158,8 +156,8 @@ def generate_aggregate_scorecard(
         "",
         "## Dimension Scores",
         "",
-        f"| Dimension | Avg Score | Grade | Rule Category |",
-        f"|-----------|-----------|-------|---------------|",
+        "| Dimension | Avg Score | Grade | Rule Category |",
+        "|-----------|-----------|-------|---------------|",
         f"| {_score_emoji(avg_loop)} Loop Efficiency | {avg_loop:.3f} | "
         f"{_score_grade(avg_loop)} | `00-00-core-safety` |",
         f"| {_score_emoji(avg_error)} Error Resilience | {avg_error:.3f} | "
@@ -169,7 +167,7 @@ def generate_aggregate_scorecard(
         f"| {_score_emoji(avg_halluc)} Hallucination Guard | {avg_halluc:.3f} | "
         f"{_score_grade(avg_halluc)} | `00-00-core-safety` |",
         f"| {_score_emoji(avg_autonomy)} Autonomy | {avg_autonomy:.3f} | "
-        f"{_score_grade(avg_autonomy)} | `20-00-phase-execute` |",
+        f"{_score_grade(avg_autonomy)} | `20-phase-execute` |",
         "",
         f"### **Overall Governance Score: {_score_emoji(avg_overall)} "
         f"{avg_overall:.3f} ({_score_grade(avg_overall)})**",
@@ -191,11 +189,11 @@ def generate_aggregate_scorecard(
 
 
 def generate_comparison_scorecard(
-    metrics_a: List[GovernanceMetrics],
-    metrics_b: List[GovernanceMetrics],
+    metrics_a: list[GovernanceMetrics],
+    metrics_b: list[GovernanceMetrics],
     label_a: str = "Baseline (A)",
     label_b: str = "Treatment (B)",
-    rule_diff: Optional[Dict] = None,
+    rule_diff: dict | None = None,
 ) -> str:
     """Generate a side-by-side comparison scorecard for A/B testing.
 
@@ -209,12 +207,12 @@ def generate_comparison_scorecard(
     Returns:
         Markdown comparison scorecard.
     """
-    def _avg(lst: List[GovernanceMetrics], attr: str) -> float:
+    def _avg(lst: list[GovernanceMetrics], attr: str) -> float:
         if not lst:
             return 0.0
         return sum(getattr(m, attr) for m in lst) / len(lst)
 
-    def _sum(lst: List[GovernanceMetrics], attr: str) -> int:
+    def _sum(lst: list[GovernanceMetrics], attr: str) -> int:
         return sum(getattr(m, attr) for m in lst)
 
     def _delta_str(val_a: float, val_b: float, inverse: bool = False) -> str:

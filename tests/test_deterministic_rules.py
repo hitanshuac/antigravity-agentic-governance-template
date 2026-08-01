@@ -1,4 +1,9 @@
-from src.domain.deterministic_rules import get_predetermined_suggestions, run_deterministic_translation, run_deterministic_crowd_analysis
+from src.domain.deterministic_rules import (
+    get_predetermined_suggestions,
+    run_deterministic_crowd_analysis,
+    run_deterministic_translation,
+)
+
 
 def test_get_predetermined_suggestions_high():
     suggestions = get_predetermined_suggestions("corridor", 95, length_m=100, width_m=10, connected_nodes=[])
@@ -26,7 +31,7 @@ def test_run_deterministic_crowd_analysis():
     assert len(res["execution_trace"]) > 0
     assert len(res["anomalies"]) == 1
     assert res["anomalies"][0]["type"] == "THRESHOLD_BREACH"
-    
+
     zones_medium = [
         {"zone_id": "Gate B", "current_occupancy": 750, "max_capacity": 1000, "node_type": "turnstile", "connected_nodes": []}
     ]

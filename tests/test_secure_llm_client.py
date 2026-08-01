@@ -23,7 +23,7 @@ def test_client_memoization_cache(secure_client):
     mock_response.choices[0].message.content = '{"decision": "test"}'
     secure_client.client.chat.completions.create.return_value = mock_response
 
-    state_data = [{"zone_id": "test", "occupancy": 100}]
+    state_data = [{"id": "test_item", "value": 100}]
 
     # First call - should hit mock
     result1 = secure_client.generate_content("Analyze this", state_data=state_data)

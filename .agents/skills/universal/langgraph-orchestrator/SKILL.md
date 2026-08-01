@@ -5,7 +5,7 @@ description: "Instructs the agent to scaffold production-grade LangGraph state m
 
 # LangGraph Orchestrator Skill
 
-This skill instructs the IDE copilot to scaffold a production-grade LangGraph state machine. It encodes the canonical patterns from `langchain-ai/react-agent` (783★) and the 2026 industry best practices for loop engineering, while preventing the most common pitfalls that cause production failures.
+This skill instructs the IDE copilot to scaffold a production-grade LangGraph state machine. It encodes the canonical patterns from `langchain-ai/react-agent` (783) and the 2026 industry best practices for loop engineering, while preventing the most common pitfalls that cause production failures.
 
 > **Post-Mortem Origin:** This skill was created after an LLM Council analysis identified that enterprise AI agentic engineering roles require demonstrated proficiency with LangGraph. The anti-patterns encoded here are sourced from production failure analyses across the LangGraph ecosystem in 2025-2026.
 
@@ -140,5 +140,5 @@ langchain-core>=0.3.0
 ```
 
 ## Reference Implementations
-- `langchain-ai/react-agent` — Official LangGraph ReAct template (783★)
-- `NicholasGoh/fastapi-mcp-langgraph-template` — Full-stack MCP + LangGraph (548★)
+- `langchain-ai/react-agent` — Official LangGraph ReAct template (783)
+- `NicholasGoh/fastapi-mcp-langgraph-template` — Full-stack MCP + LangGraph (548)

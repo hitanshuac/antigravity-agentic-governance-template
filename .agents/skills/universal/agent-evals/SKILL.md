@@ -279,6 +279,6 @@ pytest>=8.0
 ```
 
 ## Reference Implementations
-- `Marker-Inc-Korea/AutoRAG` — RAG evaluation with AutoML-style optimization (4,853★)
+- `Marker-Inc-Korea/AutoRAG` — RAG evaluation with AutoML-style optimization (4,853)
 - LangSmith — Trajectory-native evaluation and observability
 - DeepEval — CI/CD-compatible, pytest-style agent metrics

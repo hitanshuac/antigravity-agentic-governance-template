@@ -20,20 +20,6 @@ This is a Tier 0 Master Rule. LLMs are probability engines, not human developers
 ## 4. Architectural Adherence (XML Boundaries)
 - Where possible, instructions and constraints MUST be enclosed in strict XML tags (e.g., `<trigger>`, `<action>`, `<constraint>`) to provide explicit semantic boundaries for the LLM context window.
 
-# Git Version Control Protocol
-
-This rule ensures all version control operations go through the governance checkpoint workflow for observability and consistency.
-
-## 1. Mandatory Checkpoint Workflow
-- **Rule**: All Git commit-and-push operations MUST be routed through the `.agents/workflows/secure-checkpoint.md` workflow.
-
-## 2. Acceptable Git Commands
-- **Read-only commands** are always permitted: `git status`, `git log`, `git diff`, `git remote -v`, `git branch`.
-- **State-changing commands** (`git add`, `git commit`, `git push`, `git reset`, `git rebase`) MUST be executed exclusively as part of the `secure-checkpoint.md` workflow.
-
-## 3. Workflow Annotations
-- If a workflow file contains a `// turbo` flag next to a checkpoint instruction, it authorizes auto-running the checkpoint workflow.
-
 # Rule 00: The Explicit Approval Mandate
 
 **Strict Enforcement:** This rule overrides all other workflows, scripts, and instructions.
@@ -49,21 +35,22 @@ When two or more `.agents/rules/` files issue contradictory instructions, the ag
 
 ## 1. Rule Priority Hierarchy
 
-Rules are organized into 5 tiers. Higher tiers ALWAYS take precedence over lower tiers.
+Rules are organized into 5 tiers. Higher tiers ALWAYS take precedence over lower tiers. This table MUST be updated any time a governance file is added, split, or renamed — an un-tiered rule cannot be resolved by this protocol.
 
 | Tier | Category | Rules | Rationale |
 |---|---|---|---|
-| **0** | **Safety (Data Integrity)** | `00-*-core-safety.md` | Preventing data loss is non-negotiable |
+| **0** | **Safety (Data Integrity)** | `00-*-core-safety.md`, `15-git-protocol.md` | Preventing data loss and irreversible git actions is non-negotiable |
 | **1** | **Security** | `10-phase-audit.md` | Security vulnerabilities are career-ending |
-| **2** | **Correctness** | `20-*-phase-execute.md` | Correct behavior trumps style and compliance |
-| **3** | **Compliance** | `30-*-phase-test.md` | Platform rules are important but negotiable in implementation |
-| **4** | **Style** | `40-phase-deploy.md` | Code style is the least critical dimension |
+| **1.5** | **Decision Governance** | `05-decision-escalation.md` | Resolving design ambiguity correctly, before code is written, prevents downstream security and correctness failures |
+| **2** | **Correctness** | `20-phase-execute.md` | Correct behavior trumps style and compliance |
+| **3** | **Compliance** | `30-phase-test.md` | Platform rules are important but negotiable in implementation |
+| **4** | **Style** | `40-phase-deploy.md`, `40-code-quality.md` | Code style is the least critical dimension |
 
 ## 2. Conflict Resolution Protocol
 
 When the agent detects a conflict between two rules from different tiers:
 1. **Identify the Conflict:** Explicitly state which two rules conflict and what the contradiction is.
-2. **Apply the Higher Tier:** The higher-tier rule wins. 
+2. **Apply the Higher Tier:** The higher-tier rule wins.
 3. **Document the Override:** Add a code comment at the point of conflict.
 4. **Log an ADR (if Architectural):** Record an ADR in `.agents/architecture/adrs/`.
 

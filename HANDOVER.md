@@ -1,4 +1,4 @@
-# 🤖 Agentic Handover Directive
+# Agentic Handover Directive
 
 **Target Audience:** Autonomous LLM Agents (e.g., Antigravity, Cursor, Devin)  
 **Purpose:** Instructions on how to parse, inherit, and integrate the rules, skills, and workflows of this environment into any codebase.

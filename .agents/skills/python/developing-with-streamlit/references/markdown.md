@@ -7,31 +7,31 @@ Streamlit supports Markdown throughout its API—in `st.markdown()`, widget labe
 
 | Feature | Syntax | Example | Works in labels |
 |---------|--------|---------|--------|
-| Bold | `**text**` | `**Bold**` | ✓ |
-| Italic | `*text*` | `*Italic*` | ✓ |
-| Strikethrough | `~text~` | `~Strikethrough~` | ✓ |
-| Inline code | `` `code` `` | `` `variable` `` | ✓ |
-| Code block | ` ```lang...``` ` | ` ```python...``` ` | ✗ |
-| Mermaid diagram | ` ```mermaid...``` ` | ` ```mermaid graph TD; A-->B``` ` | ✗ |
-| Link | `[text](url)` | `[Streamlit](https://streamlit.io)` | ✓ |
-| Image | `![alt](path)` | `![Logo](logo.png)` | ✓ |
-| Heading | `# ` to `###### ` | `## Section` | ✗ |
-| Blockquote | `> text` | `> Note` | ✗ |
-| Horizontal rule | `---` | `---` | ✗ |
-| Unordered list | `- item` | `- First`<br>`- Second` | ✗ |
-| Ordered list | `1. item` | `1. First`<br>`2. Second` | ✗ |
-| Task list | `- [ ]` / `- [x]` | `- [x] Done`<br>`- [ ] Todo` | ✗ |
-| Table | `\| a \| b \|` | `\| H1 \| H2 \|`<br>`\|--\|--\|` | ✗ |
-| Emoji | Direct or shortcode | `🎉` or `:tada:` | ✓ |
-| Streamlit logo | `:streamlit:` | `:streamlit:` | ✓ |
-| Material icon | `:material/icon_name:` | `:material/check_circle:` | ✓ |
-| Colored text | `:color[text]` | `:red[Error]` | ✓ |
-| Colored background | `:color-background[text]` | `:blue-background[Info]` | ✓ |
-| Badge | `:color-badge[text]` | `:green-badge[Success]` | ✓ |
-| Shimmer animation | `:shimmer[text]` | `:shimmer[Loading...]` | ✓ |
-| Small text | `:small[text]` | `:small[footnote]` | ✓ |
-| LaTeX (inline) | `$formula$` | `$ax^2 + bx + c$` | ✓ |
-| LaTeX (block) | `$$formula$$` | `$$\int_0^1 x^2 dx$$` | ✗ |
+| Bold | `**text**` | `**Bold**` | |
+| Italic | `*text*` | `*Italic*` | |
+| Strikethrough | `~text~` | `~Strikethrough~` | |
+| Inline code | `` `code` `` | `` `variable` `` | |
+| Code block | ` ```lang...``` ` | ` ```python...``` ` | |
+| Mermaid diagram | ` ```mermaid...``` ` | ` ```mermaid graph TD; A-->B``` ` | |
+| Link | `[text](url)` | `[Streamlit](https://streamlit.io)` | |
+| Image | `![alt](path)` | `![Logo](logo.png)` | |
+| Heading | `# ` to `###### ` | `## Section` | |
+| Blockquote | `> text` | `> Note` | |
+| Horizontal rule | `---` | `---` | |
+| Unordered list | `- item` | `- First`<br>`- Second` | |
+| Ordered list | `1. item` | `1. First`<br>`2. Second` | |
+| Task list | `- [ ]` / `- [x]` | `- [x] Done`<br>`- [ ] Todo` | |
+| Table | `\| a \| b \|` | `\| H1 \| H2 \|`<br>`\|--\|--\|` | |
+| Emoji | Direct or shortcode | `` or `:tada:` | |
+| Streamlit logo | `:streamlit:` | `:streamlit:` | |
+| Material icon | `:material/icon_name:` | `:material/check_circle:` | |
+| Colored text | `:color[text]` | `:red[Error]` | |
+| Colored background | `:color-background[text]` | `:blue-background[Info]` | |
+| Badge | `:color-badge[text]` | `:green-badge[Success]` | |
+| Shimmer animation | `:shimmer[text]` | `:shimmer[Loading...]` | |
+| Small text | `:small[text]` | `:small[footnote]` | |
+| LaTeX (inline) | `$formula$` | `$ax^2 + bx + c$` | |
+| LaTeX (block) | `$$formula$$` | `$$\int_0^1 x^2 dx$$` | |
 
 ## Where Markdown works
 
@@ -126,7 +126,7 @@ Material icons also work in `icon` parameters across many elements (`st.button`,
 Both Unicode emojis (preferred) and shortcodes work.
 
 ```python
-st.markdown("Hello! 👋 :+1: :tada: :streamlit:")
+st.markdown("Hello! :+1: :tada: :streamlit:")
 ```
 
 **Note:** Material icons are preferred over emojis for a more professional look.

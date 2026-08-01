@@ -1,7 +1,9 @@
-import pytest
+import asyncio
 from unittest.mock import AsyncMock, MagicMock
 
+import pytest
 from src.domain.service import StadiumApplicationService
+
 
 @pytest.fixture
 def mock_state_manager():
@@ -33,7 +35,6 @@ def app_service(mock_state_manager, mock_stadium_agent):
     service.stadium_agent = mock_stadium_agent
     return service
 
-import asyncio
 
 def test_run_agent_workflow_success(app_service, mock_state_manager):
     # Setup anomalies in queue
@@ -42,7 +43,7 @@ def test_run_agent_workflow_success(app_service, mock_state_manager):
         {"type": "CASCADE_RISK", "zone_id": "Zone B", "action": "Lockdown"}
     ]
     result = asyncio.run(app_service.run_agent_workflow())
-    
+
     assert result["anomaly_count"] == 2
     assert "Processed" in result["decision"]
     assert any("actual flow 100" in trace for trace in result["execution_trace"])
@@ -55,9 +56,9 @@ def test_run_agent_workflow_empty(app_service, mock_state_manager):
 
 def test_analyze_anomalies_success(app_service, mock_state_manager):
     mock_state_manager.get_anomaly_queue.return_value = [{"type": "FLOW_MISMATCH", "zone_id": "Zone A"}]
-    
+
     result = asyncio.run(app_service.analyze_anomalies())
-    
+
     mock_state_manager.update_mitigation.assert_called_once_with("Zone A", "Flow reduced 10%: Congested")
     mock_state_manager.flush_anomaly_queue.assert_called_once()
     assert "Applied: 1 flow redistributions" in result["execution_trace"][-1]
@@ -72,12 +73,12 @@ def test_translate_query_critical(app_service, mock_state_manager, mock_stadium_
         "requires_llm_routing": True,
         "translated_response_en": "Medical Emergency"
     }
-    
+
     result = asyncio.run(app_service.translate_query("urgent need help"))
-    
+
     assert result["requires_llm_routing"] is True
     mock_state_manager.append_anomaly.assert_called_once()
-    args, kwargs = mock_state_manager.append_anomaly.call_args
+    args, _kwargs = mock_state_manager.append_anomaly.call_args
     assert args[0]["type"] == "MEDICAL_ROUTING"
 
 def test_translate_query_empty(app_service):

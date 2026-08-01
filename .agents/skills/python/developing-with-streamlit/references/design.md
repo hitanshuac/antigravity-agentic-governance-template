@@ -44,7 +44,7 @@ st.markdown(":material/dashboard:")
 st.markdown(":material/person:")
 
 # SPARINGLY: Emojis for special occasions
-st.markdown("Celebration! 🎉")
+st.markdown("Celebration! ")
 ```
 
 Format: `:material/icon_name:`

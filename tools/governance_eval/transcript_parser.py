@@ -8,18 +8,15 @@ Each line is a JSON object representing one step in the conversation.
 
 import json
 import os
-import re
 from dataclasses import dataclass, field
-from datetime import datetime
-from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 
 @dataclass
 class ToolCall:
     """A single tool invocation extracted from a transcript step."""
     name: str
-    args: Dict[str, Any] = field(default_factory=dict)
+    args: dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass
@@ -32,7 +29,7 @@ class TranscriptStep:
     created_at: str       # ISO timestamp
     content: str = ""
     thinking: str = ""
-    tool_calls: List[ToolCall] = field(default_factory=list)
+    tool_calls: list[ToolCall] = field(default_factory=list)
     is_truncated: bool = False
 
 
@@ -41,11 +38,11 @@ class ParsedConversation:
     """A fully parsed conversation with all steps."""
     conversation_id: str
     transcript_path: str
-    steps: List[TranscriptStep] = field(default_factory=list)
+    steps: list[TranscriptStep] = field(default_factory=list)
     total_steps: int = 0
 
 
-def _parse_tool_calls(raw_calls: Optional[List[Dict]]) -> List[ToolCall]:
+def _parse_tool_calls(raw_calls: list[dict] | None) -> list[ToolCall]:
     """Extract tool calls from raw JSON, handling nested string escaping."""
     if not raw_calls:
         return []
@@ -64,7 +61,7 @@ def _parse_tool_calls(raw_calls: Optional[List[Dict]]) -> List[ToolCall]:
     return result
 
 
-def parse_transcript_file(filepath: str) -> List[TranscriptStep]:
+def parse_transcript_file(filepath: str) -> list[TranscriptStep]:
     """Parse a single transcript.jsonl file into a list of TranscriptSteps.
 
     Args:
@@ -80,8 +77,8 @@ def parse_transcript_file(filepath: str) -> List[TranscriptStep]:
     if not os.path.isfile(filepath):
         raise FileNotFoundError(f"Transcript file not found: {filepath}")
 
-    steps: List[TranscriptStep] = []
-    with open(filepath, "r", encoding="utf-8") as fh:
+    steps: list[TranscriptStep] = []
+    with open(filepath, encoding="utf-8") as fh:
         for line_num, line in enumerate(fh, start=1):
             line = line.strip()
             if not line:
@@ -109,7 +106,7 @@ def parse_transcript_file(filepath: str) -> List[TranscriptStep]:
     return steps
 
 
-def discover_conversations(brain_dir: str) -> List[ParsedConversation]:
+def discover_conversations(brain_dir: str) -> list[ParsedConversation]:
     """Discover and parse all conversations in the brain directory.
 
     Args:
@@ -122,7 +119,7 @@ def discover_conversations(brain_dir: str) -> List[ParsedConversation]:
     if not os.path.isdir(brain_dir):
         raise FileNotFoundError(f"Brain directory not found: {brain_dir}")
 
-    conversations: List[ParsedConversation] = []
+    conversations: list[ParsedConversation] = []
 
     for entry in os.scandir(brain_dir):
         if not entry.is_dir():
@@ -151,24 +148,24 @@ def discover_conversations(brain_dir: str) -> List[ParsedConversation]:
     return conversations
 
 
-def get_user_messages(conversation: ParsedConversation) -> List[TranscriptStep]:
+def get_user_messages(conversation: ParsedConversation) -> list[TranscriptStep]:
     """Extract only user input steps from a conversation."""
     return [s for s in conversation.steps if s.step_type == "USER_INPUT"]
 
 
-def get_agent_responses(conversation: ParsedConversation) -> List[TranscriptStep]:
+def get_agent_responses(conversation: ParsedConversation) -> list[TranscriptStep]:
     """Extract only agent (model) planner responses from a conversation."""
     return [s for s in conversation.steps if s.step_type == "PLANNER_RESPONSE"]
 
 
-def get_command_executions(conversation: ParsedConversation) -> List[TranscriptStep]:
+def get_command_executions(conversation: ParsedConversation) -> list[TranscriptStep]:
     """Extract only command execution steps from a conversation."""
     return [s for s in conversation.steps if s.step_type == "RUN_COMMAND"]
 
 
-def get_all_tool_calls(conversation: ParsedConversation) -> List[ToolCall]:
+def get_all_tool_calls(conversation: ParsedConversation) -> list[ToolCall]:
     """Flatten all tool calls across all steps in a conversation."""
-    calls: List[ToolCall] = []
+    calls: list[ToolCall] = []
     for step in conversation.steps:
         calls.extend(step.tool_calls)
     return calls

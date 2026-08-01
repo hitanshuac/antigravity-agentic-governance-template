@@ -13,18 +13,16 @@ import argparse
 import os
 import sys
 
-from tools.governance_eval.transcript_parser import discover_conversations
 from tools.governance_eval.metric_extractors import compute_governance_metrics
 from tools.governance_eval.rule_set_tagger import (
-    hash_rules_directory,
     compare_rule_sets,
-    fingerprint_to_dict,
+    hash_rules_directory,
 )
 from tools.governance_eval.scorecard_generator import (
     generate_aggregate_scorecard,
     generate_comparison_scorecard,
 )
-
+from tools.governance_eval.transcript_parser import discover_conversations
 
 # Default paths
 DEFAULT_BRAIN_DIR = os.path.expanduser(

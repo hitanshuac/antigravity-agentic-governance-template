@@ -29,8 +29,8 @@ Prefer Material Symbols icons over emojis in UI labels, and use sentence casing.
 
 ```python
 # BAD: Title casing and emoji-heavy UI
-st.button("Sales Reports 📊")
-st.button("Refresh Data 🔄")
+st.button("Sales Reports ")
+st.button("Refresh Data ")
 
 # GOOD: Sentence casing and Material Symbols
 st.button("Sales reports", icon=":material/bar_chart:")

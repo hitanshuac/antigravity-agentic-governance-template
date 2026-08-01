@@ -3,10 +3,12 @@ import re
 from dataclasses import dataclass
 from datetime import datetime
 from enum import Enum
-from typing import List, Optional, Dict, Any
+from typing import Any
+
 from pydantic import BaseModel
 
 from src.security.secure_llm_client import SecureLLMClient
+
 
 class MetricType(Enum):
     DETERMINISTIC = "deterministic"  # Exact checks, no LLM needed
@@ -38,13 +40,13 @@ class TrajectoryStep(BaseModel):
     timestamp: datetime
     step_type: str  # "thought", "tool_call", "tool_result", "final_answer"
     content: str
-    tool_name: Optional[str] = None
-    tool_args: Optional[Dict[str, Any]] = None
+    tool_name: str | None = None
+    tool_args: dict[str, Any] | None = None
     tokens_used: int = 0
 
 class AgentTrajectory(BaseModel):
     task: str
-    steps: List[TrajectoryStep]
+    steps: list[TrajectoryStep]
     final_answer: str
     total_tokens: int
     total_steps: int
@@ -58,21 +60,21 @@ def record_trajectory(agent, task: str, anomalies: list, zones: list) -> AgentTr
     """
     steps = []
     start = datetime.utcnow()
-    
+
     # We will wrap the execution to track steps
-    # Note: For our VolunteerAgent, we can just trace the result payload 
+    # Note: For our VolunteerAgent, we can just trace the result payload
     # since it returns execution_trace and decisions
     result = agent.analyze_spatial_anomaly(anomalies, zones)
-    
+
     # Convert trace to TrajectorySteps
-    for i, trace_item in enumerate(result.get("execution_trace", [])):
+    for _i, trace_item in enumerate(result.get("execution_trace", [])):
         steps.append(TrajectoryStep(
             timestamp=datetime.utcnow(),
             step_type="tool_call" if "tool" in trace_item.lower() else "thought",
             content=trace_item,
             tokens_used=10 # approximate
         ))
-    
+
     # Add final answer step
     final_decision = result.get("decision", "")
     steps.append(TrajectoryStep(
@@ -81,7 +83,7 @@ def record_trajectory(agent, task: str, anomalies: list, zones: list) -> AgentTr
         content=final_decision,
         tokens_used=50
     ))
-    
+
     # Add predicted analyses as tool calls for the evaluation
     # (since the agent outputs redistributions as "actions")
     for analysis in result.get("analyses", []):
@@ -92,9 +94,9 @@ def record_trajectory(agent, task: str, anomalies: list, zones: list) -> AgentTr
             tool_name=analysis.get('risk_type'),
             tool_args={"redistributions": analysis.get('redistributions')}
         ))
-        
+
     duration = (datetime.utcnow() - start).total_seconds()
-    
+
     return AgentTrajectory(
         task=task,
         steps=steps,
@@ -108,7 +110,7 @@ def record_trajectory(agent, task: str, anomalies: list, zones: list) -> AgentTr
 
 def eval_tool_call_accuracy(
     trajectory: AgentTrajectory,
-    expected_tools: List[str],
+    expected_tools: list[str],
 ) -> float:
     """Check if the agent called the correct tools (or hit expected risk types)."""
     actual_tools = [
@@ -180,7 +182,7 @@ def format_trajectory_for_judge(trajectory: AgentTrajectory) -> str:
     return res
 
 def eval_with_judge(trajectory: AgentTrajectory, mock: bool = True) -> dict:
-    """Use LLM-as-judge with structured rubric. 
+    """Use LLM-as-judge with structured rubric.
     Can mock for deterministic unit testing.
     """
     if mock:
@@ -192,23 +194,23 @@ def eval_with_judge(trajectory: AgentTrajectory, mock: bool = True) -> dict:
             "plan_adherence": score / 5.0,
             "task_completion": score / 5.0,
         }
-        
+
     client = SecureLLMClient()
     prompt = JUDGE_RUBRIC.format(
         task=trajectory.task,
         trajectory=format_trajectory_for_judge(trajectory)
     )
-    
+
     # We pass empty state_data since we don't want caching to conflict with the main agent
     response = client.generate_content(prompt, state_data={})
-    
+
     if response["status"] != "success":
         # Fallback to failing score if LLM error
         return {
             "plan_adherence": 0.2,
             "task_completion": 0.2,
         }
-    
+
     try:
         # Attempt to extract JSON from the raw output.
         # SecureLLMClient might wrap it, but it expects valid JSON if formatted correctly.
@@ -217,7 +219,7 @@ def eval_with_judge(trajectory: AgentTrajectory, mock: bool = True) -> dict:
             "plan_adherence": float(data.get("plan_adherence", 1)) / 5.0,
             "task_completion": float(data.get("task_completion", 1)) / 5.0,
         }
-    except Exception as e:
+    except Exception:
         return {
             "plan_adherence": 0.2,
             "task_completion": 0.2,
@@ -226,9 +228,9 @@ def eval_with_judge(trajectory: AgentTrajectory, mock: bool = True) -> dict:
 
 def run_eval_suite(
     agent,
-    test_cases: List[Dict],
+    test_cases: list[dict],
     output_path: str = "eval_results.json",
-) -> Dict:
+) -> dict:
     """Run a full evaluation suite. Compatible with pytest and CI/CD."""
     results = []
     for case in test_cases:

@@ -28,8 +28,7 @@ Hugging Face requires a specific YAML block at the very top of `README.md` to co
    ```yaml
    ---
    title: <Project Name>
-   emoji: 🚀
-   colorFrom: blue
+   emoji:    colorFrom: blue
    colorTo: indigo
    sdk: docker
    app_port: 7860

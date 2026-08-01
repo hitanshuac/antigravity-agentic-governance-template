@@ -9,16 +9,17 @@ description: A master orchestration workflow that sequentially validates, docume
 This is the **top-level orchestrator** for synchronizing the entire codebase. It calls sub-workflows in strict sequential order. Do NOT skip phases.
 
 ## Phase 1: Pre-flight Checks
-1. **Repository Sanitation**: Scan the project root directory for rogue scratchpad scripts or temporary files (e.g., orphaned `*.py` or `*.txt` files used for testing logic). Delete any files that do not belong in the core production bundle to strictly enforce Code Quality and SRE hygiene rules.
+1. **Repository Sanitation**: Scan the project root directory for rogue scratchpad scripts or temporary files (e.g., orphaned `*.py` or `*.txt` files used for testing logic). If any are found, MUST NOT delete them directly — invoke `.agents/workflows/dead-code-cleanup.md` instead, which enforces the mandatory Human-in-the-Loop approval gate required by the Explicit Approval Mandate (`00-01-core-safety.md`). Master Sync MUST NOT perform destructive file operations itself.
 2. Verify that `.agents/product/templates/` contains all 5 product templates (`01_PRD.md` through `05_TICKETS.md`).
 3. If any template is missing, halt and execute `.agents/workflows/generate-product-docs.md` to populate them.
-4. If applicable to the project language, run the appropriate linter (e.g., `ruff check .`, `eslint`) to verify the codebase passes linting. If this is a pure markdown repository, skip this step.
+4. If applicable to the project language, run the appropriate linter to verify the codebase passes linting. If this is a pure markdown repository, skip this step.
+   // turbo
+   `ruff check .` (or `eslint .` for JS/TS projects)
 
 ## Phase 2: Test Automation Gate
 1. Check if a testing suite exists for the target language (e.g., `pytest`, `jest`). If none exist (e.g., pure markdown template), skip this phase.
 2. Execute `.agents/workflows/test-automation.md`.
-3. If any tests fail, execute `.agents/workflows/error-observability.md` to log the failure.
-4. Fix the failing code and re-run tests. Do NOT proceed until all tests pass.
+3. **Strict Handoff:** If the test suite fails or escalates (Execution-Failure), `master-sync.md` MUST halt completely. Do not attempt to fix code in the Outer Loop. The agent must resolve the failure via the Inner Loop (`test-automation.md`) and re-invoke `master-sync.md` only upon a clean test run.
 
 ## Phase 3: Update Documentation
 1. Execute `.agents/workflows/update-docs.md`.
@@ -45,6 +46,5 @@ This is the **top-level orchestrator** for synchronizing the entire codebase. It
 3. Execute `.agents/workflows/error-observability.md` to persist these lessons to the central observability suite so they are never repeated.
 
 ## Phase 8: Secure Checkpoint
-1. Execute `.agents/workflows/secure-checkpoint.md` or perform a standard secure Git commit process.
-2. Stage, commit, and push changes while enforcing error observability and conventional commits.
-3. Confirm to the user that all changes are permanently secured on GitHub.
+1. The agent MUST exclusively execute `.agents/workflows/secure-checkpoint.md` to stage, commit, and push changes. There is no fallback path. This is a Tier 0 requirement per the Git Version Control Protocol (`00-01-core-safety.md`) — direct `git commit`/`git push` outside this workflow is prohibited regardless of circumstance.
+2. Confirm to the user that all changes are permanently secured on GitHub.

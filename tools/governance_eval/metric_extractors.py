@@ -8,15 +8,14 @@ These metrics map directly to governance rule categories:
   Error Rate          -> 00-02-core-safety (Local-First Verification Gate)
   Hallucination Flags -> 00-00-core-safety (Zero-Tolerance for Hallucinated Output)
   Time to Success     -> All rules combined
-  Human Interventions -> 20-00-phase-execute (Execution phase)
+  Human Interventions -> 20-phase-execute (Execution phase)
   Dead-End Rate       -> 10-phase-audit (Audit thoroughness)
   Safety Violations   -> 00-01-core-safety (Explicit Approval Mandate)
 """
 
 import re
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import datetime
-from typing import Dict, List, Optional
 
 from tools.governance_eval.transcript_parser import (
     ParsedConversation,
@@ -108,8 +107,8 @@ class GovernanceMetrics:
 
 
 def _count_content_matches(
-    steps: List[TranscriptStep],
-    patterns: List[str],
+    steps: list[TranscriptStep],
+    patterns: list[str],
 ) -> int:
     """Count how many steps match at least one pattern in their content."""
     count = 0
@@ -129,7 +128,7 @@ def extract_loop_count(conversation: ParsedConversation) -> int:
     an agent response (the fix attempt), followed by another failure.
     """
     loop_count = 0
-    failure_indices: List[int] = []
+    failure_indices: list[int] = []
 
     for i, step in enumerate(conversation.steps):
         content = step.content or ""
@@ -150,7 +149,7 @@ def extract_loop_count(conversation: ParsedConversation) -> int:
     return loop_count
 
 
-def extract_error_rate(conversation: ParsedConversation) -> Dict[str, int]:
+def extract_error_rate(conversation: ParsedConversation) -> dict[str, int]:
     """Count total commands and failed commands.
 
     Returns dict with 'total_commands' and 'failed_commands'.

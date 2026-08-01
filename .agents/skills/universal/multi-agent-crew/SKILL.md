@@ -5,7 +5,7 @@ description: "Instructs the agent to build multi-agent teams with strict role co
 
 # Multi-Agent Crew Skill
 
-This skill instructs the IDE copilot to scaffold production-grade multi-agent systems. It encodes patterns from `oh-my-claudecode` (37.4k★), OpenAI `Swarm` (21.7k★), and the 2026 industry failure analysis across CrewAI, AutoGen, and LangGraph multi-agent deployments.
+This skill instructs the IDE copilot to scaffold production-grade multi-agent systems. It encodes patterns from `oh-my-claudecode` (37.4k), OpenAI `Swarm` (21.7k), and the 2026 industry failure analysis across CrewAI, AutoGen, and LangGraph multi-agent deployments.
 
 > **Post-Mortem Origin:** Industry analysis shows that 10 agents create 45 potential interaction failure points. Exponential coordination costs are the #1 killer of multi-agent systems. This skill enforces minimal agent counts and strict contracts.
 
@@ -172,6 +172,6 @@ langchain-core>=0.3.0
 ```
 
 ## Reference Implementations
-- `Yeachan-Heo/oh-my-claudecode` — Multi-agent orchestration for Claude Code (37.4k★)
-- `openai/swarm` — Educational multi-agent framework (21.7k★)
-- `kyegomez/swarms` — Enterprise multi-agent framework (6.9k★)
+- `Yeachan-Heo/oh-my-claudecode` — Multi-agent orchestration for Claude Code (37.4k)
+- `openai/swarm` — Educational multi-agent framework (21.7k)
+- `kyegomez/swarms` — Enterprise multi-agent framework (6.9k)

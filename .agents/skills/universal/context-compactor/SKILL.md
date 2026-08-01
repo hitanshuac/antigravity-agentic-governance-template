@@ -41,7 +41,7 @@ All operations execute on a **deep copy** of the inbound messages array. The cal
 
 The 5-step sequence within `src/capabilities/compaction.py` is:
 1. **Deep Copy** — `copy.deepcopy(messages)` at function entry.
-2. **Grounding** — System prompt injected at index 0 (`ground_messages()`). See `20-00-phase-execute.md` §1.
+2. **Grounding** — System prompt injected at index 0 (`ground_messages()`). See `20-phase-execute.md` §1.
 3. **Prefix Stripping** — Verbose AI filler removed from `role: assistant` messages (`strip_boilerplate()`).
 4. **Sliding Window** — Oldest messages beyond the cap are evicted (`apply_sliding_window()`).
 5. **Cascade** — Compacted payload forwarded to `query_cloud()`. Admission Control (PRE-FLIGHT BYPASS) runs inside `llm_cloud.py`.
@@ -64,7 +64,7 @@ The 5-step sequence within `src/capabilities/compaction.py` is:
 - When the payload exceeds 10 messages, retain only the system message + the **most recent 9** conversation messages. All older messages are dropped.
 
 ## 4. System Message Immunity
-- The `role: system` message injected by `20-00-phase-execute.md` is **exempt** from both sliding window eviction and boilerplate stripping.
+- The `role: system` message injected by `20-phase-execute.md` is **exempt** from both sliding window eviction and boilerplate stripping.
 - It must always occupy index 0 of the outbound payload.
 
 ## 5. Observability

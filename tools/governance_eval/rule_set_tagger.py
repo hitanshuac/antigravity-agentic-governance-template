@@ -5,11 +5,8 @@ for the rule set that was active during a conversation.
 """
 
 import hashlib
-import json
 import os
 from dataclasses import dataclass, field
-from pathlib import Path
-from typing import Dict, List, Optional
 
 
 @dataclass
@@ -18,7 +15,7 @@ class RuleSetFingerprint:
     fingerprint_hash: str
     rule_count: int
     total_bytes: int
-    rule_files: Dict[str, str] = field(default_factory=dict)  # filename -> md5
+    rule_files: dict[str, str] = field(default_factory=dict)  # filename -> md5
     label: str = ""  # User-friendly label like "v1-baseline" or "v2-template"
 
 
@@ -35,7 +32,7 @@ def hash_rules_directory(rules_dir: str, label: str = "") -> RuleSetFingerprint:
     if not os.path.isdir(rules_dir):
         raise FileNotFoundError(f"Rules directory not found: {rules_dir}")
 
-    rule_files: Dict[str, str] = {}
+    rule_files: dict[str, str] = {}
     total_bytes = 0
 
     for entry in sorted(os.scandir(rules_dir), key=lambda e: e.name):
@@ -68,7 +65,7 @@ def hash_rules_directory(rules_dir: str, label: str = "") -> RuleSetFingerprint:
 def compare_rule_sets(
     set_a: RuleSetFingerprint,
     set_b: RuleSetFingerprint,
-) -> Dict:
+) -> dict:
     """Compare two rule set fingerprints and report differences.
 
     Returns a dict with:
@@ -104,7 +101,7 @@ def compare_rule_sets(
     }
 
 
-def fingerprint_to_dict(fp: RuleSetFingerprint) -> Dict:
+def fingerprint_to_dict(fp: RuleSetFingerprint) -> dict:
     """Serialize a RuleSetFingerprint to a JSON-compatible dict."""
     return {
         "fingerprint_hash": fp.fingerprint_hash,
