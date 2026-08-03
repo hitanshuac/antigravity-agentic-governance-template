@@ -1,0 +1,36 @@
+project_name:
+  type: str
+  help: "Name of your project (e.g. my-awesome-app)"
+  default: "my-agentic-app"
+
+project_type:
+  type: str
+  choices:
+    - python-api
+    - python-ml
+    - javascript-web
+    - governance-only
+  help: "What kind of project are you building?"
+  default: "python-api"
+
+include_mcp_server:
+  type: bool
+  default: true
+  help: "Include the MCP governance server for local IDE evaluation?"
+
+# ─── Upgrade Path Role ───
+# Copier = DISTRIBUTION (template → child project, one-way)
+# bootstrap.md = PULL (latest SSOT into a repo while building)
+# sync-upstream.md = PUSH (battle-tested improvements back to SSOT)
+# These three are complementary, not competing. See AGENTS.md.
+
+# Copier configuration
+_min_copier_version: "9.0.0"
+# File filtering is handled by .copierignore.jinja (Jinja-templated)
+
+# Tasks to run after copying/updating — gated by project type
+_tasks:
+  - >-
+    {% if project_type in ['python-api', 'python-ml'] %}
+    python -m venv .venv
+    {% endif %}

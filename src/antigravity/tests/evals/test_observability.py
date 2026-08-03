@@ -1,6 +1,6 @@
 import json
 
-from src.capabilities.observability import log_error
+from src.antigravity.capabilities.observability import log_error
 
 
 def test_error_logging(tmp_path):

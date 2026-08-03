@@ -1,6 +1,6 @@
 ---
 trigger: glob
-glob: "tests/**/*.py, *_test.py"
+glob: "tests/**/*.py, src/tests/**/*.py, *_test.py"
 ---
 
 # 30 Phase Test

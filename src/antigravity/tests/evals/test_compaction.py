@@ -1,4 +1,4 @@
-from src.capabilities.compaction import compact_context
+from src.antigravity.capabilities.compaction import compact_context
 
 
 def test_compaction():

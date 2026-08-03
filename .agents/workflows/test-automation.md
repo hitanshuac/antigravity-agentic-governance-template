@@ -59,9 +59,9 @@ Eliminate the token-burn cycle of "write code → manually write tests → debug
    // turbo
    `pytest -v --tb=short` (or `npm test`, `go test -v` depending on detected stack)
 2. **Handle Failures**: If any tests fail (Non-Zero Exit Code), the agent MUST halt, log the failure via `.agents/workflows/error-observability.md`, diagnose, fix the code according to defensive standards, and retry. This retry loop is capped at 3 attempts per `30-phase-test.md`.
-3. **4th-Failure Escalation (Execution-Failure Path):** On the 4th failure, the agent MUST NOT dump an open-ended problem on the user. Per @.agents/skills/universal/design-standards/SKILL.md Section 6, this is by definition an **Execution-Failure** — so the agent MUST:
-   1. State explicitly: *"Execution-Failure: [sub-task] has failed 4 attempts."*
-   2. Produce a minimal failing repro: exact command, exact error, exact files touched across the 4 attempts.
+3. **3rd-Failure Escalation (Execution-Failure Path):** On the 3rd consecutive failure, the agent MUST NOT dump an open-ended problem on the user. Per @.agents/skills/universal/design-standards/SKILL.md Section 6, this is by definition an **Execution-Failure** — so the agent MUST:
+   1. State explicitly: *"Execution-Failure: [sub-task] has failed 3 attempts."*
+   2. Produce a minimal failing repro: exact command, exact error, exact files touched across the 3 attempts.
    3. Halt and present the repro to the user.
 4. **Write-Back (Mandatory on Every Escalation):** Once the user resolves the escalation, the agent MUST log an ADR to `.agents/architecture/adrs/` before closing the ticket — trigger type, repro given, fix received, and whether this reveals a recurring bug class. An escalation that isn't logged is a Tier 2 violation per `00-03-meta-governance.md` Section 6 (Write-Back Loop) and blocks `master-sync.md`.
 5. **Success Condition**: If tests pass, mark the ticket's acceptance criteria as completed in `05_TICKETS.md`.

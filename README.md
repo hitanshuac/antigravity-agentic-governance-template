@@ -62,6 +62,7 @@ pip install -r requirements.txt
 * **Environment Awareness:** Mandatory pre-flight dependency scans to prevent language hallucination in non-Python workspaces.
 * **Anti-Over-Engineering:** Enforces the 7-step Ponytail decision ladder (YAGNI, Context, Stdlib, Native, Dependencies, One-Liner, Minimum Viable Code).
 * **Language-Agnostic Engine:** Exposes governance rules as tools via a strict `stdio` Model Context Protocol (MCP) server for cross-ecosystem agent support.
+* **Skill Bifurcation:** Intelligent skill pack filtering that dynamically ships ecosystem-specific skills (e.g., JavaScript Web vs Python API) based on project structure.
 * **Modular Competition Rules:** Hackathon-specific logistics (e.g., Hack2Skill) are modularized and optionally toggleable.
 
 
@@ -157,7 +158,7 @@ Deployment, Git orchestration, and automated maintenance.
 .
 ├── .agents/            # The Control Plane: Rules, Skills, and Workflows (Human Edited)
 ├── .config/            # Environment configurations and MCP integrations
-├── src/                # Application source code and Python starter kit (FastAPI, Routers, Capabilities)
+├── src/antigravity/    # Application source code and Python starter kit (FastAPI, Routers, Capabilities)
 ├── data/               # The Data Plane: DuckDB metrics, Quarantine DLQs, and Parquet files (System Managed)
 └── hf-webui/           # Hugging Face Spaces frontend deployment configurations
 ```
@@ -168,11 +169,22 @@ Deployment, Git orchestration, and automated maintenance.
 To test if this environment works as intended in your own projects, you do not need to rewrite your entire codebase. Instead, you inject the "Agentic Brain".
 
 ### For Brand New Projects (Fresh Start)
-If you are starting a new project (e.g., `mental-wellness-tracker`) and want to inherit these skills and rules from day one, give your IDE Copilot this exact prompt:
-> *"Please initialize this project with my standard agentic governance template. Run `git clone https://github.com/hitanshuac/antigravity-agentic-governance-template.git .agents_temp`, move the `.agents_temp/.agents/` directory into the root of this project. If this is a Python project, also copy the `.agents_temp/src/` folder to get the batteries-included starter kit. Delete the temp folder. Once that is done, execute `/.agents/workflows/bootstrap.md` to scaffold the rest of the environment."*
+Create a new project directly from this template using the GitHub CLI:
+```bash
+gh repo create my-project --template hitanshuac/antigravity-agentic-governance-template
+```
+Once cloned, open the project in your IDE and execute `/.agents/workflows/bootstrap.md` to finish scaffolding.
 
-### For Existing Projects (Upgrading)
-If your project already has an older `.agents/` folder, you can safely pull down the latest rules (like new LangGraph or Multi-Agent skills) without overwriting your custom modifications. Simply tell the IDE:
+### For Existing Projects (Injection)
+If your project already exists and you just want to inject governance capabilities, run this in your terminal:
+```bash
+git clone https://github.com/hitanshuac/antigravity-agentic-governance-template .gov-temp
+cp -r .gov-temp/.agents . && rm -rf .gov-temp
+```
+Then tell your IDE Copilot: `Execute /.agents/workflows/bootstrap.md`
+
+### Upgrading an Existing Installation
+If your project already has an older `.agents/` folder, tell the IDE:
 > *"/ask run @[.agents/workflows/bootstrap.md]"*
 
 The workflow will automatically clone the latest upstream template, merge in the new skills and rules, and present you with a list of old/deprecated files to delete. **It will explicitly ask for your manual confirmation before deleting any deprecated files.**

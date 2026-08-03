@@ -10,7 +10,7 @@ glob: "src/**/*.py"
 This is a Tier 1 Security Rule. AI agents and human developers are fundamentally unreliable at applying conversational security policies. Therefore, this repository enforces security via architectural physical barriers (The Interceptor Pattern).
 
 ## 1. The SecureLLMClient Exclusive Mandate
-- **Rule**: You MUST exclusively import raw LLM provider SDKs (e.g., `openai`, `anthropic`, `google.generativeai`) inside the `src/security/` directory.
+- **Rule**: You MUST exclusively import raw LLM provider SDKs (e.g., `openai`, `anthropic`, `google.generativeai`) inside the `src/antigravity/security/` directory.
 - **Action**: For all application logic, UI, or API routing layers (e.g., `src/ui/` or `src/routers/`), you MUST exclusively route LLM interactions through the `SecureLLMClient` interceptor wrapper.
 
 ## 2. The Golden Wrapper Mandate
@@ -22,7 +22,7 @@ When modifying or extending the `SecureLLMClient`, you must enforce symmetry:
 - **Post-Flight (LLM06 Defense):** The wrapper must intercept the outbound response and scan it for Sensitive Information Disclosure before returning it to the caller.
 
 ## 4. CI/CD Preflight Gate
-- Before concluding any task involving LLM integration, you MUST verify that all LLM calls route through `SecureLLMClient`. If a raw import is found outside of `src/security/`, you must immediately refactor it.
+- Before concluding any task involving LLM integration, you MUST verify that all LLM calls route through `SecureLLMClient`. If a raw import is found outside of `src/antigravity/security/`, you must immediately refactor it.
 
 # 12-Factor App Enforcement
 
@@ -82,3 +82,12 @@ after adopting this file. Both previously fired on the same
 `src/**/*.py` glob as this file, meaning every Python file touch loaded
 three separate rule files — two of which contained only a redirect stub and
 zero enforceable content. This file replaces all three with a single load.
+
+# Code Quality Governance
+- **Rule**: Code MUST be meticulously formatted and achieve a perfect maintainability score.
+- **Action**: You MUST apply the implementation directives found in `@.agents/skills/python/code-quality/SKILL.md` (e.g., zero trailing whitespace, strict linting, cyclomatic complexity A-grade) for all code generation.
+
+**Migration note:** `40-code-quality.md` has been merged into this file per
+`00-03-meta-governance.md` Section 2 (Glob Collision Check). Its `**/*.py` glob
+overlapped with this file's `src/**/*.py` — there was no stated reason for the
+separation, and the content was 2 lines. Delete `40-code-quality.md` after adopting.

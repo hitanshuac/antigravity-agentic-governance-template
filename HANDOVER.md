@@ -22,14 +22,14 @@ This environment operates on a strict separation of concerns:
 If a human asks you to scaffold a completely new project using this framework:
 1. **Pre-flight Check:** Execute `.agents/workflows/merge-conflict-resolution.md` to safely resolve any initial file collisions before proceeding.
 2. **Bootstrap:** Copy the entire `.agents/` directory into the new project's root.
-3. **Scaffold:** Execute the instructions outlined in `BOOTSTRAP.MD`. If building a Python project, copy the `src/` directory from the template to get the pre-built capabilities (compaction, validation, database ingestion) *exactly* as defined in the governance rules.
+3. **Scaffold:** Execute the instructions outlined in `BOOTSTRAP.MD`. If building a Python project, copy the `src/antigravity/` directory from the template to get the pre-built capabilities (compaction, validation, database ingestion) *exactly* as defined in the governance rules.
 4. **Verify:** Build the Eval Suite (`src/tests/evals/`) to programmatically verify your capabilities before handing the project back to the human.
 
 ## 4. Integrating into an EXISTING Project
 If a human asks you to port these Agentic capabilities into a legacy or existing codebase:
 1. **Safe Merge:** Your absolute first action must be to execute `.agents/workflows/merge-conflict-resolution.md` to resolve file collisions. Wait for explicit manual approval before modifying any existing code.
-2. **Audit:** Invoke `.agents/workflows/git-discovery-preflight.md` to map the legacy architecture against the strict `10-MASTER-security-and-mlsecops.md` and `20-MASTER-correctness-and-data.md`.
-3. **Refactor Incrementally:** Do not rewrite the whole app. Inject `.agents/rules/40-MASTER-style-and-quality.md` into their existing LLM router cascade. Add Pydantic DLQ routing to their existing ingestion pipelines.
+2. **Audit:** Invoke `.agents/workflows/git-discovery-preflight.md` to map the legacy architecture against the strict `10-phase-audit.md` and `20-phase-execute.md`.
+3. **Refactor Incrementally:** Do not rewrite the whole app. Inject `40-code-quality.md` into their existing LLM router cascade. Add Pydantic DLQ routing to their existing ingestion pipelines.
 4. **Enforce Observability:** Implement `.agents/workflows/error-observability.md`. Ensure that all their legacy exceptions are routed through the `jCodeMunch` AST compressor and logged to a structured JSON file so you can debug the legacy code efficiently.
 
 ## 5. Product Design Gate

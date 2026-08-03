@@ -2,7 +2,7 @@ import os
 
 import pytest
 
-from src.capabilities.config import MissingConfigurationError, load_settings
+from src.antigravity.capabilities.config import MissingConfigurationError, load_settings
 
 
 def test_missing_config():

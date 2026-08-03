@@ -76,7 +76,7 @@ load them now. Store the brief in `SPEC.md` via @.agents/workflows/spec-first.md
 2. For each task:
    a. Implement the feature
    b. Run verification per @.agents/rules/25-verification-loop.md
-   c. If verification passes, commit via @.agents/workflows/secure-checkpoint.md // turbo
+   c. If verification passes, commit via @.agents/workflows/secure-checkpoint.md
    d. If verification fails 3 times, invoke @.agents/skills/universal/loop-detector/SKILL.md
 3. Deploy incrementally after every 2-3 features to catch deployment issues early
 4. At the halfway point of Phase 3, re-check against the demo script:

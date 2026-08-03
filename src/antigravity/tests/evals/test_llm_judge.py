@@ -1,4 +1,4 @@
-from src.capabilities.llm_judge import evaluate_response_quality
+from src.antigravity.capabilities.llm_judge import evaluate_response_quality
 
 
 def test_llm_judge_good_response():

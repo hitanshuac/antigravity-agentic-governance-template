@@ -9,6 +9,7 @@ python-dotenv==1.2.2
 # === AI / LLM ===
 groq==0.9.0
 deep-translator==1.11.4
+mcp>=1.0.0
 
 # === Image Processing (Diagram Compression) ===
 pillow==12.3.0
@@ -51,4 +52,5 @@ typing_extensions==4.16.0
 urllib3==2.7.0
 virtualenv==21.5.1
 coloredlogs==15.0.1
-gradio
+gradio==4.36.1
+copier==9.2.0

@@ -9,7 +9,7 @@ This rule permanently enforces inline payload mutation for all outbound text-mod
 
 ## 1. Mandatory System Prompt Injection
 - Every outbound `messages` payload sent to any cascade tier **must** include a `role: system` message at **index 0**.
-- The canonical system message is defined in `src/capabilities/compaction.py` as the `SYSTEM_PROMPT` constant.
+- The canonical system message is defined in `src/antigravity/capabilities/compaction.py` as the `SYSTEM_PROMPT` constant.
 - No cascade tier is exempt. If a provider cannot accept `role: system`, the grounding text must be prepended as a prefix to the first `role: user` message instead.
 
 ## 2. Ephemeral Injection Only
@@ -39,7 +39,7 @@ This rule enforces strict token conservation on all conversation payloads transi
 ## 1. Processing Pipeline (Mandatory Order)
 All operations execute on a **deep copy** of the inbound messages array. The caller's data must never be mutated.
 
-The 5-step sequence within `src/capabilities/compaction.py` is:
+The 5-step sequence within `src/antigravity/capabilities/compaction.py` is:
 1. **Deep Copy** — `copy.deepcopy(messages)` at function entry.
 2. **Grounding** — System prompt injected at index 0 (`ground_messages()`). See `20-phase-execute.md` §1.
 3. **Prefix Stripping** — Verbose AI filler removed from `role: assistant` messages (`strip_boilerplate()`).

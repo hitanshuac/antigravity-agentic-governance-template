@@ -1,6 +1,6 @@
 import json
 
-from src.capabilities.validation import validate_and_route
+from src.antigravity.capabilities.validation import validate_and_route
 
 
 def test_pydantic_dlq(tmp_path):

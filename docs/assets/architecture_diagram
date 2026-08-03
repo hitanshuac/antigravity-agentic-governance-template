@@ -2,36 +2,36 @@ digraph "Antigravity Base Agentic Environment" {
 	graph [bgcolor=transparent fontcolor="#2D3436" fontname="Sans-Serif" fontsize=24 label="Antigravity Base Agentic Environment" nodesep=0.60 pad=0.5 rankdir=LR ranksep=0.75 splines=ortho]
 	node [fixedsize=true fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 height=1.4 imagescale=true labelloc=b shape=box style=rounded width=1.4]
 	edge [color="#7B8894"]
-	"4a1761d60b6641dc949c98243729cb7d" [label="Agentic Interface" height=1.9 image="C:\Users\zacca\AppData\Local\Programs\Python\Python311\Lib\site-packages\resources/onprem/client\client.png" shape=none]
+	"6613b8fbc5464306aff6baf00c4a8f7e" [label="Agentic Interface" height=1.9 image="C:\Users\zacca\AppData\Local\Programs\Python\Python311\Lib\site-packages\resources/onprem/client\client.png" shape=none]
 	subgraph "cluster_Control Plane (.agents/)" {
 		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="Control Plane (.agents/)" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
-		"171dbb5c92b1413f9f3079897b2f0333" [label="Governance Rules
+		"7cf44a7027854f99a8ef7b8387ee6cf5" [label="Governance Rules
 (12-Factor, Idempotency)" height=2.3 image="C:\Users\zacca\AppData\Local\Programs\Python\Python311\Lib\site-packages\resources/programming/language\python.png" shape=none]
-		"3106e6f2927343b3952fd0dc24d17e4c" [label="CI/CD Workflows
+		e0ea6b8e194e423ab7fe8f9d4cd69544 [label="CI/CD Workflows
 (Publish, Sync)" height=2.3 image="C:\Users\zacca\AppData\Local\Programs\Python\Python311\Lib\site-packages\resources/programming/language\python.png" shape=none]
-		d281142a76b548c88513b1e3e33a4b79 [label="Skills
+		b9b0470238b44d2e8b5f03aeb6f21a63 [label="Skills
 (DuckDB Optimizer)" height=2.3 image="C:\Users\zacca\AppData\Local\Programs\Python\Python311\Lib\site-packages\resources/programming/language\python.png" shape=none]
 	}
 	subgraph "cluster_Application (src/)" {
 		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="Application (src/)" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
-		d2f1f8aff5a5439eaa1677bdea5bd448 [label="FastAPI Gateway" height=1.9 image="C:\Users\zacca\AppData\Local\Programs\Python\Python311\Lib\site-packages\resources/onprem/network\nginx.png" shape=none]
-		"6973ec936d6446409fa9e95adeb87774" [label="Context Compactor" height=1.9 image="C:\Users\zacca\AppData\Local\Programs\Python\Python311\Lib\site-packages\resources/programming/language\python.png" shape=none]
-		"7073cbf5d938469a897ab63299bb9cff" [label="LLM-as-a-Judge
+		a394d9380b6f478bb5c835450b971217 [label="FastAPI Gateway" height=1.9 image="C:\Users\zacca\AppData\Local\Programs\Python\Python311\Lib\site-packages\resources/onprem/network\nginx.png" shape=none]
+		b37abf0f2c7d4a7da803e0fc9927b92e [label="Context Compactor" height=1.9 image="C:\Users\zacca\AppData\Local\Programs\Python\Python311\Lib\site-packages\resources/programming/language\python.png" shape=none]
+		"96fb4600c8034ce1b68a99efff1f5ed9" [label="LLM-as-a-Judge
 (Eval Suite)" height=2.3 image="C:\Users\zacca\AppData\Local\Programs\Python\Python311\Lib\site-packages\resources/programming/language\python.png" shape=none]
 	}
 	subgraph "cluster_Data Plane (.antigravity/ & data/)" {
 		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="Data Plane (.antigravity/ & data/)" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
-		"7e3e3b4f705c44e697cac54dab2b487f" [label="DuckDB Telemetry
+		"7fca7d12497649c89d565186ad0e9047" [label="DuckDB Telemetry
 (Idempotent INSERT)" height=2.3 image="C:\Users\zacca\AppData\Local\Programs\Python\Python311\Lib\site-packages\resources/onprem/database\postgresql.png" shape=none]
-		"8deb78feca1b4ec9b3efa6d94af88d1a" [label="Parquet DLQ
+		"76bdc46ec86b4eaeb35febd6c123ad8f" [label="Parquet DLQ
 (Quarantine)" height=2.3 image="C:\Users\zacca\AppData\Local\Programs\Python\Python311\Lib\site-packages\resources/aws/storage\simple-storage-service-s3.png" shape=none]
 	}
-	"4a1761d60b6641dc949c98243729cb7d" -> "3106e6f2927343b3952fd0dc24d17e4c" [label="Executes Workflow" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
-	"3106e6f2927343b3952fd0dc24d17e4c" -> "171dbb5c92b1413f9f3079897b2f0333" [label="Applies Rules" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
-	"171dbb5c92b1413f9f3079897b2f0333" -> d2f1f8aff5a5439eaa1677bdea5bd448 [label="Governs Router" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
-	"4a1761d60b6641dc949c98243729cb7d" -> d2f1f8aff5a5439eaa1677bdea5bd448 [label="Sends Telemetry" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
-	d2f1f8aff5a5439eaa1677bdea5bd448 -> "6973ec936d6446409fa9e95adeb87774" [label="Validates & Compacts" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
-	"6973ec936d6446409fa9e95adeb87774" -> "7073cbf5d938469a897ab63299bb9cff" [label="Evaluates Quality" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
-	"7073cbf5d938469a897ab63299bb9cff" -> "7e3e3b4f705c44e697cac54dab2b487f" [label="Logs Metrics" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
-	d2f1f8aff5a5439eaa1677bdea5bd448 -> "8deb78feca1b4ec9b3efa6d94af88d1a" [label="Routes Invalid" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"6613b8fbc5464306aff6baf00c4a8f7e" -> e0ea6b8e194e423ab7fe8f9d4cd69544 [label="Executes Workflow" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	e0ea6b8e194e423ab7fe8f9d4cd69544 -> "7cf44a7027854f99a8ef7b8387ee6cf5" [label="Applies Rules" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"7cf44a7027854f99a8ef7b8387ee6cf5" -> a394d9380b6f478bb5c835450b971217 [label="Governs Router" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"6613b8fbc5464306aff6baf00c4a8f7e" -> a394d9380b6f478bb5c835450b971217 [label="Sends Telemetry" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	a394d9380b6f478bb5c835450b971217 -> b37abf0f2c7d4a7da803e0fc9927b92e [label="Validates & Compacts" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	b37abf0f2c7d4a7da803e0fc9927b92e -> "96fb4600c8034ce1b68a99efff1f5ed9" [label="Evaluates Quality" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"96fb4600c8034ce1b68a99efff1f5ed9" -> "7fca7d12497649c89d565186ad0e9047" [label="Logs Metrics" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	a394d9380b6f478bb5c835450b971217 -> "76bdc46ec86b4eaeb35febd6c123ad8f" [label="Routes Invalid" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
 }

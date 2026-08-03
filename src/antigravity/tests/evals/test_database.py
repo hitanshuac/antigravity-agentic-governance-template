@@ -1,4 +1,4 @@
-from src.capabilities.database import ingest_data_idempotent, init_duckdb
+from src.antigravity.capabilities.database import ingest_data_idempotent, init_duckdb
 
 
 def test_duckdb_idempotency():

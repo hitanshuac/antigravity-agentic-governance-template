@@ -9,9 +9,11 @@ This workflow has two modes of operation:
 - **First Run:** Scaffolds the Antigravity Environment from scratch in a new or existing repository.
 - **Upgrade Run:** Detects an older installed version and safely merges the latest Antigravity assets without destroying host project code.
 
+> **Upgrade Path Role:** This workflow PULLS the latest SSOT into an existing repo while building. For distributing to new child projects, use `copier copy`. For pushing improvements back to the SSOT template, use `sync-upstream.md`.
+
 Execute the phases sequentially. Phase 0 is only relevant for repositories that have already been bootstrapped once.
 
-> **CRITICAL AUDIT RULE**: During verification phases (1-8), the agent is in **read-only audit mode** per `00-01-core-safety.md` (Audit Integrity rule). The agent MUST NOT create, modify, or delete project files to make an audit pass. If a required item is missing, report it as `[FATAL]` or `[SKIPPED]` and continue to the next phase. Present a consolidated report at the end.
+> **CRITICAL AUDIT RULE**: During verification phases (1-8), the agent is in **read-only audit mode** per `10-phase-audit.md` (Audit Integrity rule). The agent MUST NOT create, modify, or delete project files to make an audit pass. If a required item is missing, report it as `[FATAL]` or `[SKIPPED]` and continue to the next phase. Present a consolidated report at the end.
 
 ---
 

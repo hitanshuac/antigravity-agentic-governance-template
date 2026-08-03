@@ -38,9 +38,9 @@ Before writing to ANY persistent file (not just error logs), the agent MUST:
 5. If the count is wrong (data was lost or corrupted), immediately halt, restore from backup (see `error-recovery.md` Step 3b), and flag for user review.
 6. Reference: `00-01-core-safety.md` Rule 3 (Idempotent File Operations).
 
-## Step 2: Context Window Compression (jCodeMunch)
+## Step 2: Context Window Compression
 To avoid overloading the LLM context window with raw stack traces and massive log files:
-1. Use the **jCodeMunch** MCP Server (configured in `.config/antigravity/mcp.json`) to retrieve only the relevant structural symbols or AST nodes related to the error.
+1. Use `grep_search` to retrieve only the relevant function or class definition where the error occurred, rather than reading entire files.
 2. Instead of dumping raw file contents, extract and summarize the specific function/class where the failure occurred.
 3. Keep log entries concise. Extract the core exception message and the exact line of failure.
 
