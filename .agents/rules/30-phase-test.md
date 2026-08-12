@@ -12,7 +12,7 @@ This rule governs all testing practices across the Agentic Environment.
 ## 1. Mandatory Test Coverage
 - **Rule**: Every function, route, and pipeline component that is part of a ticket MUST have at least one corresponding test.
 - **Rule**: If a ticket lacks acceptance criteria, the agent MUST explicitly ask the user to define them before proceeding.
-- **Rule**: You MUST apply the implementation directives found in `@.agents/skills/universal/test-engineering/SKILL.md` (e.g., Test Pyramid, State-Aware Integration, Contract Tests) for all test generation.
+- **Rule**: You MUST apply the implementation directives found in `@.agents/skills/test-engineering/SKILL.md` (e.g., Test Pyramid, State-Aware Integration, Contract Tests) for all test generation.
 
 # SRE Standard Operating Procedure (SOP)
 
@@ -22,7 +22,7 @@ This rule governs all testing practices across the Agentic Environment.
 - **Enforcement:**
   1. Execute the host project's test suite.
   2. If tests fail, execute `.agents/workflows/error-observability.md` to log the failure, fix the code, and retry.
-  3. If the agent fails to fix the test after 3 attempts, it MUST explicitly halt execution. Per `@.agents/skills/universal/design-standards/SKILL.md` Section 6, this is by definition an Execution-Failure — the agent MUST classify it as such and present a bounded repro to the user rather than an open-ended request for help.
+  3. If the agent fails to fix the test after 3 attempts, it MUST explicitly halt execution. Per `@.agents/skills/design-standards/SKILL.md` Section 6, this is by definition an Execution-Failure — the agent MUST classify it as such and present a bounded repro to the user rather than an open-ended request for help.
   4. The Inner Loop is ONLY successful when the test runner returns exit code `0` AND at least 1 test passed.
   5. The agent MUST provide explicit UI/CLI commands to test the feature manually and wait for human approval.
 

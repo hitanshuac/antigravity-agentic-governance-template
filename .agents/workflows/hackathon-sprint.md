@@ -51,7 +51,7 @@ load them now. Store the brief in `SPEC.md` via @.agents/workflows/spec-first.md
 
 ### Steps:
 1. Initialize the project structure using the fastest appropriate stack:
-   - Web app → FastAPI + HTMX or Streamlit (per @.agents/skills/universal/rapid-prototyping/SKILL.md)
+   - Web app → FastAPI + HTMX or Streamlit (per @.agents/skills/rapid-prototyping/SKILL.md)
    - ML demo → Gradio
    - Data pipeline → DuckDB + Streamlit
 2. Set up deployment target and verify it works with a "Hello World" // turbo
@@ -77,7 +77,7 @@ load them now. Store the brief in `SPEC.md` via @.agents/workflows/spec-first.md
    a. Implement the feature
    b. Run verification per @.agents/rules/25-verification-loop.md
    c. If verification passes, commit via @.agents/workflows/secure-checkpoint.md
-   d. If verification fails 3 times, invoke @.agents/skills/universal/loop-detector/SKILL.md
+   d. If verification fails 3 times, invoke @.agents/skills/loop-detector/SKILL.md
 3. Deploy incrementally after every 2-3 features to catch deployment issues early
 4. At the halfway point of Phase 3, re-check against the demo script:
    - Is the demo path working end-to-end? If not, deprioritize non-demo features
@@ -102,7 +102,7 @@ load them now. Store the brief in `SPEC.md` via @.agents/workflows/spec-first.md
    - Add a compelling title/header
    - Ensure readable fonts and adequate contrast
    - Add loading states for any async operations
-4. Run @.agents/skills/universal/self-reflection/SKILL.md on the entire codebase
+4. Run @.agents/skills/self-reflection/SKILL.md on the entire codebase
 5. Deploy the polished version
 
 **STOP RULE:** Do NOT add new features in Phase 4. If you discover a missing

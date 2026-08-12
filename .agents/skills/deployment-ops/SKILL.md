@@ -27,7 +27,7 @@ description: Technical implementation of Hugging Face Spaces deployments and Ups
 * Run `git diff --name-status origin/main...HEAD .agents/` to find modified `.agents/` files.
 
 ## 2. Generate the Handover Template
-* Overwrite `docs/handover-template.md` with the file paths and summary of changes.
+* Overwrite `docs/docs/antigravity/handover-template.md` with the file paths and summary of changes.
 
 ## 3. Human-in-the-Loop Sync
-* Inform the user that `docs/handover-template.md` is ready for manual copy-pasting.
+* Inform the user that `docs/docs/antigravity/handover-template.md` is ready for manual copy-pasting.

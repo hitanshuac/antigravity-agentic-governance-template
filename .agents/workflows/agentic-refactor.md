@@ -48,7 +48,7 @@ The agent must formulate a new architecture adhering strictly to the **Separatio
 - `[MODIFY] <filename>`: For files being stripped down to thin orchestrators.
 - `[DELETE] <filename>`: For components entirely replaced by the new architecture.
 
-> **Automatic Escalation (LLM Council):** If the architectural decomposition is highly ambiguous, the agent MUST automatically trigger `.agents/skills/llm-council/SKILL.md` to resolve the ambiguity before proceeding. This is a Design-Novelty escalation per @.agents/skills/universal/design-standards/SKILL.md Section 6 — log the resulting ADR before proceeding to Phase 5.
+> **Automatic Escalation (LLM Council):** If the architectural decomposition is highly ambiguous, the agent MUST automatically trigger `.agents/skills/llm-council/SKILL.md` to resolve the ambiguity before proceeding. This is a Design-Novelty escalation per @.agents/skills/design-standards/SKILL.md Section 6 — log the resulting ADR before proceeding to Phase 5.
 
 ## Phase 5: Verification & Safety Gates
 Before executing the plan, the agent MUST NOT turbo-run anything in this phase — it authorizes deletions and architectural locks, both of which require human sign-off:

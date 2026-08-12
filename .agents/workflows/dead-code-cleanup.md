@@ -11,7 +11,7 @@ This workflow utilizes a Map-Reduce pattern, coupling deterministic Abstract Syn
 
 ## Phase 1: Domain Alignment (Semantic Pruning)
 Before looking for literal dead code, the agent MUST explicitly verify the codebase against its core domain to find "Scope Creep."
-1. Read the `HANDOVER.md` and `docs/05_TICKETS.md` (if they exist) to establish the project's rigid boundaries (e.g. "This is a Stadium Cockpit, NOT a generic Chatbot").
+1. Read the `docs/antigravity/HANDOVER.md` and `docs/05_TICKETS.md` (if they exist) to establish the project's rigid boundaries (e.g. "This is a Stadium Cockpit, NOT a generic Chatbot").
 2. `grep_search` for files, classes, or directories that violate these boundaries (e.g. `examples/` directories containing generic AI code, or open-ended rules that lack strict Pydantic validation).
 3. Compile a list of active but out-of-scope files that must be pruned to restore architectural integrity.
 

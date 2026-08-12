@@ -44,7 +44,7 @@ Eliminate the token-burn cycle of "write code → manually write tests → debug
 
 ### Phase 2.5: Fixture Verification Gate (Mandatory for I/O Modules)
 
-> **Post-Mortem Origin:** This phase was added after unit tests using clean `tmpdir` directories passed 100% but missed a schema mismatch with the real `data/error_logs.json` file. See @.agents/skills/python/defensive-programming/SKILL.md for the underlying schema contract this gate protects.
+> **Post-Mortem Origin:** This phase was added after unit tests using clean `tmpdir` directories passed 100% but missed a schema mismatch with the real `data/error_logs.json` file. See @.agents/skills/defensive-programming/SKILL.md for the underlying schema contract this gate protects.
 
 1. For any module that performs file I/O (reads/writes JSON, YAML, CSV, Parquet, DB), the agent MUST create a `tests/fixtures/` directory containing sample data files that mirror the real production state.
 2. Before running tests, verify that fixtures exist for every I/O module. If missing:
@@ -52,14 +52,14 @@ Eliminate the token-burn cycle of "write code → manually write tests → debug
    - If no real data exists yet, create representative samples matching the canonical schema defined in the relevant workflow (e.g., `error-observability.md` Step 1).
 3. Fixtures MUST include edge cases: empty files, canonical-schema files, and legacy-schema files (to verify migration logic).
 4. Integration tests MUST load these fixtures as pre-populated state rather than starting from a clean slate.
-5. Reference: `00-01-core-safety.md` Rule 1 (Explicit Approval), @.agents/skills/universal/design-standards/SKILL.md Section 3 (Error Handling Decisions).
+5. Reference: `00-01-core-safety.md` Rule 1 (Explicit Approval), @.agents/skills/design-standards/SKILL.md Section 3 (Error Handling Decisions).
 
 ### Phase 3: Execution & Observability
 1. Run the appropriate test command after every code change. These are read-only and safe to auto-run:
    // turbo
    `pytest -v --tb=short` (or `npm test`, `go test -v` depending on detected stack)
 2. **Handle Failures**: If any tests fail (Non-Zero Exit Code), the agent MUST halt, log the failure via `.agents/workflows/error-observability.md`, diagnose, fix the code according to defensive standards, and retry. This retry loop is capped at 3 attempts per `30-phase-test.md`.
-3. **3rd-Failure Escalation (Execution-Failure Path):** On the 3rd consecutive failure, the agent MUST NOT dump an open-ended problem on the user. Per @.agents/skills/universal/design-standards/SKILL.md Section 6, this is by definition an **Execution-Failure** — so the agent MUST:
+3. **3rd-Failure Escalation (Execution-Failure Path):** On the 3rd consecutive failure, the agent MUST NOT dump an open-ended problem on the user. Per @.agents/skills/design-standards/SKILL.md Section 6, this is by definition an **Execution-Failure** — so the agent MUST:
    1. State explicitly: *"Execution-Failure: [sub-task] has failed 3 attempts."*
    2. Produce a minimal failing repro: exact command, exact error, exact files touched across the 3 attempts.
    3. Halt and present the repro to the user.

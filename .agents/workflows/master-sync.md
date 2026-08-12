@@ -23,7 +23,7 @@ This is the **top-level orchestrator** for synchronizing the entire codebase. It
 
 ## Phase 3: Update Documentation
 1. Execute `.agents/workflows/update-docs.md`.
-2. This will scan `.agents/` and `src/` to synchronize `README.md`, `HANDOVER.md`, and `BOOTSTRAP.MD` with the current codebase state.
+2. This will scan `.agents/` and `src/` to synchronize `README.md`, `docs/antigravity/HANDOVER.md`, and `docs/antigravity/BOOTSTRAP.MD` with the current codebase state.
 
 ## Phase 4: Regenerate Architecture Diagrams
 1. Execute `.agents/workflows/generate-diagrams.md`.

@@ -153,7 +153,7 @@ After saving, the agent MUST:
    confirm no duplicate or contradicting directive now exists elsewhere.
 2. Re-verify every `@filename` reference in the new file resolves.
 3. If the new artifact is Tier 0 or Tier 1, log a one-line entry in
-   `.agents/architecture/adrs/` per @.agents/skills/universal/design-standards/SKILL.md
+   `.agents/architecture/adrs/` per @.agents/skills/design-standards/SKILL.md
    Section 6, stating what problem the artifact solves and why it required
    a new file rather than an extension of an existing one.
 

@@ -15,6 +15,23 @@
 *Technical View:*
 ![Handover Flow (Technical)](docs/assets/handover_flow_technical.jpg)
 
+## Dependency Graph (AST)
+This project uses [repowise](https://repowise.dev) to build a **Tree-sitter AST dependency graph** across all project code. The graph captures imports, function calls, class inheritance, and co-change patterns — then ranks nodes by PageRank and betweenness centrality.
+
+```bash
+# First-time setup (no API key needed)
+repowise init --yes --mode fast --no-editor-setup --no-claude-md --no-agents
+
+# View the interactive dependency graph dashboard
+repowise serve
+# → Open http://localhost:3000
+
+# Incremental update after code changes
+repowise update
+```
+
+**Current index:** 564 nodes · 498 edges · Health score: 9.7/10 (Healthy)
+
 ## Overview
 This repository serves as a powerful, extensible **Base Agentic Environment** built on the Antigravity framework. It utilizes a strict **Split-Plane Architecture** that separates the human-defined control plane (`.agents/`) from the system-managed data and state plane (`data/`). This ensures deterministic AI execution, zero-hallucination context management, and enterprise-grade reliability.
 
@@ -129,7 +146,8 @@ Rapid prototyping, spec-driven development, and time-pressured hackathon velocit
 *   **Workflows:** 
     *   `code-generation-preflight`: Mandatory pre-coding checklist.
     *   `demo-first`: Builds demo script BEFORE implementation.
-    *   `generate-diagrams`, `generate-product-docs`: Architecture and PRD generation.
+    *   `generate-diagrams`: Dual-engine pipeline — repowise AST dependency graphs + D2 conceptual diagrams.
+    *   `generate-product-docs`: PRD generation.
     *   `hackathon-sprint`: Master 5-phase time-boxed sprint orchestrator.
     *   `spec-first`: Spec-Driven Development (Produces SPEC.md, ARCHITECTURE.md, TASKS.md).
 
@@ -213,4 +231,4 @@ graph TD
 ```
 
 
-[View Agentic Environment Documentation](AGENT_DOCS.md)
+[View Agentic Environment Documentation](docs/antigravity/AGENT_DOCS.md)

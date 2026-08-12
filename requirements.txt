@@ -20,8 +20,9 @@ pytest-mock==3.15.1
 ruff==0.15.20
 pre_commit==4.6.0
 
-# === Diagram Generation (D2 is external CLI, these support Python-based diagrams) ===
-# diagrams and graphviz removed — D2 CLI is the active generator
+# === Diagram Generation & Codebase Intelligence ===
+# D2 CLI is retained for conceptual diagrams; repowise is the AST dependency engine
+repowise
 
 # === Transitive Dependencies (pinned for reproducibility) ===
 annotated-types==0.7.0

@@ -11,7 +11,7 @@ earlier recommendations. This skill provides a lightweight, file-based memory
 system that the agent maintains throughout a session.
 
 This is NOT a replacement for Mem0/Zep episodic memory (see
-@.agents/skills/python/episodic-memory-manager/SKILL.md for that). This skill
+@.agents/skills/episodic-memory-manager/SKILL.md for that). This skill
 is for the agent's own working memory within a single Antigravity session.
 
 ---
@@ -84,7 +84,7 @@ rejected), it MUST:
   at the start of Phase 2 (SCAFFOLD)
 - The @.agents/workflows/spec-first.md workflow records the spec approval as
   a decision in the session log
-- The @.agents/skills/universal/loop-detector/SKILL.md records loop detections
+- The @.agents/skills/loop-detector/SKILL.md records loop detections
   as blockers in the session log
 
 ---

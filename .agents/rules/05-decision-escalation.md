@@ -12,7 +12,7 @@ Section 2 is not meaningfully affected (this brings the count to 4 of 5).
 ## 1. Precedent-First Resolution
 Before escalating any architectural or design ambiguity to the user or a stronger model, the agent MUST:
 1. Search `.agents/architecture/adrs/` for a matching or analogous prior decision.
-2. Search `@.agents/skills/universal/design-standards/SKILL.md` and other relevant skills for an applicable rule.
+2. Search `@.agents/skills/design-standards/SKILL.md` and other relevant skills for an applicable rule.
 3. Only escalate if no precedent or rule resolves the ambiguity.
 
 ## 2. Mandatory ADR on Escalation

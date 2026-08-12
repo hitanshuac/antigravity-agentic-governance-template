@@ -12,7 +12,7 @@ Verify that all recruiter-facing and technical documentation assets are present,
 ## Execution Steps
 
 ### Step 1: Synthesize Documentation
-1. Read the current project documentation (`README.md`, `HANDOVER.md`, and any existing `retrospective.md` or `walkthrough.md` if present).
+1. Read the current project documentation (`README.md`, `docs/antigravity/HANDOVER.md`, and any existing `retrospective.md` or `walkthrough.md` if present).
 2. Synthesize these files to update the `README.md` with the newest version baseline, SRE guardrails, and metrics.
 
 ### Step 2: Verify Documentation Assets (Dual-Presentation Mandate)

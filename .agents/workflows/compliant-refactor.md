@@ -11,7 +11,7 @@ This master orchestration workflow chains architectural decomposition (`agentic-
 
 Before writing or modifying any code, the agent MUST read and internalize the following core mandates:
 
-1. **Competition Rules**: Load whatever `.agents/rules/` file the active competition config points to (see `.agents/skills/universal/meta-agent-formats/SKILL.md` § Modular Competition Rules). Do NOT hardcode a specific competition's evaluation criteria into this workflow — the last version of this file assumed a "Hack2Skill" attempt-limit and repo-size constraint that was never traced to a source rule and does not apply to every competition this repo is used for. If a hard attempt-limit or repo-size cap is genuinely required, verify it in the current competition's official rules before enforcing it here.
+1. **Competition Rules**: Load whatever `.agents/rules/` file the active competition config points to (see `.agents/skills/meta-agent-formats/SKILL.md` § Modular Competition Rules). Do NOT hardcode a specific competition's evaluation criteria into this workflow — the last version of this file assumed a "Hack2Skill" attempt-limit and repo-size constraint that was never traced to a source rule and does not apply to every competition this repo is used for. If a hard attempt-limit or repo-size cap is genuinely required, verify it in the current competition's official rules before enforcing it here.
 2. **SRE SOP**: `.agents/rules/30-phase-test.md` (Strict Inner/Outer Loop execution — 3-attempt ceiling on the Inner Loop, no silent failures).
 3. **Defensive Programming**: `.agents/rules/00-01-core-safety.md` (Schema-first I/O, idempotent writes, zero silent data loss).
 4. **Code Quality**: `.agents/rules/40-phase-deploy.md` (Clean, maintainable, language-idiomatic style).
@@ -27,7 +27,7 @@ Before writing or modifying any code, the agent MUST read and internalize the fo
 ### Phase 2.0: Precedent Check (Mandatory, Before Any Structural Change)
 Before invoking `agentic-refactor.md`, the agent MUST:
 1. `grep_search` `.agents/architecture/adrs/` for a prior decision covering this component, module boundary, or an analogous decomposition.
-2. Run the proposed decomposition through @.agents/skills/universal/design-standards/SKILL.md Section 1 (Classification Gate) — Policy, Precedent, or Rubric-resolvable decisions MUST be applied directly, not re-derived from scratch.
+2. Run the proposed decomposition through @.agents/skills/design-standards/SKILL.md Section 1 (Classification Gate) — Policy, Precedent, or Rubric-resolvable decisions MUST be applied directly, not re-derived from scratch.
 3. Only if Section 1 yields **Novel** may the agent proceed to open-ended architectural planning in `agentic-refactor.md` Phase 2–4.
 
 Invoke the **`.agents/workflows/agentic-refactor.md`** workflow to begin structural changes.
@@ -46,7 +46,7 @@ Immediately upon completing code modifications, the agent MUST invoke the **`.ag
 
 1. **Execute Tests**: Run the host project's test suite using the detected framework (e.g., `pytest`, `jest`, `go test`) — see `test-automation.md` for the turbo-tagged commands.
 2. **Handle Failures**: If any tests fail (Non-Zero Exit Code), the agent MUST halt, diagnose the failure, fix the code according to defensive standards, and retry. This retry loop is capped at 3 attempts per `30-phase-test.md`.
-3. **4th-Failure Escalation (Execution-Failure Path):** On the 4th failure, the agent MUST NOT dump an open-ended problem on the user. Per @.agents/skills/universal/design-standards/SKILL.md Section 6, this is by definition an **Execution-Failure** — the design was already settled in Phase 2.0 — so the agent MUST:
+3. **4th-Failure Escalation (Execution-Failure Path):** On the 4th failure, the agent MUST NOT dump an open-ended problem on the user. Per @.agents/skills/design-standards/SKILL.md Section 6, this is by definition an **Execution-Failure** — the design was already settled in Phase 2.0 — so the agent MUST:
    1. State explicitly: *"Execution-Failure: [sub-task] has failed 4 attempts; design is not in question."*
    2. Produce a minimal failing repro: exact command, exact error, exact files touched across the 4 attempts.
    3. Halt and present the repro to the user — do not re-open architectural discussion.

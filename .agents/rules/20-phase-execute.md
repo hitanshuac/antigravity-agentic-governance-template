@@ -72,10 +72,10 @@ are now included by reference so this file never drifts from the skill
 source of truth, and so Antigravity resolves the actual current content
 rather than a stale hand-written summary:
 
-- DuckDB logic → @.agents/skills/python/duckdb-optimizer/SKILL.md
-- Data ingestion logic → @.agents/skills/python/universal-ingestion/SKILL.md
-- Context compaction → @.agents/skills/universal/context-compactor/SKILL.md
-- Anti-Over-Engineering & Anti-AI-Slop logic → @.agents/skills/universal/design-standards/SKILL.md
+- DuckDB logic → @.agents/skills/duckdb-optimizer/SKILL.md
+- Data ingestion logic → @.agents/skills/universal-ingestion/SKILL.md
+- Context compaction → @.agents/skills/context-compactor/SKILL.md
+- Anti-Over-Engineering & Anti-AI-Slop logic → @.agents/skills/design-standards/SKILL.md
 
 **Migration note:** delete `20-01-phase-execute.md` and `20-02-phase-execute.md`
 after adopting this file. Both previously fired on the same
@@ -85,9 +85,28 @@ zero enforceable content. This file replaces all three with a single load.
 
 # Code Quality Governance
 - **Rule**: Code MUST be meticulously formatted and achieve a perfect maintainability score.
-- **Action**: You MUST apply the implementation directives found in `@.agents/skills/python/code-quality/SKILL.md` (e.g., zero trailing whitespace, strict linting, cyclomatic complexity A-grade) for all code generation.
+- **Action**: You MUST apply the implementation directives found in `@.agents/skills/code-quality/SKILL.md` (e.g., zero trailing whitespace, strict linting, cyclomatic complexity A-grade) for all code generation.
 
 **Migration note:** `40-code-quality.md` has been merged into this file per
 `00-03-meta-governance.md` Section 2 (Glob Collision Check). Its `**/*.py` glob
 overlapped with this file's `src/**/*.py` — there was no stated reason for the
 separation, and the content was 2 lines. Delete `40-code-quality.md` after adopting.
+
+# Model Fallback Awareness
+
+If LLM requests are routed through an external gateway (e.g., OmniRoute)
+that provides automatic provider fallback, the agent MUST be aware that the
+underlying model may change mid-session without explicit notification.
+
+## 1. Capability Degradation Risk
+A fallback from a flagship model (e.g., Claude Opus) to a free-tier model
+reduces the model's ability to follow complex, multi-layered governance
+rules. The agent MUST NOT assume consistent model capability across an
+entire session when an external routing layer is active.
+
+## 2. Logging Mandate
+If the agent detects a significant change in its own reasoning quality or
+governance adherence mid-session, it MUST inform the user that a model
+fallback may have occurred and recommend checking the routing gateway's
+dashboard for provider switch events.
+

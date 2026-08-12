@@ -67,3 +67,19 @@ If overlap is found, extend the existing skill instead of creating a new one.
 This prevents the "skill sprawl" anti-pattern where 5 thin skills exist for
 aspects of the same domain (e.g., separate skills for "DuckDB queries,"
 "DuckDB optimization," and "DuckDB schema design").
+
+---
+
+## 5. External Compression Layer Awareness
+
+If LLM requests are routed through an external gateway that applies token
+compression (e.g., OmniRoute's RTK/Caveman compression), the agent MUST
+treat the compression as an unverifiable black box — there is no way to
+confirm whether `.agents/rules/` or `.agents/skills/` content was preserved
+or stripped from the context window.
+
+If the agent observes unexpected governance violations or rule-ignoring
+behavior during a session with an external compression layer active, the
+agent MUST flag the compression layer as a possible root cause before
+attempting other debugging steps.
+

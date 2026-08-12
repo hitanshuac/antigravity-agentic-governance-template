@@ -14,7 +14,7 @@ Before designing the code, the agent MUST:
 1. **Ticket Alignment:** Verify the intended code perfectly satisfies the current Acceptance Criteria in `docs/05_TICKETS.md`.
 2. **DRY (Don't Repeat Yourself) Check:** Search the existing `src/` directory. Is there an existing utility, Pydantic model, or helper function that can be reused instead of writing new code?
 3. **Git Discovery:** If bringing in external patterns, execute `.agents/workflows/git-discovery-preflight.md` to check for open-source precedent.
-4. **Judgment Calls:** For any design decision that isn't a pure requirement lookup, resolve it via @.agents/skills/universal/design-standards/SKILL.md before proceeding — do not default to open-ended reasoning here.
+4. **Judgment Calls:** For any design decision that isn't a pure requirement lookup, resolve it via @.agents/skills/design-standards/SKILL.md before proceeding — do not default to open-ended reasoning here.
 
 ## Phase 2: The Core Constraints Checklist
 The agent MUST explicitly verify its proposed implementation against the following active rules. If the proposed code violates ANY of these, the agent MUST redesign the approach.

@@ -48,9 +48,9 @@ Update `README.md` to reflect the latest state, editing only the sections affect
 - **Acknowledgments**: Credit to the study antigravity repository.
 
 ### Phase 4: Supporting Documentation
-1. Update `HANDOVER.md` only if a changed path in Phase 0 touched a rule, workflow, or skill file.
-2. Update `BOOTSTRAP.MD` only if a changed path added or removed a phase or verification step.
-3. Do NOT update `HANDOVER.md` or `BOOTSTRAP.MD` if no structural changes have occurred — unchanged per the original rule, now enforced structurally by Phase 0 rather than left to agent discretion.
+1. Update `docs/antigravity/HANDOVER.md` only if a changed path in Phase 0 touched a rule, workflow, or skill file.
+2. Update `docs/antigravity/BOOTSTRAP.MD` only if a changed path added or removed a phase or verification step.
+3. Do NOT update `docs/antigravity/HANDOVER.md` or `docs/antigravity/BOOTSTRAP.MD` if no structural changes have occurred — unchanged per the original rule, now enforced structurally by Phase 0 rather than left to agent discretion.
 
 ### Phase 5: Review & Sync Marker
 1. Create a `walkthrough.md` artifact summarizing the documentation changes — per Anthropic's compaction pattern, this should be a condensed pointer artifact (what changed and why), not a restatement of the full diff.
