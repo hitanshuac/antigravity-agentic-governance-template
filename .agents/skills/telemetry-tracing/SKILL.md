@@ -36,3 +36,22 @@ def analyze_data(state: AgentState):
 ```
 
 **Anti-Pattern:** Relying on `print()` statements or flat text logs to debug why an agent hallucinated. If you cannot visualize the exact prompt + tool call tree in a UI, the tracing is insufficient.
+
+---
+
+## Recommended $0 Observability Stack
+
+| Tool | Best For | Cost |
+|:---|:---|:---:|
+| **Phoenix (Arize)** | Open-source LLM observability UI. Visualizes traces, spans, evaluations. Runs locally via `pip install arize-phoenix`. No API key needed. | $0 |
+| **OpenTelemetry** | Open standard for distributed tracing. Vendor-neutral, works with any backend (Jaeger, Grafana, Phoenix). | $0 |
+| **LangSmith** | Hosted trajectory visualization with human annotation and dataset management. Tightest LangGraph integration. | Free tier |
+
+**Selection Rule:** Use Phoenix for fully local, zero-dependency observability (ideal for $0 stacks). Use OpenTelemetry when you need vendor-neutral tracing that can route to multiple backends. Use LangSmith when you need hosted dashboards with team collaboration and human annotation workflows.
+
+```bash
+# Quick Phoenix setup (local, no API key)
+pip install arize-phoenix opentelemetry-sdk opentelemetry-exporter-otlp
+phoenix serve  # → Open http://localhost:6006
+```
+

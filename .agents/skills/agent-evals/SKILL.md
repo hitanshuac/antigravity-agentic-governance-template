@@ -272,13 +272,31 @@ def test_agent_regression(agent, case):
 
 ---
 
+## Recommended $0 Eval Frameworks
+
+When choosing tooling for the eval harness above, prefer these zero-cost frameworks:
+
+| Framework | Best For | Integration | Cost |
+|:---|:---|:---|:---:|
+| **Ragas** | RAG-specific evals: faithfulness, answer relevancy, context precision, context recall | pytest-compatible, works with LangChain and LlamaIndex | $0 |
+| **DeepEval** | Generic LLM/agent evals: hallucination, toxicity, bias, tool-call accuracy | pytest plugin (`deepeval test run`), CI/CD native | $0 |
+| **LangSmith** | Trajectory visualization, human annotation, dataset management | `@traceable` decorator, hosted dashboard | Free tier |
+
+**Selection Rule:** Use Ragas when evaluating a RAG pipeline (it measures retrieval quality, not just generation). Use DeepEval when evaluating general agent behavior (tool selection, safety, step efficiency). Use LangSmith when you need visual trajectory inspection and human-in-the-loop annotation.
+
+---
+
 ## Required Dependencies
 ```
 pydantic>=2.0
 pytest>=8.0
+ragas>=0.2.0      # RAG-specific evaluation metrics
+deepeval>=1.0.0   # CI/CD-compatible agent eval framework
 ```
 
 ## Reference Implementations
 - `Marker-Inc-Korea/AutoRAG` — RAG evaluation with AutoML-style optimization (4,853)
+- `explodinggradients/ragas` — RAG evaluation metrics (faithfulness, relevancy, precision)
+- `confident-ai/deepeval` — pytest-style LLM evaluation with CI/CD integration
 - LangSmith — Trajectory-native evaluation and observability
-- DeepEval — CI/CD-compatible, pytest-style agent metrics
+

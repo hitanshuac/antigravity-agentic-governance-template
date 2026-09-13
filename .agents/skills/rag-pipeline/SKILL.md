@@ -177,14 +177,35 @@ def check_groundedness(answer: str, context_chunks: list[str]) -> bool:
 
 ---
 
+## Recommended $0 Retrieval Stack
+
+When choosing tools for the pipeline above, prefer these zero-cost, open-source defaults:
+
+| Component | Recommended Tool | Why | Cost |
+|:---|:---|:---|:---:|
+| **Indexing Framework** | LlamaIndex | Structure-aware chunking, parent-child indexing, and hybrid retrieval built-in. Tighter RAG abstraction than LangChain. | $0 |
+| **Vector DB (Prototype)** | Chroma | Embedded (in-process), zero-config, pip-installable. Ideal for single-user local agents. | $0 |
+| **Vector DB (Production)** | Qdrant | Docker-based, supports filtering metadata, scales horizontally. | $0 |
+| **Reranking Model** | `cross-encoder/ms-marco-MiniLM-L-6-v2` | Smallest accurate cross-encoder. Runs on CPU. | $0 |
+| **Embeddings** | `sentence-transformers/all-MiniLM-L6-v2` | 384-dim, fast, well-benchmarked. | $0 |
+| **RAG Evaluation** | Ragas | Faithfulness, answer relevancy, context precision metrics. pytest-compatible. | $0 |
+
+**Selection Rule:** Use Chroma for hackathons and prototypes. Switch to Qdrant when you need metadata filtering, multi-tenancy, or persistent storage beyond a single process. Do NOT use pgvector unless the project already runs PostgreSQL.
+
+---
+
 ## Required Dependencies
 ```
 langchain-core>=0.3.0
 langchain-text-splitters>=0.3.0
-chromadb>=0.5.0  # or pgvector
-sentence-transformers>=3.0.0  # for reranking
+llama-index-core>=0.11.0  # structure-aware indexing
+chromadb>=0.5.0            # embedded vector db ($0)
+sentence-transformers>=3.0.0  # for reranking + embeddings
+ragas>=0.2.0               # RAG evaluation metrics
 ```
 
 ## Reference Implementations
 - `Marker-Inc-Korea/AutoRAG` — RAG evaluation and optimization framework (4,853)
 - `NicholasGoh/fastapi-mcp-langgraph-template` — Full-stack with pgvector RAG (548)
+- `run-llama/llama_index` — The canonical LlamaIndex framework
+
