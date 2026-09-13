@@ -1,0 +1,54 @@
+direction: right
+
+title: AST Data Hierarchy
+classes: {
+  domain: {
+    style: {
+      fill: "#e0f7fa"
+      stroke: "#006064"
+      stroke-width: 2
+    }
+  }
+}
+
+".agents": {
+  class: domain
+  README_md: "README.md"
+  hooks_json: "hooks.json"
+  error_logs_json: "error-logs.json"
+  00_00_core_safety_md: "00-00-core-safety.md"
+  00_01_core_safety_md: "00-01-core-safety.md"
+}
+
+"src": {
+  class: domain
+  compaction_py: "compaction.py"
+  database_py: "database.py"
+  llm_judge_py: "llm_judge.py"
+  server_py: "server.py"
+  observability_py: "observability.py"
+}
+
+"docs": {
+  class: domain
+  01_PRD_md: "01_PRD.md"
+  02_TAD_md: "02_TAD.md"
+  03_SECURITY_md: "03_SECURITY.md"
+  04_FRONTEND_md: "04_FRONTEND.md"
+  05_TICKETS_md: "05_TICKETS.md"
+}
+
+"tools": {
+  class: domain
+  metric_extractors_py: "metric_extractors.py"
+  rule_set_tagger_py: "rule_set_tagger.py"
+  transcript_parser_py: "transcript_parser.py"
+  scorecard_generator_py: "scorecard_generator.py"
+  __init___py: "__init__.py"
+}
+
+"scripts": {
+  class: domain
+  verify_template_py: "verify_template.py"
+}
+
