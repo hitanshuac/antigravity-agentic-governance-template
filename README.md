@@ -6,14 +6,13 @@
 ![Architecture](https://img.shields.io/badge/Architecture-Split--Plane-indigo)
 
 ## System Architecture
-![System Architecture (Showcase)](docs/assets/architecture_diagram_showcase.jpg)
-*Technical View:*
-![System Architecture (Technical)](docs/assets/architecture_diagram_technical.jpg)
+![System Architecture](docs/assets/architecture.png)
 
 ## Agentic Handover Flow
-![Handover Flow (Showcase)](docs/assets/handover_flow_showcase.jpg)
-*Technical View:*
-![Handover Flow (Technical)](docs/assets/handover_flow_technical.jpg)
+![Handover Flow](docs/assets/handover_flow.png)
+
+> [!NOTE]
+> **Code-as-Truth Image Rendering:** To prevent Git bloat, compiled binary images are strictly untracked. To view these diagrams locally, run `@.agents/skills/diagram-generation/SKILL.md` to deterministically compile the D2 code into PNG assets.
 
 ## Dependency Graph (AST)
 This project uses [repowise](https://repowise.dev) to build a **Tree-sitter AST dependency graph** across all project code. The graph captures imports, function calls, class inheritance, and co-change patterns — then ranks nodes by PageRank and betweenness centrality.
@@ -212,9 +211,7 @@ The workflow will automatically clone the latest upstream template, merge in the
 ## Visual Reference Appendix
 
 ### The Agentic Handover Workflow
-![Handover Flow (Showcase)](docs/assets/handover_flow_showcase.jpg)
-*Technical View:*
-![Handover Flow (Technical)](docs/assets/handover_flow_technical.jpg)
+![Handover Flow](docs/assets/handover_flow.png)
 
 ### Dual-Prong Testing Architecture (2026 Evals Standard)
 ```mermaid
