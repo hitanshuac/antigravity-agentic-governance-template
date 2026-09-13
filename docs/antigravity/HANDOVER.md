@@ -11,6 +11,7 @@ When you are dropped into this repository (or any repository adopting this struc
 1. **Read Global Governance:** Parse all Markdown files inside `.agents/rules/`. These contain absolute constraints (e.g., 12-Factor compliance, strict DuckDB idempotency, Hugging Face deployment standards). Never violate these rules.
 2. **Review Error Observability:** Read `data/error_logs.json` (if it exists) to understand historical bugs and their resolution strategies. Do not repeat failed approaches.
 3. **Load Skills on Demand:** If asked to perform database optimizations or ETL engineering, read the corresponding `SKILL.md` files inside `.agents/skills/` to adopt the correct persona and constraints.
+4. **Customization Budget Verification:** Ensure global customizations under `~/.gemini/config/` (such as unneeded global plugins or unused GCP suites) are stashed/archived so the ~20k token customization ceiling is reserved exclusively for workspace skills.
 
 ## 2. The Split-Plane Architecture
 This environment operates on a strict separation of concerns:

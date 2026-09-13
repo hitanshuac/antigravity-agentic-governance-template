@@ -47,6 +47,17 @@ Section 9, since this file governs a Tier 0 rule's real-world enforcement).
   `dead-code-cleanup.md` Phase 2 — these are additive and reversible via
   `requirements.txt`/`package.json`, so gating them adds friction without
   adding safety.
+- [ ] **Customization token budget hygiene (Anti-Truncation)** — ensure global
+  customizations in `~/.gemini/config/` (e.g. `skills/`, `plugins/`) do not exceed
+  the 20,000-token customization ceiling. Pre-installed or unneeded global plugins
+  (such as `science` or `android-cli`) and default cloud suites (34 GCP skills)
+  must be archived to `~/.gemini/config/gcp_skills_library/` and
+  `~/.gemini/config/plugins_archive/` so workspace-specific `.agents/skills/`
+  maintain 100% priority and avoid silent truncation.
+- [ ] **MCP extension version alignment** — check that `~/.gemini/config/mcp_config.json`
+  references the current installed extension versions (e.g.
+  `googlecloudtools.datacloud-0.11.0-universal`) following automatic IDE extension updates,
+  preventing Node.js `MODULE_NOT_FOUND` startup failures.
 
 ## What this does and doesn't replace
 
