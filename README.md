@@ -229,4 +229,4 @@ graph TD
 ```
 
 
-[View Agentic Environment Documentation](docs/antigravity/AGENT_DOCS.md)
+[View Agentic Handover Directive](docs/antigravity/HANDOVER.md)
