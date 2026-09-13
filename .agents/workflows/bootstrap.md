@@ -31,8 +31,17 @@ Execute the phases sequentially. Phase 0 is only relevant for repositories that 
    - **Deprecated Files:** Identify files that exist locally but NOT in the upstream template (i.e., old rules or workflows). **DO NOT delete them automatically.** Present a list of these old files to the user and request **manual confirmation**. Only delete them once explicit approval is given.
    - **Do NOT overwrite** any existing files that the host project has already modified without asking first.
 5. **Autonomous Merge Conflict Resolution:** If integrating into an existing repository, execute `@.agents/skills/safe-merge/SKILL.md` to safely union `.gitignore`, append `requirements.txt`, and append a documentation link without deleting host files.
-6. **Cleanup:** Delete `.agents/tmp/` entirely, then proceed to Phase 1.
+6. **Cleanup:** Delete `.agents/tmp/` entirely, then proceed to Phase 0.5.
 
+---
+
+## Phase 0.5: V1 to V2 Architecture Migration
+
+If this repository was built on the V1 Antigravity architecture (Python hooks), it MUST be migrated to the V2 Language-Agnostic MCP architecture.
+
+1. **Deprecation Check:** Check if `.agents/scripts/` exists locally. If it does, inform the user that Python hook scripts are completely deprecated. Request explicit permission to forcefully delete `.agents/scripts/`.
+2. **Hook Migration:** Overwrite the local `.agents/hooks.json` with the upstream version to ensure `agentops` and `repowise` MCP triggers are active.
+3. **MCP Pre-flight:** Verify the host machine has `npx` (required for AgentOps) and `repowise` installed in the terminal. If missing, instruct the user to install them before proceeding.
 
 ---
 
@@ -63,7 +72,7 @@ Execute the phases sequentially. Phase 0 is only relevant for repositories that 
 ## Phase 5: Verify Observability
 
 1. Ensure the `data/` directory exists (with `.gitkeep`).
-2. Confirm `data/error_logs.json` exists or can be auto-initialized by the error hook on failure.
+2. Verify that trajectory tracking and error logging are delegated to the AgentOps MCP server via `hooks.json`. Do not expect `data/error_logs.json` to be auto-initialized by legacy Python hooks.
 
 ## Phase 6: Verify Local Enforcement (Pre-commit & Linting)
 
