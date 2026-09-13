@@ -102,7 +102,7 @@ Would you like me to:
 - The @.agents/rules/25-verification-loop.md rule's bounded retry protocol
   (3-attempt ceiling) is the primary trigger for this skill's escalation.
 - Loop diagnosis artifacts (`scratch/loop_diagnosis.md`) feed into the
-  @.agents/workflows/error-observability.md workflow for pattern accumulation.
+  `data/error_logs.json` via the observability hook for pattern accumulation.
 - Repeated loop detections on the same error category MUST be logged as a
   candidate for the error pattern library.
 

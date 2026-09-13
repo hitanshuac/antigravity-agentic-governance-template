@@ -90,7 +90,7 @@ Frame your differentiation in terms judges care about:
 ## Integration with Other Workflows
 
 - Run this skill BEFORE @.agents/workflows/spec-first.md to inform the spec
-- Feed the differentiation statement into @.agents/workflows/demo-first.md
+- Feed the differentiation statement into @.agents/skills/demo-first/SKILL.md
   to ensure the demo highlights what makes you unique
 - Store the recon results in `SPEC.md` under a "## Competitive Context" section
 

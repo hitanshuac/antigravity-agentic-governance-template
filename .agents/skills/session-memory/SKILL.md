@@ -80,9 +80,9 @@ rejected), it MUST:
 
 ## Integration Points
 
-- The @.agents/workflows/hackathon-sprint.md workflow auto-creates a session log
+- The @.agents/skills/hackathon-sprint/SKILL.md workflow auto-creates a session log
   at the start of Phase 2 (SCAFFOLD)
-- The @.agents/workflows/spec-first.md workflow records the spec approval as
+- The @.agents/skills/spec-first/SKILL.md workflow records the spec approval as
   a decision in the session log
 - The @.agents/skills/loop-detector/SKILL.md records loop detections
   as blockers in the session log

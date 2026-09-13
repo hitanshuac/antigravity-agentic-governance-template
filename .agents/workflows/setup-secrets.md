@@ -13,7 +13,7 @@ This workflow ensures the executing Agent autonomously establishes the required 
 
 1. **Audit Existing Secrets**
    - Execute `gh secret list` in your terminal to view all currently configured GitHub Actions secrets.
-   - Cross-reference this list against the required secrets for your current deployment pipeline (e.g., `HF_TOKEN`, `HF_SPACE_REPO`).
+   - Cross-reference this list against the required secrets for your current deployment pipeline (e.g., `GROQ_API_KEY`).
 
 2. **Prompt the Human (If Missing)**
    - If any required secrets are missing, immediately halt execution.

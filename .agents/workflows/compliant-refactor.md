@@ -5,7 +5,7 @@ description: Orchestrates agentic-refactor and test-automation while strictly en
 
 # SRE-Compliant Agentic Refactor
 
-This master orchestration workflow chains architectural decomposition (`agentic-refactor.md`) with continuous testing (`test-automation.md`) to execute large-scale codebase changes while ensuring zero violations of the project's core rule constraints.
+This master orchestration workflow chains architectural decomposition (`agentic-refactor` skill) with continuous testing (`test-engineering` skill) to execute large-scale codebase changes while ensuring zero violations of the project's core rule constraints.
 
 ## Phase 1: Rule Verification & Constraints Loading
 
@@ -25,12 +25,12 @@ Before writing or modifying any code, the agent MUST read and internalize the fo
 ## Phase 2: Agentic Decomposition & Refactor
 
 ### Phase 2.0: Precedent Check (Mandatory, Before Any Structural Change)
-Before invoking `agentic-refactor.md`, the agent MUST:
+Before invoking the agentic-refactor skill, the agent MUST:
 1. `grep_search` `.agents/architecture/adrs/` for a prior decision covering this component, module boundary, or an analogous decomposition.
 2. Run the proposed decomposition through @.agents/skills/design-standards/SKILL.md Section 1 (Classification Gate) — Policy, Precedent, or Rubric-resolvable decisions MUST be applied directly, not re-derived from scratch.
-3. Only if Section 1 yields **Novel** may the agent proceed to open-ended architectural planning in `agentic-refactor.md` Phase 2–4.
+3. Only if Section 1 yields **Novel** may the agent proceed to open-ended architectural planning in the agentic-refactor skill Phase 2–4.
 
-Invoke the **`.agents/workflows/agentic-refactor.md`** workflow to begin structural changes.
+Invoke the **@.agents/skills/agentic-refactor/SKILL.md** skill to begin structural changes.
 
 **During execution, the agent MUST ensure:**
 - No component is modified without a clear separation of concerns.
@@ -42,13 +42,13 @@ Invoke the **`.agents/workflows/agentic-refactor.md`** workflow to begin structu
 
 ## Phase 3: SRE Inner Loop Testing
 
-Immediately upon completing code modifications, the agent MUST invoke the **`.agents/workflows/test-automation.md`** workflow.
+Immediately upon completing code modifications, the agent MUST invoke the **`@.agents/skills/test-engineering/SKILL.md`** skill.
 
-1. **Execute Tests**: Run the host project's test suite using the detected framework (e.g., `pytest`, `jest`, `go test`) — see `test-automation.md` for the turbo-tagged commands.
+1. **Execute Tests**: Run the host project's test suite using the detected framework (e.g., `pytest`, `jest`, `go test`) — see `test-engineering` skill for the turbo-tagged commands.
 2. **Handle Failures**: If any tests fail (Non-Zero Exit Code), the agent MUST halt, diagnose the failure, fix the code according to defensive standards, and retry. This retry loop is capped at 3 attempts per `30-phase-test.md`.
-3. **4th-Failure Escalation (Execution-Failure Path):** On the 4th failure, the agent MUST NOT dump an open-ended problem on the user. Per @.agents/skills/design-standards/SKILL.md Section 6, this is by definition an **Execution-Failure** — the design was already settled in Phase 2.0 — so the agent MUST:
-   1. State explicitly: *"Execution-Failure: [sub-task] has failed 4 attempts; design is not in question."*
-   2. Produce a minimal failing repro: exact command, exact error, exact files touched across the 4 attempts.
+3. **3rd-Failure Escalation (Execution-Failure Path):** On the 3rd failure, the agent MUST NOT dump an open-ended problem on the user. Per @.agents/skills/design-standards/SKILL.md Section 6, this is by definition an **Execution-Failure** — the design was already settled in Phase 2.0 — so the agent MUST:
+   1. State explicitly: *"Execution-Failure: [sub-task] has failed 3 attempts; design is not in question."*
+   2. Produce a minimal failing repro: exact command, exact error, exact files touched across the 3 attempts.
    3. Halt and present the repro to the user — do not re-open architectural discussion.
 4. **Write-Back (Mandatory on Every Escalation):** Once the user resolves the escalation, the agent MUST log an ADR to `.agents/architecture/adrs/` before the Outer Loop may close — trigger type, repro given, fix received, and whether this reveals a recurring bug class worth folding into `design-standards/SKILL.md`. An escalation that isn't logged is a Tier 2 violation per `00-03-meta-governance.md` Section 6 (Write-Back Loop) and blocks `master-sync.md`.
 5. **Success Condition**: The refactor is NOT complete until all tests pass (`Exit Code 0`) and the test output explicitly confirms collection/execution.

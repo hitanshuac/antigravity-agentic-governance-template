@@ -224,6 +224,17 @@ Deploy: `uvicorn main:app --reload --host 0.0.0.0 --port 7860` // turbo
 
 ---
 
+## Deployment Best Practices
+
+### Dependency Locking
+* **Pin All Dependencies:** Always use pinned or range-locked versions in `requirements.txt`.
+* **Known Conflict:** If using `python-telegram-bot`, it strictly requires `httpx~=0.26.0`.
+
+### UI Integration
+* **Single Endpoint:** Serve all interfaces (dashboard, chat console) on `/` via a unified, tabbed interface.
+
+---
+
 ## Post-Scaffold Checklist
 
 After scaffolding, immediately verify:

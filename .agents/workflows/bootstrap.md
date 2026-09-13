@@ -30,7 +30,7 @@ Execute the phases sequentially. Phase 0 is only relevant for repositories that 
    - Copy all entirely *new* files (workflows, rules, skills, product templates) into the local `.agents/` folder.
    - **Deprecated Files:** Identify files that exist locally but NOT in the upstream template (i.e., old rules or workflows). **DO NOT delete them automatically.** Present a list of these old files to the user and request **manual confirmation**. Only delete them once explicit approval is given.
    - **Do NOT overwrite** any existing files that the host project has already modified without asking first.
-5. **Union Merge Boilerplate:** Execute `.agents/workflows/merge-conflict-resolution.md` to safely union-merge `.gitignore` and any dependency manifests.
+5. **Autonomous Merge Conflict Resolution:** If integrating into an existing repository, execute `@.agents/skills/safe-merge/SKILL.md` to safely union `.gitignore`, append `requirements.txt`, and append a documentation link without deleting host files.
 6. **Cleanup:** Delete `.agents/tmp/` entirely, then proceed to Phase 1.
 
 
@@ -58,12 +58,12 @@ Execute the phases sequentially. Phase 0 is only relevant for repositories that 
 ## Phase 4: Verify Product Design Gate
 
 1. Confirm that `.agents/product/templates/` exists and contains all 5 templates (`01_PRD.md`, `02_TAD.md`, `03_SECURITY.md`, `04_FRONTEND.md`, `05_TICKETS.md`).
-2. If the user is building a new project, execute `.agents/workflows/generate-product-docs.md` to populate them before allowing any code generation.
+2. If the user is building a new project, execute `@.agents/skills/product-docs/SKILL.md` to populate them before allowing any code generation.
 
 ## Phase 5: Verify Observability
 
 1. Ensure the `data/` directory exists (with `.gitkeep`).
-2. Confirm `data/error_logs.json` exists or can be initialized by the `error-observability.md` workflow.
+2. Confirm `data/error_logs.json` exists or can be auto-initialized by the error hook on failure.
 
 ## Phase 6: Verify Local Enforcement (Pre-commit & Linting)
 
@@ -75,7 +75,7 @@ Execute the phases sequentially. Phase 0 is only relevant for repositories that 
 
 1. **Detect the host project's test framework** by scanning for test directories (`tests/`, `src/tests/`, `__tests__/`, `*_test.go`) and test runner configs (`pytest.ini`, `jest.config.*`, etc.).
 2. If tests exist, run them using the detected framework (e.g., `pytest -v`, `npm test`, `go test ./...`). // turbo
-3. If tests fail, execute `.agents/workflows/error-observability.md` to log and diagnose the failures.
+3. If tests fail, check `data/error_logs.json` (auto-populated by the hook) to diagnose the failures.
 4. If no test infrastructure exists (pure governance template), mark as `[SKIPPED - no test suite]`.
 
 ## Phase 8: Verify Automation Capabilities

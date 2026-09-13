@@ -37,3 +37,11 @@ This rule prevents the AI agent from blindly defaulting to Python tools and synt
 
 ## 3. Governance via MCP
 - **Rule**: For cross-language governance, rely on the Model Context Protocol (MCP) server endpoints instead of language-specific constructs.
+
+# Static Application Security Testing (SAST)
+
+This rule enforces semantic dataflow analysis across all codebase additions to ensure no hardcoded secrets or insecure API patterns are introduced.
+
+## 1. Pipeline Integration & Enforcement
+- **Rule**: The CI pipeline will automatically run Semgrep (using `p/default`, `p/owasp-top-ten`, and `p/secrets`). Any `ERROR` severity finding will strictly block the merge.
+- **Action**: Agents generating code MUST ensure no secrets are hardcoded. Use `os.getenv()` or `pydantic-settings` exclusively.

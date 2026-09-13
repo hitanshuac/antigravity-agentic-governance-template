@@ -1,9 +1,9 @@
 ---
-name: SAST and Evaluator Compliance
-description: Strict engineering rules to achieve zero-defect compliance against Automated Evaluators, AI Code Analyzers, and CI/CD pipelines.
+name: AI Code Evaluator Compliance
+description: Strict engineering rules to achieve zero-defect compliance against AI Code Analyzers and Automated Evaluators.
 ---
 
-# Automated SAST & Evaluator Standards
+# AI Code Evaluator Standards
 
 ## 1. Problem Statement Alignment
 - You MUST use the exact, verbatim keywords from the project requirements in the `README.md` and module-level docstrings.

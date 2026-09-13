@@ -128,7 +128,7 @@ When a novel error is resolved, add it to this library using this template:
 
 This library is a living document. The agent MUST add new patterns when:
 1. The @.agents/skills/loop-detector/SKILL.md resolves a novel error
-2. The @.agents/workflows/error-observability.md captures a recurring failure
+2. The automated error observability hook captures a recurring failure
 3. A hackathon reveals a new class of deployment or API error
 
 Format new entries using the template above. Keep each pattern under 5 lines.

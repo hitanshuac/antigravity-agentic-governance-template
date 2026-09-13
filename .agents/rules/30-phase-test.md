@@ -18,10 +18,10 @@ This rule governs all testing practices across the Agentic Environment.
 
 ## 1. The "Inner Loop" (Continuous Iteration)
 - **Trigger:** After EVERY code modification.
-- **Action:** The agent MUST autonomously execute the `.agents/workflows/test-automation.md` workflow.
+- **Action:** The agent MUST autonomously execute the `@.agents/skills/test-engineering/SKILL.md` skill.
 - **Enforcement:**
   1. Execute the host project's test suite.
-  2. If tests fail, execute `.agents/workflows/error-observability.md` to log the failure, fix the code, and retry.
+  2. If tests fail, rely on the error observability hook to log the failure, fix the code, and retry.
   3. If the agent fails to fix the test after 3 attempts, it MUST explicitly halt execution. Per `@.agents/skills/design-standards/SKILL.md` Section 6, this is by definition an Execution-Failure — the agent MUST classify it as such and present a bounded repro to the user rather than an open-ended request for help.
   4. The Inner Loop is ONLY successful when the test runner returns exit code `0` AND at least 1 test passed.
   5. The agent MUST provide explicit UI/CLI commands to test the feature manually and wait for human approval.

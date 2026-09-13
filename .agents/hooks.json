@@ -1,0 +1,36 @@
+{
+  "governance-context": {
+    "PreInvocation": [
+      {
+        "type": "command",
+        "command": "curl -s http://localhost:8080/mem0/search?user_id=default || echo '[Mem0 Server Disconnected]'"
+      }
+    ]
+  },
+  "code-generation-preflight": {
+    "PreToolUse": [
+      {
+        "matcher": "write_to_file|replace_file_content|multi_replace_file_content",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npx @agentops/mcp-server check-safety-limits || exit 0"
+          }
+        ]
+      }
+    ]
+  },
+  "trajectory-tracking": {
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npx @agentops/mcp-server log-trajectory || exit 0"
+          }
+        ]
+      }
+    ]
+  }
+}
