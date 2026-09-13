@@ -6,16 +6,16 @@
 ![Architecture](https://img.shields.io/badge/Architecture-Split--Plane-indigo)
 
 ## System Architecture
-![System Architecture](https://raw.githubusercontent.com/hitanshuac/antigravity-agentic-governance-template/showcase-assets/docs/assets/architecture_diagram_showcase.jpg)
+![System Architecture](https://github.com/hitanshuac/antigravity-agentic-governance-template/blob/showcase-assets/docs/assets/architecture_diagram_showcase.jpg?raw=true)
 
 ## Agentic Handover Flow
-![Handover Flow](https://raw.githubusercontent.com/hitanshuac/antigravity-agentic-governance-template/showcase-assets/docs/assets/handover_flow_showcase.jpg)
+![Handover Flow](https://github.com/hitanshuac/antigravity-agentic-governance-template/blob/showcase-assets/docs/assets/handover_flow_showcase.jpg?raw=true)
 
 > [!NOTE]
 > **Zero-Clone Asset Architecture:** To keep repository cloning lightning fast, this template uses the Orphan Branch Pattern. Binary showcase images are strictly excluded from the `main` branch (via `.gitignore`) and hosted entirely on the decoupled `showcase-assets` branch. A standard `git clone` will download 0 bytes of binary image data.
 
 ## Dependency Graph (AST)
-![AST Data Hierarchy](https://raw.githubusercontent.com/hitanshuac/antigravity-agentic-governance-template/showcase-assets/docs/assets/ast_hierarchy_showcase.jpg)
+![AST Data Hierarchy](https://github.com/hitanshuac/antigravity-agentic-governance-template/blob/showcase-assets/docs/assets/ast_hierarchy_showcase.jpg?raw=true)
 
 This project uses [repowise](https://repowise.dev) to build a **Tree-sitter AST dependency graph** across all project code. The graph captures imports, function calls, class inheritance, and co-change patterns — then ranks nodes by PageRank and betweenness centrality.
 
@@ -86,7 +86,6 @@ pip install -r requirements.txt
 
 ### Product & Systems Design (`.agents/product/`)
 * **Product Templates:** Pre-defined frameworks for PRDs, Technical Architecture (TAD), Security Specs, Frontend Specs, and Feature Ticket Lists to guarantee deterministic AI output.
-* **Architecture Decision Records (ADRs):** Immutable log of architectural choices (`.agents/architecture/adrs/`).
 
 ## Intelligence Domains: Skills & Workflows
 
@@ -213,7 +212,7 @@ The workflow will automatically clone the latest upstream template, merge in the
 ## Visual Reference Appendix
 
 ### The Agentic Handover Workflow
-![Handover Flow](https://raw.githubusercontent.com/hitanshuac/antigravity-agentic-governance-template/showcase-assets/docs/assets/handover_flow_showcase.jpg)
+![Handover Flow](https://github.com/hitanshuac/antigravity-agentic-governance-template/blob/showcase-assets/docs/assets/handover_flow_showcase.jpg?raw=true)
 
 ### Dual-Prong Testing Architecture (2026 Evals Standard)
 ```mermaid
