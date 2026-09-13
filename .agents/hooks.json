@@ -4,6 +4,10 @@
       {
         "type": "command",
         "command": "curl -s http://localhost:8080/mem0/search?user_id=default || echo '[Mem0 Server Disconnected]'"
+      },
+      {
+        "type": "command",
+        "command": "repowise health || echo '[Repowise AST Not Initialized]'"
       }
     ]
   },
@@ -28,6 +32,19 @@
           {
             "type": "command",
             "command": "npx @agentops/mcp-server log-trajectory || exit 0"
+          }
+        ]
+      }
+    ]
+  },
+  "ast-synchronization": {
+    "PostToolUse": [
+      {
+        "matcher": "write_to_file|replace_file_content|multi_replace_file_content",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "repowise update"
           }
         ]
       }
